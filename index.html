@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<!-- 
+		
+		Instruções para manipular os arquivos. 
+
+		1. Abra o arquivo index.html no seu editor de código.
+		2. Customize o conteúdo do arquivo index.html de acordo com as suas necessidades.
+		3. Altere a foto, o favicon e o título do site.
+		4. O arquivo bootstrap possui variados temas de cores, escolha o que mais lhe agradar. (Olhar a pasta assets/css.)
+		5. Linkedin e GitHub são apenas exemplos de redes sociais, sinta-se livre para adicionar outras redes sociais.
+		6. Adicione um link para o seu currículo em PDF. (Dica: Utilize o Google Drive para hospedar o arquivo PDF e compartilhar o link.)
+		7. Para as barras de afinidades com as tecnologias, você pode alterar o nome da tecnologia e a porcentagem de afinidade. Procure pela classe "progress-bar" e altere o valor de width. (Dica: A porcentagem é um valor entre 0 e 100.)
+		8. Salve o arquivo e abra o arquivo index.html no seu navegador para visualizar o site.
+		9. Subir no GitHub. 
+		10. Publicar utilizando o GitHub Pages. (Tutorial: https://www.alura.com.br/artigos/como-colocar-projeto-no-ar-com-github-pages/)
+		11. Compartilhar o link do seu site com a professora Adriana através da Planilha. 
+		12. Parabéns! Você concluiu o desafio.
+
+	-->
+
+
+<head>
+	<title>Kaue Caires - Mapa de carreira</title>
+
+	<style>
+		/* Estilos personalizados */
+*{
+    background-color: #000; /* Cor de fundo preta */
+    color: #0f0; /* Cor do texto verde neon */
+	align-items: center;
+	background-color: rgb(0, 0, 0);
+
+}
+
+.class{
+	background-color: #0f0;
+}
+
+.h2{
+	background-color: #0f0;
+}
+
+.resume-skill-item h4 {
+    color: #0f0; /* Cor do título verde neon */
+}
+
+.resume-progress .progress-bar {
+    background-color: #0f0; /* Cor do progresso verde neon */
+}
+
+/* Estilos para botões badges */
+.badge-light {
+    background-color: #0f0 !important; /* Cor de fundo verde neon */
+    color: #000; /* Cor do texto preto */
+}
+
+.resume-skill-item{
+	text-align: center;
+}
+
+.resume-section-title{
+
+	background-color: #0f0;
+	text-align: center;
+	text-decoration-color: #000;
+}
+	</style>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+
+	<!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+
+	<!-- Theme CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/bootstrap-1.css">
+
+</head>
+
+<body>
+
+	<article class="resume-wrapper text-center position-relative">
+		<div class="resume-wrapper-inner mx-auto text-start bg-white shadow-lg">
+			<header class="resume-header pt-4 pt-md-0">
+				<div class="row">
+					<div class="col-block col-md-auto resume-picture-holder text-center text-md-start">
+						<img class="picture" src="unnamed.png" width="50px" height="50px">
+					</div>
+					<div class="col">
+						<div class="row p-4 justify-content-center justify-content-md-between">
+							<div class="primary-info col-auto">
+								<h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">Kaue Caires</h1>
+								<div class="title mb-3">Estudante Dev Web JAVA (PROA) e Gestão de TI </div>
+								<ul class="list-unstyled">
+									<li class="mb-2">
+										<a class="text-link" href="#">
+											<i class="far fa-envelope fa-fw me-2" data-fa-transform="grow-3"></i>engkcaires@gmail.com
+									</li>
+								</ul>
+							</div
+							<div class="secondary-info col-auto mt-2">
+								<ul class="resume-social list-unstyled">
+									<li class="mb-3"><a class="text-link" href="#">
+											<span class="fa-container text-center me-2">
+												<i
+													class="fab fa-linkedin-in fa-fw"></i></span>https://br.linkedin.com/in/kaue-caires</a>
+									</li>
+									<li class="mb-3">
+										<a class="text-link" href="#">
+											<span class="fa-container text-center me-2">
+												<i
+													class="fab fa-github-alt fa-fw"></i></span>https://github.com/kauecodify</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</header>
+			<div class="resume-body p-5">
+				<section class="resume-section summary-section mb-5">
+					<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Bem vindo!</h2>
+					<div class="resume-section-content">
+
+						Meu nome é Kaue, e aos 21 anos, estou embarcando em uma jornada empolgante no mundo da
+						tecnologia. Com uma formação em Análise de Sistemas e atualmente cursando Gestão de TI e
+						Desenvolvimento Web, estou comprometido em expandir meu conhecimento e habilidades para alcançar
+						novos patamares na minha carreira.
+
+						Desde cedo, sempre me senti atraído pelo universo da tecnologia. Aprendi a programar, explorando
+						diversas linguagens e desenvolvendo soluções criativas para problemas do dia a dia. Minha
+						formação em Análise de Sistemas me proporcionou uma base sólida nesse campo, permitindo-me
+						compreender os conceitos fundamentais por trás dos sistemas de computação.
+
+						Atualmente, estou focado em aprimorar minhas habilidades em Gestão de TI e Desenvolvimento Web.
+						Este curso me oferece uma perspectiva mais ampla sobre as estratégias e liderança necessárias
+						para impulsionar a inovação na tecnologia da informação. Estou animado para explorar novas
+						oportunidades e desafios enquanto mergulho mais fundo nesse campo dinâmico.
+
+						Meu objetivo é me destacar como um inovador na indústria tecnológica. Estou sempre buscando
+						novas maneiras de aplicar meu conhecimento e habilidades para impulsionar avanços
+						significativos. Minha paixão pela inovação me motiva a enfrentar desafios de frente e buscar
+						constantemente novas oportunidades de crescimento.
+
+						<p class="mb-0"> </p>
+
+						<!-- Altere o link para um PDF do seu Curriculo -->
+						<a class="btn" href="Currículo.docx">Baixar o meu CV</a>
+					</div>
+				</section>
+				<div class="row">
+					<div class="col-lg-9">
+						<section class="resume-section experience-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Mapa de Carreira
+							</h2>
+							<div class="resume-section-content">
+								<div class="resume-timeline position-relative">
+									<article class="resume-timeline-item position-relative pb-5">
+
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h3 class="resume-position-title font-weight-bold mb-1">Desenvolvedor
+													Back-end Junior
+												</h3>
+											</div>
+										</div>
+										<div class="resume-timeline-item-desc">
+											<p>Sigo a jornada do desenvolvimento, buscando
+												constantemente ampliar meu conhecimento e
+												aprimorar minhas habilidades.
+												Cada desafio enfrentado é uma
+												oportunidade de crescimento,
+												um passo em direção ao meu objetivo
+												de me tornar um engenheiro em
+												machine learning e inteligência
+												artificial aplicados em máquinas
+												e equipamentos tecnológicos.
+												Cada linha de código escrita
+												é um pequeno avanço em direção
+												à maestria, cada erro é uma lição aprendida.
+												Sigo adiante com determinação, confiante de que
+												estou no caminho certo para alcançar meus
+												objetivos e fazer uma contribuição
+												significativa para o avanço da tecnologia.</p>
+											</p>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
+												Soft Skills exigidas para essa carreira:
+											</h4>
+											<ul>
+												<li>Comunicação eficaz</li>
+												<li>Resolução de problemas</li>
+												<li>Adaptabilidade</li>
+												<li>Resiliência</li>
+											</ul>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
+												Roadmap de Aprendizado:</h4>
+											</h4>
+											<ul class="list-inline">
+												<li class="list-inline-item">
+													<span class="badge bg-secondary badge-pill">Angular</span>
+												</li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Python</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">jQuery</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Webpack</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">HTML/SASS</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">PostgresSQL</span></li>
+											</ul>
+										</div>
+
+									</article>
+
+									<article class="resume-timeline-item position-relative pb-5">
+
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h3 class="resume-position-title font-weight-bold mb-1">Desenvolvedor
+													Back-end Sênior</h3>
+											</div>
+										</div>
+										<div class="resume-timeline-item-desc">
+											<p>Como desenvolvedor back-end sênior, minha vida profissional seria uma
+												jornada emocionante e desafiadora, permeada por uma vasta gama de
+												responsabilidades e oportunidades de crescimento. Com minha experiência
+												e expertise em desenvolvimento de software, estou preparado para assumir
+												um papel de liderança técnica e contribuir de forma significativa para o
+												sucesso de projetos complexos.
+
+												Uma das minhas principais responsabilidades como desenvolvedor back-end
+												sênior seria liderar a arquitetura e o desenvolvimento das partes
+												fundamentais dos sistemas de software, garantindo sua robustez,
+												escalabilidade e eficiência. Trabalharia em estreita colaboração com
+												outras equipes, como desenvolvedores front-end, designers e gerentes de
+												projeto, para garantir uma implementação integrada e eficaz das soluções
+												de software.
+
+												Além disso, seria responsável por orientar e mentorar membros mais
+												juniores da equipe, compartilhando meu conhecimento e experiência para
+												ajudá-los a crescer e se desenvolver profissionalmente. Estaria
+												constantemente buscando aprender e me atualizar com as últimas
+												tecnologias e tendências no campo do desenvolvimento de software,
+												garantindo que minhas habilidades permaneçam relevantes e afiadas.
+
+												Minha vida profissional seria caracterizada por um ambiente de trabalho
+												dinâmico e estimulante, onde cada dia traria novos desafios e
+												oportunidades de aprendizado. Teria a liberdade e autonomia para
+												explorar diferentes abordagens de resolução de problemas e
+												desenvolvimento de software, adaptando-me às necessidades específicas de
+												cada projeto.
+
+												Apesar do foco intenso no trabalho, também priorizaria o equilíbrio
+												entre trabalho e vida pessoal, reservando tempo para atividades de
+												lazer, família e autocuidado. Reconheço a importância de recarregar as
+												energias e manter uma perspectiva equilibrada, o que, por sua vez, me
+												tornaria um profissional mais eficaz e realizado.
+
+												Em resumo, a vida como desenvolvedor back-end sênior seria uma jornada
+												repleta de desafios estimulantes, aprendizado contínuo e satisfação
+												profissional. Estou pronto para abraçar essa oportunidade e fazer uma
+												contribuição significativa para o desenvolvimento de soluções de
+												software de alta qualidade e impacto.</p>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
+												Soft Skills exigidas para essa carreira:
+											</h4>
+											<ul>
+												<li>Curiosidade e Aprendizado Contínuo</li>
+												<li>Comunicação Clara e Eficaz</li>
+												<li>Resolução de Problemas</li>
+												<li>Pensamento Crítico</li>
+											</ul>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
+												Roadmap de Aprendizado:</h4>
+											<ul class="list-inline">
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Java</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Python(Django e
+														Flask)</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">JavaScript
+														(Node.js)</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">C# (C Sharp)</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Ruby</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">PHP</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Go (Golang)</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Entre outras...</span>
+												</li>
+											</ul>
+										</div>
+
+									</article>
+
+									<article class="resume-timeline-item position-relative pb-5">
+
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h3 class="resume-position-title font-weight-bold mb-1">Engenheiro de
+													Machine Learning e Inteligência artificial
+												</h3>
+
+											</div>
+										</div>
+										<div class="resume-timeline-item-desc">
+											<p>Ao me tornar um Engenheiro de Machine Learning e Inteligência Artificial,
+												embarquei em uma jornada fascinante e desafiadora rumo ao coração da
+												revolução tecnológica do século XXI. Como um entusiasta ávido por
+												aprender e explorar as maravilhas da inteligência artificial, cada dia
+												se torna uma oportunidade emocionante de desvendar novos horizontes e
+												superar obstáculos complexos.
+
+												Enquanto mergulho nas profundezas dos algoritmos de machine learning e
+												nas intricadas redes neurais, sou constantemente desafiado a expandir
+												meu conhecimento e aprimorar minhas habilidades. A complexidade dos
+												dados que manipulo e a variedade de técnicas que emprego exigem não
+												apenas destreza técnica, mas também uma mente curiosa e analítica para
+												decifrar padrões e insights ocultos.
+
+												No entanto, os desafios não se limitam apenas ao aspecto técnico. A
+												ética e a responsabilidade tornam-se companheiras constantes nesta
+												jornada, enquanto navego pelas águas turbulentas da coleta e uso de
+												dados sensíveis. A necessidade premente de garantir a equidade e a
+												imparcialidade em meus modelos de IA é uma responsabilidade que levo a
+												sério, consciente do impacto que minhas decisões podem ter na sociedade.
+
+												Enquanto persigo minha paixão por IA, busco constantemente maneiras de
+												aprimorar minhas habilidades e conhecimentos. Considero a possibilidade
+												de continuar meus estudos em pós-graduação, mergulhando ainda mais fundo
+												nas nuances da ciência de dados e da inteligência artificial. A cada
+												novo desafio e conquista, encontro uma fonte renovada de inspiração e
+												motivação para continuar avançando em minha jornada rumo ao domínio da
+												IA.
+
+												Minha vida como um Engenheiro de Machine Learning e Inteligência
+												Artificial é uma aventura emocionante e recompensadora, repleta de
+												descobertas, aprendizado e contribuições significativas para o avanço da
+												tecnologia. Estou comprometido em enfrentar os desafios do futuro com
+												coragem e determinação, guiado pela crença de que a inteligência
+												artificial tem o poder de transformar o mundo para melhor, e estou
+												ansioso para fazer minha parte nessa jornada extraordinária.</p>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
+												Soft Skills exigidas para essa carreira: Resolução de Problemas ;
+												Colaboração e Trabalho em Equipe ; Adaptabilidade ; Pensamento Crítico ;
+												Atenção aos Detalhes ;
+												Gestão do Tempo e Priorização e Curiosidade e Aprendizado Contínuo.
+											</h4>
+											<ul>
+												<li>Comunicação Clara</li>
+												<li>Adaptabilidade</li>
+												<li>Gestão do Tempo</li>
+												<li>Liderança e Mentoria</li>
+											</ul>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
+												Roadmap de Aprendizado:</h4>
+											<ul class="list-inline">
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill"> TensorFlow, PyTorch,
+														Scikit-learn e Keras</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">linguagem natural (NLTK,
+														SpaCy) e visão computacional (OpenCV).</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Redes Neurais e Deep
+														Learning (CNNs) e (RNNs)</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Engenharia de Dados >>
+														SQL, MongoDB, Hadoop e Spark.</span></li>
+												<li class="list-inline-item"><span
+														class="badge bg-secondary badge-pill">Ética e
+														Responsabilidade</span></li>
+											</ul>
+											<li class="list-inline-item"><span class="badge bg-secondary badge-pill"> IA
+													aplicada em contextos do mundo real</span></li>
+											</ul>
+										</div>
+								</div>
+
+	</article>
+	</div>
+	</div>
+	</section>
+	</div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-6">
+				<section class="resume-section skills-section mb-5 text-center">
+					<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Softs e Hards Skills</h2>
+					<p class="text-white">Afinidade com as seguintes tecnologias e técnicas:</p>
+					<div class="resume-section-content text-left">
+				<div class="resume-skill-item">
+					<h4 class="resume-skills-cat font-weight-bold">Frontend</h4>
+					<ul class="list-unstyled mb-4">
+						<li class="mb-2">
+							<div class="resume-skill-name">Java / JavaScript</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 98%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+						<li class="mb-2">
+							<div class="resume-skill-name">Python</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 94%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+						<li class="mb-2">
+							<div class="resume-skill-name">React</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 96%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+
+						<li class="mb-2">
+							<div class="resume-skill-name">Node.js</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 92%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+						<li class="mb-2">
+							<div class="resume-skill-name">HTML/CSS/SASS/LESS/BOOTSTRAP</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 96%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="resume-skill-item">
+					<h4 class="resume-skills-cat font-weight-bold">Backend</h4>
+					<ul class="list-unstyled">
+						<li class="mb-2">
+							<div class="resume-skill-name">Python/Django/Flask</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 95%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+						<li class="mb-2">
+							<div class="resume-skill-name">Ruby/Rails</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 92%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+						<li class="mb-2">
+							<div class="resume-skill-name">PHP</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 86%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</li>
+						<li class="mb-2">
+							<div class="resume-skill-name">MySQL</div>
+							<div class="progress resume-progress">
+								<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 82%"
+									aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+
+				<li class="mb-2">
+					<div class="resume-skill-name">Java Spring Boot</div>
+					<div class="progress resume-progress">
+						<div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 82%"
+							aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+
+				<div class="resume-skill-item">
+					<h3 class="resume-skills-cat font-weight-bold">Outras</h3>
+					<ul class="list-inline">
+						<li class="list-inline-item"><span class="badge badge-light">GitHub</span></li>
+						<li class="list-inline-item"><span class="badge badge-light">Lucidchart (fluxogramas e diagramas)</span></li>
+						<li class="list-inline-item"><span class="badge badge-light">Excel (Análise de dados)</span>
+						</li>
+						<li class="list-inline-item"><span class="badge badge-light">Wireframing>Figma;AdobeXD;Balsamiq;Sketch</span>
+						</li>
+						<li class="list-inline-item"><span class="badge badge-light">Dinamismo</span></li>
+						<li class="list-inline-item"><span class="badge badge-light">Photoshop;clipchamp</span>
+						</li>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="resume-section language-section mb-5">
+			<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Idiomas</h2>
+			<div class="resume-section-content">
+				<ul class="list-unstyled resume-lang-list">
+					<li class="mb-2"><span class="resume-lang-name font-weight-bold">Português</span>
+						<small class="text-muted font-weight-normal">(Nativo)</small>
+					</li>
+					<li class="mb-2 align-middle"><span class="resume-lang-name font-weight-bold">Inglês</span> <small
+							class="text-muted font-weight-normal">(Técnico)</small></li>
+					<li><span class="resume-lang-name font-weight-bold">Espanhol</span> <small
+							class="text-muted font-weight-normal">(Intermediário)</small></li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+	</div>
+	</div>
+	</div>
+	</article>
+</body>
+
+</html>
