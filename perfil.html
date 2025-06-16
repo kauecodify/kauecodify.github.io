@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K - Elite Pentester & Bug Bounty Hunter</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #000000;
+            --secondary-bg: #0a0a0a;
+            --accent-bg: #121212;
+            --neon-green: #00ff41;
+            --neon-green-dark: #008f26;
+            --neon-green-light: #90ff90;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #666666;
+            --gradient-green: linear-gradient(135deg, #00ff41 0%, #008f26 100%);
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .matrix-code {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: linear-gradient(to bottom, transparent 95%, var(--neon-green) 100%);
+            background-size: 100% 30px;
+            animation: matrixScroll 50s linear infinite;
+        }
+
+        @keyframes matrixScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        .matrix-flash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 0%, rgba(0, 255, 65, 0.05) 100%);
+            animation: matrixFlash 8s infinite alternate;
+        }
+
+        @keyframes matrixFlash {
+            0% { opacity: 0; }
+            50% { opacity: 0.1; }
+            100% { opacity: 0; }
+        }
+
+        /* Particles/Stars Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green), 
+                         0 0 20px var(--neon-green), 
+                         0 0 40px var(--neon-green);
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 5px var(--neon-green); }
+            to { text-shadow: 0 0 20px var(--neon-green), 
+                             0 0 30px var(--neon-green), 
+                             0 0 40px var(--neon-green-dark); }
+        }
+
+        .typing-text {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            margin-bottom: 2rem;
+            min-height: 2rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn-primary {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--neon-green);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--neon-green-dark);
+            border-color: var(--neon-green);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--neon-green-light);
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 255, 65, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: var(--gradient-green);
+            border-radius: 5px;
+            transition: width 2s ease;
+            position: relative;
+            box-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .skill-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Bug Bounty Section */
+        .bounty-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+
+        .bounty-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, transparent 45%, var(--neon-green) 50%, transparent 55%);
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .bounty-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 2rem;
+            color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+        }
+
+        /* Vulnerabilities Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--neon-green);
+            transform: translateX(-50%);
+            opacity: 0.5;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+
+        .timeline-content {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -7px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -7px;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .severity-critical {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff5555;
+            border: 1px solid #ff0000;
+        }
+
+        .severity-high {
+            background: rgba(255, 165, 0, 0.1);
+            color: #ffaa00;
+            border: 1px solid #ffa500;
+        }
+
+        .severity-medium {
+            background: rgba(255, 255, 0, 0.1);
+            color: #ffff55;
+            border: 1px solid #ffff00;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green-dark);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+            color: var(--neon-green);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid var(--neon-green-dark);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: 10px !important;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg">
+        <div class="matrix-code"></div>
+        <div class="matrix-flash"></div>
+    </div>
+    
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-terminal"></i>
+                <span>K</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#bounty">Bug Bounty</a></li>
+                <li><a href="#vulnerabilities">Findings</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>K</h1>
+            <div class="typing-text" id="typing-text">
+                <span id="typed-text"></span><span class="cursor">|</span>
+            </div>
+            <p class="hero-description">
+                Computer Engineering and Big Data Analytics student specializing in identifying critical vulnerabilities 
+                in corporate systems and cryptograph datas for intensive security.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://github.com/kauecodify" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    GitHub Profile
+                </a>
+                <a href="#skills" class="btn btn-secondary">
+                    <i class="fas fa-shield-alt"></i>
+                    View Skills
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="fade-in">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="skill-name">Cross-Site Scripting (XSS)</div>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 12%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <div class="skill-name">Build Suite Testing</div>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 8%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="skill-name">SQL Injection (SQLi)</div>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 28%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="skill-name">Cross-Site Request Forgery (CSRF)</div>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 20%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="skill-name">Server-Side Request Forgery (SSRF)</div>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 7%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="skill-name">Scientific Research</div>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 2%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bounty" class="fade-in">
+        <h2 class="section-title">Bug Bounty Programs</h2>
+        <div class="bounty-card">
+            <div class="bounty-icon">
+                <i class="fas fa-bug"></i>
+            </div>
+            <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--neon-green);">Intigriti Network</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8;">
+                Active profile on the Intigriti bug bounty platform, executing digital infiltration missions 
+                to identify critical vulnerabilities in high-security corporate systems.
+            </p>
+            <a href="https://app.intigriti.com/researcher/profile/cairescodify" target="_blank" class="btn btn-primary">
+                <i class="fas fa-external-link-alt"></i>
+                Access Network Profile
+            </a>
+        </div>
+    </section>
+
+    <section id="vulnerabilities" class="fade-in">
+        <h2 class="section-title">Reported Vulnerabilities</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="severity-badge severity-high">High Severity</div>
+                    <h3 style="color: var(--neon-green-light);">Cross-Site Scripting (XSS) – Reflected/DOM-Based</h3>
+                    <p><strong style="color: var(--neon-green);">CWE-79</strong> • Cyber Security Coalition</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">2024-06-15 • Resolved</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="severity-badge severity-critical">Critical</div>
+                    <h3 style="color: var(--neon-green-light);">SQL Injection</h3>
+                    <p><strong style="color: var(--neon-green);">CWE-89</strong> • Private Company</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">2024-05-22 • Resolved</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="severity-badge severity-medium">Medium</div>
+                    <h3 style="color: var(--neon-green-light);">Cross-Site Request Forgery</h3>
+                    <p><strong style="color: var(--neon-green);">CWE-352</strong> • Tech Corp</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">2024-04-18 • Resolved</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Establish Connection</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem;">
+            Contact for collaborations or cybersecurity discussions
+        </p>
+        <div class="contact-grid">
+            <a href="https://github.com/kauecodify" target="_blank" class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+                <h3 style="color: var(--neon-green-light);">GitHub</h3>
+            </a>
+            <a href="https://app.intigriti.com/researcher/profile/cairescodify" target="_blank" class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <h3 style="color: var(--neon-green-light);">Bug Bounty Profile</h3>
+            </a>
+            <a href="mailto:contact@example.com" class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 style="color: var(--neon-green-light);">Email</h3>
+            </a>
+            <a href="https://linkedin.com/in/kaue-caires" target="_blank" class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <h3 style="color: var(--neon-green-light);">LinkedIn</h3>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <i class="fas fa-terminal" style="color: var(--neon-green);"></i> Coded in 2024 by K • 
+            <span style="color: var(--neon-green);">Elite Cybersecurity Brasilian Division</span>
+        </p>
+    </footer>
+
+    <script>
+        // Typing animation
+        const text = "Pentester VDP & Bug Bounty Hunter";
+        const typedTextElement = document.getElementById('typed-text');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                typedTextElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Create particles/stars
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                // Random size (1px to 3px)
+                const size = Math.random() * 2 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random opacity (0.3 to 0.8)
+                particle.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                // Random animation duration (10s to 20s)
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = duration + 's';
+                
+                // Random delay (0 to 15s)
+                const delay = Math.random() * 15;
+                particle.style.animationDelay = delay + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Start typing animation after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+            createParticles();
+            
+            // Animate skill bars on page load
+            const skillBars = document.querySelectorAll('.skill-progress-bar');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 200);
+            });
+        });
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            handleScrollAnimations();
+        });
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimations();
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+                header.style.borderBottomColor = 'rgba(0, 255, 65, 0.3)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.borderBottomColor = 'rgba(0, 255, 65, 0.2)';
+            }
+        });
+    </script>
+</body>
+</html>
