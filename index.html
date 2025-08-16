@@ -18,12 +18,16 @@
             --neon-green-light: #90ff90;
             --neon-blue: #00eeff;
             --neon-purple: #bd00ff;
+            --baby-blue: #89CFF0;
+            --baby-blue-dark: #5D8AA8;
+            --baby-blue-light: #B0E0E6;
             --text-primary: #ffffff;
             --text-secondary: #cccccc;
             --text-muted: #666666;
             --glow-green: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 40px var(--neon-green);
             --glow-blue: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
             --glow-purple: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 40px var(--neon-purple);
+            --glow-baby-blue: 0 0 10px var(--baby-blue), 0 0 20px var(--baby-blue), 0 0 40px var(--baby-blue);
         }
 
         * {
@@ -41,6 +45,32 @@
             perspective: 1000px;
         }
 
+        /* FUNDO DE ESTRELAS */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+            background: linear-gradient(to bottom, #000000, #000022, #000000);
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        /* AJUSTES Z-INDEX */
         #particles-3d {
             position: fixed;
             top: 0;
@@ -342,9 +372,20 @@
             box-shadow: 0 0 15px var(--neon-blue);
         }
 
+        .btn-baby-blue {
+            background: transparent;
+            color: var(--baby-blue);
+            border: 2px solid var(--baby-blue);
+            box-shadow: 0 0 15px var(--baby-blue);
+        }
+
         .btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 30px var(--neon-green);
+        }
+        
+        .btn-baby-blue:hover {
+            box-shadow: 0 0 30px var(--baby-blue);
         }
 
         .btn::before {
@@ -380,6 +421,11 @@
             display: inline-block;
             padding: 0 1.5rem;
         }
+        
+        .section-title.baby-blue {
+            color: var(--baby-blue);
+            text-shadow: var(--glow-baby-blue);
+        }
 
         .section-title::before, .section-title::after {
             content: '';
@@ -389,6 +435,12 @@
             width: 60px;
             background: var(--neon-green);
             box-shadow: var(--glow-green);
+        }
+        
+        .section-title.baby-blue::before, 
+        .section-title.baby-blue::after {
+            background: var(--baby-blue);
+            box-shadow: var(--glow-baby-blue);
         }
 
         .section-title::before {
@@ -419,6 +471,11 @@
             transform: translateZ(20px);
             box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
         }
+        
+        .skill-card.baby-blue {
+            border: 1px solid var(--baby-blue-dark);
+            box-shadow: 0 0 20px rgba(137, 207, 240, 0.2);
+        }
 
         .skill-card::before {
             content: '';
@@ -430,11 +487,21 @@
             background: var(--neon-green);
             box-shadow: var(--glow-green);
         }
+        
+        .skill-card.baby-blue::before {
+            background: var(--baby-blue);
+            box-shadow: var(--glow-baby-blue);
+        }
 
         .skill-card:hover {
             transform: translateY(-10px) translateZ(30px);
             box-shadow: 0 0 30px var(--neon-green-dark);
             border-color: var(--neon-green);
+        }
+        
+        .skill-card.baby-blue:hover {
+            box-shadow: 0 0 30px var(--baby-blue);
+            border-color: var(--baby-blue);
         }
 
         .skill-header {
@@ -457,12 +524,23 @@
             color: var(--neon-green);
             box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
         }
+        
+        .skill-icon.baby-blue {
+            background: rgba(137, 207, 240, 0.1);
+            border: 1px solid var(--baby-blue-dark);
+            color: var(--baby-blue);
+            box-shadow: 0 0 10px rgba(137, 207, 240, 0.2);
+        }
 
         .skill-name {
             font-size: 1.3rem;
             font-weight: 600;
             color: var(--neon-green-light);
             letter-spacing: 0.5px;
+        }
+        
+        .skill-name.baby-blue {
+            color: var(--baby-blue-light);
         }
 
         .skill-progress {
@@ -473,6 +551,10 @@
             overflow: hidden;
             position: relative;
         }
+        
+        .skill-progress.baby-blue {
+            background: rgba(137, 207, 240, 0.1);
+        }
 
         .skill-progress-bar {
             height: 100%;
@@ -481,6 +563,11 @@
             transition: width 2s ease;
             position: relative;
             box-shadow: 0 0 10px var(--neon-green);
+        }
+        
+        .skill-progress-bar.baby-blue {
+            background: linear-gradient(90deg, var(--baby-blue), var(--neon-blue));
+            box-shadow: 0 0 10px var(--baby-blue);
         }
 
         .skill-progress-bar::after {
@@ -499,6 +586,25 @@
             100% { transform: translateX(100%); }
         }
 
+        .skill-subtopics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .subtopic {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            color: var(--neon-green-light);
+        }
+        
+        .skill-card.baby-blue .subtopic {
+            color: var(--baby-blue-light);
+        }
+
         .bounty-card {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--neon-green-dark);
@@ -514,6 +620,11 @@
             transform-style: preserve-3d;
             transform: perspective(1000px) rotateX(5deg);
         }
+        
+        .bounty-card.baby-blue {
+            border: 1px solid var(--baby-blue-dark);
+            box-shadow: 0 0 30px rgba(137, 207, 240, 0.3);
+        }
 
         .bounty-card::before {
             content: '';
@@ -526,6 +637,10 @@
             animation: rotate 8s linear infinite;
             z-index: -1;
             opacity: 0.1;
+        }
+        
+        .bounty-card.baby-blue::before {
+            background: linear-gradient(to bottom right, transparent 45%, var(--baby-blue) 50%, transparent 55%);
         }
 
         @keyframes rotate {
@@ -547,6 +662,13 @@
             box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
             animation: iconPulse 3s infinite alternate;
         }
+        
+        .bounty-icon.baby-blue {
+            background: rgba(137, 207, 240, 0.1);
+            border: 1px solid var(--baby-blue-dark);
+            color: var(--baby-blue);
+            box-shadow: 0 0 20px rgba(137, 207, 240, 0.3);
+        }
 
         @keyframes iconPulse {
             0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
@@ -558,6 +680,11 @@
             margin-bottom: 1.5rem;
             color: var(--neon-green);
             text-shadow: var(--glow-green);
+        }
+        
+        .bounty-card.baby-blue h3 {
+            color: var(--baby-blue);
+            text-shadow: var(--glow-baby-blue);
         }
 
         .bounty-card p {
@@ -671,6 +798,19 @@
             border: 1px solid #ffff00;
             box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
         }
+        
+        .prompt-engineering-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.5rem 0.3rem;
+            background: rgba(137, 207, 240, 0.1);
+            color: var(--baby-blue);
+            border: 1px solid var(--baby-blue);
+            box-shadow: 0 0 10px rgba(137, 207, 240, 0.3);
+        }
 
         .contact-grid {
             display: grid;
@@ -692,11 +832,21 @@
             transform-style: preserve-3d;
             transform: translateZ(20px);
         }
+        
+        .contact-card.baby-blue {
+            border: 1px solid var(--baby-blue-dark);
+            box-shadow: 0 0 20px rgba(137, 207, 240, 0.2);
+        }
 
         .contact-card:hover {
             transform: translateY(-15px) translateZ(40px);
             border-color: var(--neon-green);
             box-shadow: 0 0 40px var(--neon-green-dark);
+        }
+        
+        .contact-card.baby-blue:hover {
+            border-color: var(--baby-blue);
+            box-shadow: 0 0 40px var(--baby-blue);
         }
 
         .contact-icon {
@@ -714,17 +864,33 @@
             box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
             transition: all 0.4s ease;
         }
+        
+        .contact-icon.baby-blue {
+            background: rgba(137, 207, 240, 0.1);
+            border: 1px solid var(--baby-blue-dark);
+            color: var(--baby-blue);
+            box-shadow: 0 0 20px rgba(137, 207, 240, 0.2);
+        }
 
         .contact-card:hover .contact-icon {
             transform: scale(1.2);
             box-shadow: 0 0 30px var(--neon-green);
             color: var(--neon-green-light);
         }
+        
+        .contact-card.baby-blue:hover .contact-icon {
+            box-shadow: 0 0 30px var(--baby-blue);
+            color: var(--baby-blue-light);
+        }
 
         .contact-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--neon-green-light);
+        }
+        
+        .contact-card.baby-blue h3 {
+            color: var(--baby-blue-light);
         }
 
         .contact-card p {
@@ -757,6 +923,115 @@
         footer p {
             font-size: 1.1rem;
             letter-spacing: 1px;
+        }
+        
+        /* Prompt Engineering Section */
+        .prompt-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .prompt-feature {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--baby-blue);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+        }
+        
+        .prompt-feature:hover {
+            transform: translateY(-10px) translateZ(30px);
+            box-shadow: 0 0 30px var(--baby-blue);
+        }
+        
+        .prompt-feature-icon {
+            font-size: 3rem;
+            color: var(--baby-blue);
+            margin-bottom: 1.5rem;
+            text-shadow: var(--glow-baby-blue);
+        }
+        
+        .prompt-feature h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--baby-blue-light);
+        }
+        
+        .prompt-feature p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .blog-section {
+            margin-top: 3rem;
+            text-align: left;
+        }
+        
+        .blog-title {
+            font-size: 1.8rem;
+            color: var(--baby-blue);
+            text-shadow: var(--glow-baby-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-post {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--baby-blue-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(137, 207, 240, 0.3);
+        }
+        
+        .blog-post h3 {
+            font-size: 1.3rem;
+            color: var(--baby-blue-light);
+            margin-bottom: 0.8rem;
+        }
+        
+        .blog-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .blog-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--baby-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
         }
 
         /* MEDIA QUERIES */
@@ -838,6 +1113,14 @@
             
             .timeline-content {
                 padding: 1.2rem;
+            }
+            
+            .prompt-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-posts {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -949,6 +1232,9 @@
     </style>
 </head>
 <body>
+    <!-- FUNDO DE ESTRELAS -->
+    <div class="stars-bg" id="stars"></div>
+    
     <div id="particles-3d"></div>
     <div class="holographic-grid"></div>
 
@@ -960,12 +1246,14 @@
                     <span>DataKLaboratory</span>
                 </div>
                 <div class="header-image">
-                    <img src="k.png" alt="DataKLab Logo">
+                    <img src="https://i.imgur.com/8Y7WZ1Q.png" alt="DataKLab Logo">
                 </div>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#prompt">Prompt Engineering</a></li>
+                <li><a href="#blog">Personal Blog</a></li>
                 <li><a href="#bounty">Bug MORPHEUS</a></li>
                 <li><a href="#vulnerabilities">Findings</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -983,6 +1271,8 @@
         </div>
         <a href="#home" class="mobile-nav-link">Home</a>
         <a href="#skills" class="mobile-nav-link">Skills</a>
+        <a href="#prompt" class="mobile-nav-link">Prompt Engineering</a>
+        <a href="#blog" class="mobile-nav-link">Personal Blog</a>
         <a href="#bounty" class="mobile-nav-link">Bug MORPHEUS</a>
         <a href="#vulnerabilities" class="mobile-nav-link">Findings</a>
         <a href="#contact" class="mobile-nav-link">Contact</a>
@@ -1035,6 +1325,15 @@
                         <p>Direct manipulation of Big Data Environments</p>
                     </div>
                 </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4>PROMPT ENGINEERING</h4>
+                        <p>Advanced techniques for AI system optimization</p>
+                    </div>
+                </div>
             </div>
             
             <div class="cta-buttons">
@@ -1051,6 +1350,7 @@
     <section id="skills" class="fade-in">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
+            <!-- Data Mining -->
             <div class="skill-card">
                 <div class="skill-header">
                     <div class="skill-icon">
@@ -1059,9 +1359,16 @@
                     <div class="skill-name">DATAMINING</div>
                 </div>
                 <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 63%"></div>
+                    <div class="skill-progress-bar" style="width: 33%"></div>
+                </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">Python</span>
+                    <span class="subtopic">Statistics</span>
+                    <span class="subtopic">ETL</span>
                 </div>
             </div>
+            
+            <!-- Dashboards -->
             <div class="skill-card">
                 <div class="skill-header">
                     <div class="skill-icon">
@@ -1070,9 +1377,16 @@
                     <div class="skill-name">DASHBOARDS</div>
                 </div>
                 <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 43%"></div>
+                    <div class="skill-progress-bar" style="width: 23%"></div>
+                </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">Power BI</span>
+                    <span class="subtopic">Databricks</span>
+                    <span class="subtopic">Others</span>
                 </div>
             </div>
+            
+            <!-- Databases Maintenance -->
             <div class="skill-card">
                 <div class="skill-header">
                     <div class="skill-icon">
@@ -1083,7 +1397,14 @@
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 53%"></div>
                 </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">Python</span>
+                    <span class="subtopic">SQL</span>
+                    <span class="subtopic">PHP</span>
+                </div>
             </div>
+            
+            <!-- Interfaces Controls -->
             <div class="skill-card">
                 <div class="skill-header">
                     <div class="skill-icon">
@@ -1092,9 +1413,16 @@
                     <div class="skill-name">INTERFACES CONTROLS</div>
                 </div>
                 <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 42%"></div>
+                    <div class="skill-progress-bar" style="width: 40%"></div>
+                </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">HTML/CSS</span>
+                    <span class="subtopic">UI/UX</span>
+                    <span class="subtopic">Design Thinking</span>
                 </div>
             </div>
+            
+            <!-- Data Encryption -->
             <div class="skill-card">
                 <div class="skill-header">
                     <div class="skill-icon">
@@ -1105,17 +1433,139 @@
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 7%"></div>
                 </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">Web3</span>
+                    <span class="subtopic">Libraries</span>
+                    <span class="subtopic">Learning</span>
+                </div>
             </div>
-            <div class="skill-card">
+            
+            <!-- Scientific Maintenance -->
+            <div class="skill-card baby-blue">
                 <div class="skill-header">
-                    <div class="skill-icon">
+                    <div class="skill-icon baby-blue">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="skill-name">SCIENTIFIC MAINTENANCE</div>
+                    <div class="skill-name baby-blue">SCIENTIFIC MAINTENANCE</div>
                 </div>
-                <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 13%"></div>
+                <div class="skill-progress baby-blue">
+                    <div class="skill-progress-bar baby-blue" style="width: 13%"></div>
                 </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">All Data</span>
+                    <span class="subtopic">Research</span>
+                    <span class="subtopic">Analysis</span>
+                </div>
+            </div>
+            
+            <!-- Prompt Engineering -->
+            <div class="skill-card baby-blue">
+                <div class="skill-header">
+                    <div class="skill-icon baby-blue">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="skill-name baby-blue">PROMPT ENGINEERING</div>
+                </div>
+                <div class="skill-progress baby-blue">
+                    <div class="skill-progress-bar baby-blue" style="width: 33%"></div>
+                </div>
+                <div class="skill-subtopics">
+                    <span class="subtopic">LLM Optimization</span>
+                    <span class="subtopic">Context Design</span>
+                    <span class="subtopic">AI Systems</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prompt" class="fade-in">
+        <h2 class="section-title baby-blue">Prompt Engineering</h2>
+        <div class="bounty-card baby-blue">
+            <div class="bounty-icon baby-blue">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3>Advanced AI Prompt Engineering</h3>
+            <p>
+                Specialized in crafting high-impact prompts for LLMs (Large Language Models) to optimize:
+            </p>
+            
+            <div class="prompt-features">
+                <div class="prompt-feature">
+                    <div class="prompt-feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Contextual Optimization</h4>
+                    <p>Precise context framing for complex problem-solving with AI systems</p>
+                </div>
+                
+                <div class="prompt-feature">
+                    <div class="prompt-feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4>Multi-Step Reasoning</h4>
+                    <p>Chain-of-thought prompting for advanced analytics and decision-making</p>
+                </div>
+                
+                <div class="prompt-feature">
+                    <div class="prompt-feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Adversarial Prompting</h4>
+                    <p>Red teaming and security testing for AI systems and LLM applications</p>
+                </div>
+            </div>
+            
+            <a href="#" class="btn btn-baby-blue" style="margin-top: 2rem;">
+                <i class="fas fa-key"></i> Prompt Design Framework
+            </a>
+        </div>
+    </section>
+
+    <section id="blog" class="fade-in">
+        <h2 class="section-title baby-blue">Personal Blog</h2>
+        <div class="blog-section">
+            <div class="blog-posts">
+                <div class="blog-post">
+                    <h3>Advanced Prompt Engineering Techniques</h3>
+                    <div class="blog-date">June 15, 2025</div>
+                    <p class="blog-excerpt">Exploring the latest techniques in prompt engineering for large language models, including chain-of-thought prompting and contextual optimization strategies.</p>
+                    <a href="#" class="read-more">
+                        Read Full Article <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="blog-post">
+                    <h3>Data Visualization Best Practices</h3>
+                    <div class="blog-date">May 28, 2025</div>
+                    <p class="blog-excerpt">How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.</p>
+                    <a href="#" class="read-more">
+                        Read Full Article <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="blog-post">
+                    <h3>Cybersecurity for Data Scientists</h3>
+                    <div class="blog-date">May 12, 2025</div>
+                    <p class="blog-excerpt">Essential security practices every data professional should implement to protect sensitive data and prevent breaches.</p>
+                    <a href="#" class="read-more">
+                        Read Full Article <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="blog-post">
+                    <h3>The Future of AI in Data Analytics</h3>
+                    <div class="blog-date">April 30, 2025</div>
+                    <p class="blog-excerpt">Exploring how artificial intelligence is transforming the field of data analytics and what to expect in the coming years.</p>
+                    <a href="#" class="read-more">
+                        Read Full Article <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn btn-baby-blue">
+                    <i class="fas fa-book"></i> View All Blog Posts
+                </a>
             </div>
         </div>
     </section>
@@ -1172,7 +1622,7 @@
 
     <section id="contact" class="fade-in">
         <h2 class="section-title">Establish Connection</h2>
-        <p class="contact-subtitle">
+        <p class="hero-description" style="margin-bottom: 3rem;">
             Contact for collaborations or cybersecurity discussions
         </p>
         <div class="contact-grid">
@@ -1190,8 +1640,8 @@
                 <h3>Bug Bounty Profile</h3>
                 <p>Vulnerability reports</p>
             </a>
-            <a href="mailto:kauecloud30@gmail.com" class="contact-card">
-                <div class="contact-icon">
+            <a href="mailto:kauecloud30@gmail.com" class="contact-card baby-blue">
+                <div class="contact-icon baby-blue">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <h3>Email</h3>
@@ -1215,6 +1665,46 @@
     </footer>
 
     <script>
+        // Função para criar o fundo de estrelas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 500;
+            
+            // Limpar estrelas existentes
+            starsContainer.innerHTML = '';
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Tamanho aleatório entre 1px e 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posição aleatória
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Duração da animação aleatória
+                const duration = Math.random() * 5 + 5;
+                star.style.setProperty('--duration', `${duration}s`);
+                
+                // Brilho inicial aleatório
+                star.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Adicionar cor neon ocasionalmente
+                if (Math.random() > 0.8) {
+                    const colors = ['#00ff41', '#00eeff', '#bd00ff'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    star.style.backgroundColor = color;
+                    star.style.boxShadow = `0 0 8px ${color}, 0 0 12px ${color}`;
+                }
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
         const text = "Basic Data Mining and Data Analytics for Insights";
         const typedTextElement = document.getElementById('typed-text');
         let i = 0;
@@ -1323,6 +1813,7 @@
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 500);
             initParticles();
+            createStars();
             
             const skillBars = document.querySelectorAll('.skill-progress-bar');
             skillBars.forEach(bar => {
