@@ -25,6 +25,101 @@
             transform: translateY(0);
             transition: transform 0.3s ease;
         }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .project-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--neon-baby-blue);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) translateZ(30px);
+            box-shadow: 0 0 30px var(--neon-baby-blue);
+            border-color: var(--neon-baby-blue);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--neon-blue);
+            box-shadow: var(--glow-baby-blue);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+        }
+        
+        .project-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--neon-blue);
+            letter-spacing: 0.5px;
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            text-shadow: var(--glow-baby-green);
+        }
         
         .music-player:hover {
             transform: translateY(-5px);
@@ -1221,6 +1316,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#prompt">Prompt Engineering</a></li>
                 <li><a href="#blog">Personal Blog</a></li>
                 <li><a href="#bounty">Bug MORPHEUS</a></li>
@@ -1240,6 +1336,7 @@
         </div>
         <a href="#home" class="mobile-nav-link">Home</a>
         <a href="#skills" class="mobile-nav-link">Skills</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
         <a href="#prompt" class="mobile-nav-link">Prompt Engineering</a>
         <a href="#blog" class="mobile-nav-link">Personal Blog</a>
         <a href="#bounty" class="mobile-nav-link">Bug MORPHEUS</a>
@@ -1314,6 +1411,30 @@
             </div>
         </div>
     </section>
+
+    <!-- SEÇÃO DE PROJETOS -->
+    <section id="projects" class="fade-in">
+        <h2 class="section-title">Latest Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="project-name">Math Quest</h3>
+                </div>
+                <p class="project-description">
+                    Educational math game for children with interactive challenges and progress tracking. 
+                    Designed to make learning math fun and engaging through gamification.
+                </p>
+                <a href="https://app--math-quest-e4cd5670.base44.app/" 
+                   target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i> Access Application
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section id="skills" class="fade-in">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
