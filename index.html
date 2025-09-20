@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-                :root {
+        :root {
             --primary-bg: #000000;
             --secondary-bg: #0a0a0a;
             --accent-bg: #121212;
@@ -165,6 +165,27 @@
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 1001;
+        }
+        
+        .language-switcher {
+            margin-left: 1rem;
+        }
+        
+        #language-toggle {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-green);
+            box-shadow: 0 0 5px var(--neon-green);
+            transition: all 0.3s ease;
+        }
+        
+        #language-toggle:hover {
+            background: rgba(0, 255, 65, 0.2);
         }
         
         /* FUNDO DE ESTRELAS */
@@ -356,7 +377,7 @@
         
         .hero-description {
             max-width: 700px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
             font-size: 1.2rem;
             color: var(--text-secondary);
             line-height: 1.8;
@@ -368,7 +389,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             text-align: left;
         }
         
@@ -462,7 +483,7 @@
         }
         
         section {
-            padding: 6rem 5%;
+            padding: 4rem 5%;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -472,7 +493,7 @@
             text-align: center;
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
             color: var(--neon-green);
             text-shadow: var(--glow-green);
             position: relative;
@@ -514,12 +535,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
         
         .project-card {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--neon-baby-blue);
+            border: 1px solid var(--baby-blue);
             border-radius: 10px;
             padding: 1.5rem;
             transition: all 0.4s ease;
@@ -533,8 +554,8 @@
         
         .project-card:hover {
             transform: translateY(-10px) translateZ(30px);
-            box-shadow: 0 0 30px var(--neon-baby-blue);
-            border-color: var(--neon-baby-blue);
+            box-shadow: 0 0 30px var(--baby-blue);
+            border-color: var(--baby-blue);
         }
         
         .project-card::before {
@@ -602,7 +623,7 @@
         }
         
         .project-link:hover {
-            text-shadow: var(--glow-baby-green);
+            text-shadow: 0 0 10px var(--baby-blue);
         }
         
         /* SKILLS */
@@ -610,14 +631,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
         
         .skill-card {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--neon-green-dark);
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -662,8 +683,8 @@
         .skill-header {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.8rem;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
         }
         
         .skill-icon {
@@ -738,7 +759,7 @@
         
         @keyframes shimmer {
             0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+           100% { transform: translateX(100%); }
         }
         
         .skill-subtopics {
@@ -765,7 +786,7 @@
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--neon-green-dark);
             border-radius: 15px;
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
@@ -813,7 +834,7 @@
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
             color: var(--neon-green);
             box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
             animation: iconPulse 3s infinite alternate;
@@ -845,7 +866,7 @@
         
         .bounty-card p {
             font-size: 1.1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             line-height: 1.8;
         }
         
@@ -871,7 +892,7 @@
         
         .timeline-item {
             position: relative;
-            margin: 2.5rem 0;
+            margin: 2rem 0;
             width: 50%;
             perspective: 1000px;
         }
@@ -974,14 +995,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
         
         .contact-card {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--neon-green-dark);
             border-radius: 15px;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.4s ease;
             text-decoration: none;
@@ -1061,14 +1082,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
         
         .prompt-feature {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--baby-blue);
             border-radius: 15px;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: all 0.3s ease;
             text-align: center;
             backdrop-filter: blur(5px);
@@ -1084,7 +1105,7 @@
         .prompt-feature-icon {
             font-size: 3rem;
             color: var(--baby-blue);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-shadow: var(--glow-baby-blue);
         }
         
@@ -1101,7 +1122,7 @@
         
         /* BLOG */
         .blog-section {
-            margin-top: 3rem;
+            margin-top: 2rem;
             text-align: left;
         }
         
@@ -1170,7 +1191,7 @@
         footer {
             background: rgba(0, 0, 0, 0.8);
             border-top: 1px solid var(--neon-green-dark);
-            padding: 2.5rem 1.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             color: var(--text-muted);
             font-family: 'Courier New', monospace;
@@ -1261,8 +1282,8 @@
             transform: translateY(0) scale(1);
         }
         
-        /* MEDIA QUERIES */
-        @media (max-width: 1200px) {
+        /* MEDIA QUERIES - RESPONSIVIDADE OTIMIZADA */
+        @media (max-width: 1700px) {
             .nav-links {
                 gap: 1.5rem;
             }
@@ -1287,7 +1308,11 @@
             }
             
             .bounty-card {
-                padding: 2.5rem 1.5rem;
+                padding: 2rem 1.5rem;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr 1fr;
             }
         }
         
@@ -1314,6 +1339,15 @@
                 justify-content: space-between;
             }
             
+            .language-switcher {
+                margin-right: 15px;
+            }
+            
+            #language-toggle {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
             .timeline::before {
                 left: 20px;
             }
@@ -1329,7 +1363,7 @@
                 left: 10px !important;
             }
             
-            .skills-grid {
+            .skills-grid, .projects-grid, .prompt-features, .blog-posts, .contact-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1344,22 +1378,18 @@
             
             .hero {
                 padding-top: 140px;
+                min-height: auto;
+                padding-bottom: 3rem;
             }
             
             .timeline-content {
                 padding: 1.2rem;
             }
             
-            .prompt-features {
-                grid-template-columns: 1fr;
+            section {
+                padding: 3rem 5%;
             }
             
-            .blog-posts {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
             .hero-content {
                 padding: 1.5rem;
             }
@@ -1387,6 +1417,7 @@
             .section-title {
                 font-size: 2rem;
                 padding: 0 1rem;
+                margin-bottom: 2rem;
             }
             
             .section-title::before, 
@@ -1397,9 +1428,51 @@
             footer p {
                 font-size: 1rem;
             }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.5rem;
+            }
             
             .logo {
                 font-size: 1.4rem;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-item {
+                padding: 1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+            
+            .track-info {
+                display: none;
+            }
+            
+            .mobile-menu a {
+                font-size: 1.5rem;
+                margin: 1rem 0;
+            }
+            
+            .bounty-card, .skill-card, .project-card, .contact-card, .prompt-feature {
+                padding: 1.2rem;
             }
         }
     </style>
@@ -1428,22 +1501,35 @@
     <div class="holographic-grid"></div>
 
      <header>
+        
         <nav>
-
-            <div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#prompt">Prompt Engineering</a></li>
-                <li><a href="#blog">Personal Blog</a></li>
-                <li><a href="#seo">SEO & Traffic</a></li>
-                <li><a href="#bounty">Bug MORPHEUS</a></li>
-                <li><a href="#vulnerabilities">Findings</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-terminal"></i>
+                    <span>DataKLaboratory®</span>
+                </div>
             </div>
-            <div class="mobile-menu-btn" style="display: none;">
+
+            <!-- <div>
+                <ul class="nav-links">
+                    <li><a href="#home" data-i18n="home">Home</a></li>
+                    <li><a href="#skills" data-i18n="skills">Skills</a></li>
+                    <li><a href="#projects" data-i18n="projects">Projects</a></li>
+                    <li><a href="#prompt" data-i18n="prompt">Prompt Engineering</a></li>
+                    <li><a href="#blog" data-i18n="blog">Personal Blog</a></li>
+                    <li><a href="#seo" data-i18n="seo">SEO & Traffic</a></li>
+                    <li><a href="#bounty" data-i18n="bounty">Bug MORPHEUS</a></li>
+                    <li><a href="#vulnerabilities" data-i18n="vulnerabilities">Findings</a></li>
+                    <li><a href="#contact" data-i18n="contact">Contact</a></li>
+                </ul>
+            </div> -->
+            
+            <div class="language-switcher">
+                <button id="language-toggle">EN</button>
+            </div>
+            
+            <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
@@ -1454,23 +1540,23 @@
         <div class="close-menu" id="closeMenu">
             <i class="fas fa-times"></i>
         </div>
-        <a href="#home" class="mobile-nav-link">Home</a>
-        <a href="#skills" class="mobile-nav-link">Skills</a>
-        <a href="#projects" class="mobile-nav-link">Projects</a>
-        <a href="#prompt" class="mobile-nav-link">Prompt Engineering</a>
-        <a href="#blog" class="mobile-nav-link">Personal Blog</a>
-        <a href="#seo" class="mobile-nav-link">SEO</a>
-        <a href="#bounty" class="mobile-nav-link">Bug MORPHEUS</a>
-        <a href="#vulnerabilities" class="mobile-nav-link">Findings</a>
-        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="#home" class="mobile-nav-link" data-i18n="home">Home</a>
+        <a href="#skills" class="mobile-nav-link" data-i18n="skills">Skills</a>
+        <a href="#projects" class="mobile-nav-link" data-i18n="projects">Projects</a>
+        <a href="#prompt" class="mobile-nav-link" data-i18n="prompt">Prompt Engineering</a>
+        <a href="#blog" class="mobile-nav-link" data-i18n="blog">Personal Blog</a>
+        <a href="#seo" class="mobile-nav-link" data-i18n="seo">SEO</a>
+        <a href="#bounty" class="mobile-nav-link" data-i18n="bounty">Bug MORPHEUS</a>
+        <a href="#vulnerabilities" class="mobile-nav-link" data-i18n="vulnerabilities">Findings</a>
+        <a href="#contact" class="mobile-nav-link" data-i18n="contact">Contact</a>
     </div>
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Portfólio K.CAIRES</h1>
+            <h1 data-i18n="title">Portfólio K.CAIRES</h1>
             <div class="typing-text" id="typing-text">
                 <span id="typed-text"></span><span class="cursor">|</span>
             </div>
-            <p class="hero-description">
+            <p class="hero-description" data-i18n="description">
                 Analytical for Strategy´s
             </p>
             
@@ -1480,8 +1566,8 @@
                         <i class="fas fa-database"></i>
                     </div>
                     <div>
-                        <h4>DATAMINING-STORYTELLING</h4>
-                        <p>Pattern recognition in large datasets</p>
+                        <h4 data-i18n="feature1-title">DATAMINING-STORYTELLING</h4>
+                        <p data-i18n="feature1-desc">Pattern recognition in large datasets</p>
                     </div>
                 </div>
                 <div class="feature-item">
@@ -1489,8 +1575,8 @@
                         <i class="fas fa-exchange-alt"></i>
                     </div>
                     <div>
-                        <h4>ETL SYSTEMS</h4>
-                        <p>Efficient data extraction, transformation and loading</p>
+                        <h4 data-i18n="feature2-title">ETL SYSTEMS</h4>
+                        <p data-i18n="feature2-desc">Efficient data extraction, transformation and loading</p>
                     </div>
                 </div>
                 <div class="feature-item">
@@ -1498,8 +1584,8 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div>
-                        <h4>DASHBOARDS</h4>
-                        <p>Real-time visualization of complex Data Systems</p>
+                        <h4 data-i18n="feature3-title">DASHBOARDS</h4>
+                        <p data-i18n="feature3-desc">Real-time visualization of complex Data Systems</p>
                     </div>
                 </div>
                 <div class="feature-item">
@@ -1507,8 +1593,8 @@
                         <i class="fas fa-sliders-h"></i>
                     </div>
                     <div>
-                        <h4>CONTROL INTERFACES</h4>
-                        <p>Direct manipulation of Big Data Environments</p>
+                        <h4 data-i18n="feature4-title">CONTROL INTERFACES</h4>
+                        <p data-i18n="feature4-desc">Direct manipulation of Big Data Environments</p>
                     </div>
                 </div>
                 <div class="feature-item">
@@ -1516,18 +1602,18 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <div>
-                        <h4>PROMPT ENGINEERING</h4>
-                        <p>Advanced techniques for AI system optimization</p>
+                        <h4 data-i18n="feature5-title">PROMPT ENGINEERING</h4>
+                        <p data-i18n="feature5-desc">Advanced techniques for AI system optimization</p>
                     </div>
                 </div>
             </div>
             
             <div class="cta-buttons">
                 <a href="https://github.com/kauecodify" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-github"></i> GitHub Profile
+                    <i class="fab fa-github"></i> <span data-i18n="github">GitHub Profile</span>
                 </a>
                 <a href="#skills" class="btn btn-secondary">
-                    <i class="fas fa-shield-alt"></i> View Skills Matrix
+                    <i class="fas fa-shield-alt"></i> <span data-i18n="viewSkills">View Skills Matrix</span>
                 </a>
             </div>
         </div>
@@ -1535,29 +1621,29 @@
 
     <!-- SEÇÃO DE PROJETOS -->
     <section id="projects" class="fade-in">
-        <h2 class="section-title">Latest Projects</h2>
+        <h2 class="section-title" data-i18n="projectsTitle">Latest Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
-                    <h3 class="project-name">Math Quest</h3>
+                    <h3 class="project-name" data-i18n="project1-title">Math Quest</h3>
                 </div>
-                <p class="project-description">
+                <p class="project-description" data-i18n="project1-desc">
                     Educational math game for children with interactive challenges and progress tracking. 
                     Designed to make learning math fun and engaging through gamification.
                 </p>
                 <a href="https://app--math-quest-e4cd5670.base44.app/" 
                    target="_blank" class="project-link">
-                    <i class="fas fa-external-link-alt"></i> Access Application
+                    <i class="fas fa-external-link-alt"></i> <span data-i18n="accessApp">Access Application</span>
                 </a>
             </div>
         </div>
     </section>
 
     <section id="skills" class="fade-in">
-        <h2 class="section-title">Technical Expertise</h2>
+        <h2 class="section-title" data-i18n="skillsTitle">Technical Expertise</h2>
         <div class="skills-grid">
             <!-- Data Mining -->
             <div class="skill-card">
@@ -1565,7 +1651,7 @@
                     <div class="skill-icon">
                         <i class="fas fa-code"></i>
                     </div>
-                    <div class="skill-name">DATAMINING</div>
+                    <div class="skill-name" data-i18n="skill1-title">DATAMINING</div>
                 </div>
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 33%"></div>
@@ -1583,7 +1669,7 @@
                     <div class="skill-icon">
                         <i class="fas fa-terminal"></i>
                     </div>
-                    <div class="skill-name">DASHBOARDS</div>
+                    <div class="skill-name" data-i18n="skill2-title">DASHBOARDS</div>
                 </div>
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 23%"></div>
@@ -1601,7 +1687,7 @@
                     <div class="skill-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <div class="skill-name">DATABASES MAINTENANCE</div>
+                    <div class="skill-name" data-i18n="skill3-title">DATABASES MAINTENANCE</div>
                 </div>
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 53%"></div>
@@ -1619,7 +1705,7 @@
                     <div class="skill-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="skill-name">INTERFACES CONTROLS</div>
+                    <div class="skill-name" data-i18n="skill4-title">INTERFACES CONTROLS</div>
                 </div>
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 40%"></div>
@@ -1637,7 +1723,7 @@
                     <div class="skill-icon">
                         <i class="fas fa-server"></i>
                     </div>
-                    <div class="skill-name">DATA ENCRYPTION</div>
+                    <div class="skill-name" data-i18n="skill5-title">DATA ENCRYPTION</div>
                 </div>
                 <div class="skill-progress">
                     <div class="skill-progress-bar" style="width: 7%"></div>
@@ -1655,7 +1741,7 @@
                     <div class="skill-icon baby-blue">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="skill-name baby-blue">SCIENTIFIC MAINTENANCE</div>
+                    <div class="skill-name baby-blue" data-i18n="skill6-title">SCIENTIFIC MAINTENANCE</div>
                 </div>
                 <div class="skill-progress baby-blue">
                     <div class="skill-progress-bar baby-blue" style="width: 13%"></div>
@@ -1673,7 +1759,7 @@
                     <div class="skill-icon baby-blue">
                         <i class="fas fa-robot"></i>
                     </div>
-                    <div class="skill-name baby-blue">PROMPT ENGINEERING</div>
+                    <div class="skill-name baby-blue" data-i18n="skill7-title">PROMPT ENGINEERING</div>
                 </div>
                 <div class="skill-progress baby-blue">
                     <div class="skill-progress-bar baby-blue" style="width: 33%"></div>
@@ -1687,13 +1773,13 @@
         </div>
     </section>
     <section id="prompt" class="fade-in">
-        <h2 class="section-title baby-blue">Prompt Engineering</h2>
+        <h2 class="section-title baby-blue" data-i18n="promptTitle">Prompt Engineering</h2>
         <div class="bounty-card baby-blue">
             <div class="bounty-icon baby-blue">
                 <i class="fas fa-brain"></i>
             </div>
-            <h3>Advanced AI Prompt Engineering</h3>
-            <p>
+            <h3 data-i18n="promptCardTitle">Advanced AI Prompt Engineering</h3>
+            <p data-i18n="promptCardDesc">
                 Specialized in crafting high-impact prompts for LLMs (Large Language Models) to optimize:
             </p>
             
@@ -1702,90 +1788,90 @@
                     <div class="prompt-feature-icon">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h4>Contextual Optimization</h4>
-                    <p>Precise context framing for complex problem-solving with AI systems</p>
+                    <h4 data-i18n="promptFeature1">Contextual Optimization</h4>
+                    <p data-i18n="promptFeature1Desc">Precise context framing for complex problem-solving with AI systems</p>
                 </div>
                 
                 <div class="prompt-feature">
                     <div class="prompt-feature-icon">
                         <i class="fas fa-project-diagram"></i>
                     </div>
-                    <h4>Multi-Step Reasoning</h4>
-                    <p>Chain-of-thought prompting for advanced analytics and decision-making</p>
+                    <h4 data-i18n="promptFeature2">Multi-Step Reasoning</h4>
+                    <p data-i18n="promptFeature2Desc">Chain-of-thought prompting for advanced analytics and decision-making</p>
                 </div>
                 
                 <div class="prompt-feature">
                     <div class="prompt-feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4>Adversarial Prompting</h4>
-                    <p>Red teaming and security testing for AI systems and LLM applications</p>
+                    <h4 data-i18n="promptFeature3">Adversarial Prompting</h4>
+                    <p data-i18n="promptFeature3Desc">Red teaming and security testing for AI systems and LLM applications</p>
                 </div>
             </div>
             
             <a href="#" class="btn btn-baby-blue" style="margin-top: 2rem;">
-                <i class="fas fa-key"></i> Prompt Design Framework
+                <i class="fas fa-key"></i> <span data-i18n="promptButton">Prompt Design Framework</span>
             </a>
         </div>
     </section>
     <section id="blog" class="fade-in">
-        <h2 class="section-title baby-blue">Personal Blog</h2>
+        <h2 class="section-title baby-blue" data-i18n="blogTitle">Personal Blog</h2>
         <div class="blog-section">
             <div class="blog-posts">
                 <div class="blog-post">
-                    <h3>Advanced Prompt Engineering Techniques</h3>
-                    <div class="blog-date">June 15, 2025</div>
-                    <p class="blog-excerpt">Exploring the latest techniques in prompt engineering for large language models, including chain-of-thought prompting and contextual optimization strategies.</p>
+                    <h3 data-i18n="blogPost1Title">Advanced Prompt Engineering Techniques</h3>
+                    <div class="blog-date" data-i18n="blogPost1Date">June 15, 2025</div>
+                    <p class="blog-excerpt" data-i18n="blogPost1Excerpt">Exploring the latest techniques in prompt engineering for large language models, including chain-of-thought prompting and contextual optimization strategies.</p>
                     <a href="#" class="read-more">
-                        Read Full Article <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 
                 <div class="blog-post">
-                    <h3>Data Visualization Best Practices</h3>
-                    <div class="blog-date">May 28, 2025</div>
-                    <p class="blog-excerpt">How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.</p>
+                    <h3 data-i18n="blogPost2Title">Data Visualization Best Practices</h3>
+                    <div class="blog-date" data-i18n="blogPost2Date">May 28, 2025</div>
+                    <p class="blog-excerpt" data-i18n="blogPost2Excerpt">How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.</p>
                     <a href="#" class="read-more">
-                        Read Full Article <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 
                 <div class="blog-post">
-                    <h3>Cybersecurity for Data Scientists</h3>
-                    <div class="blog-date">May 12, 2025</div>
-                    <p class="blog-excerpt">Essential security practices every data professional should implement to protect sensitive data and prevent breaches.</p>
+                    <h3 data-i18n="blogPost3Title">Cybersecurity for Data Scientists</h3>
+                    <div class="blog-date" data-i18n="blogPost3Date">May 12, 2025</div>
+                    <p class="blog-excerpt" data-i18n="blogPost3Excerpt">Essential security practices every data professional should implement to protect sensitive data and prevent breaches.</p>
                     <a href="#" class="read-more">
-                        Read Full Article <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 
                 <div class="blog-post">
-                    <h3>The Future of AI in Data Analytics</h3>
-                    <div class="blog-date">April 30, 2025</div>
-                    <p class="blog-excerpt">Exploring how artificial intelligence is transforming the field of data analytics and what to expect in the coming years.</p>
+                    <h3 data-i18n="blogPost4Title">The Future of AI in Data Analytics</h3>
+                    <div class="blog-date" data-i18n="blogPost4Date">April 30, 2025</div>
+                    <p class="blog-excerpt" data-i18n="blogPost4Excerpt">Exploring how artificial intelligence is transforming the field of data analytics and what to expect in the coming years.</p>
                     <a href="#" class="read-more">
-                        Read Full Article <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 3rem;">
+            <div style="text-align: center; margin-top: 2rem;">
                 <a href="#" class="btn btn-baby-blue">
-                    <i class="fas fa-book"></i> View All Blog Posts
+                    <i class="fas fa-book"></i> <span data-i18n="viewAllPosts">View All Blog Posts</span>
                 </a>
             </div>
         </div>
     </section>
 
     <section id="seo" class="fade-in">
-    <h2 class="section-title baby-blue">SEO & Organic Traffic Optimization</h2>
+    <h2 class="section-title baby-blue" data-i18n="seoTitle">SEO & Organic Traffic Optimization</h2>
     
     <div class="bounty-card baby-blue">
         <div class="bounty-icon baby-blue">
             <i class="fas fa-chart-line"></i>
         </div>
-        <h3>TRÁFEGO ORGÂNICO</h3>
-        <p>
+        <h3 data-i18n="seoCardTitle">TRÁFEGO ORGÂNICO</h3>
+        <p data-i18n="seoCardDesc">
             Estratégias avançadas para aumentar visibilidade e tráfego qualificado através de otimização
             técnica e de conteúdo, gerando resultados sustentáveis a longo prazo.
         </p>
@@ -1796,8 +1882,8 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <div>
-                    <h4>53% de todo tráfego web</h4>
-                    <p>Vem de fontes orgânicas, segundo BrightEdge Research.</p>
+                    <h4 data-i18n="seoFeature1Title">53% de todo tráfego web</h4>
+                    <p data-i18n="seoFeature1Desc">Vem de fontes orgânicas, segundo BrightEdge Research.</p>
                 </div>
             </div>
             <div class="feature-item">
@@ -1805,8 +1891,8 @@
                     <i class="fas fa-money-bill-wave"></i>
                 </div>
                 <div>
-                    <h4>Custo-benefício superior</h4>
-                    <p>Resultados duradouros sem investimento contínuo em ads mas em melhoria de dados</p>
+                    <h4 data-i18n="seoFeature2Title">Custo-benefício superior</h4>
+                    <p data-i18n="seoFeature2Desc">Resultados duradouros sem investimento contínuo em ads mas em melhoria de dados</p>
                 </div>
             </div>
             <div class="feature-item">
@@ -1814,32 +1900,32 @@
                     <i class="fas fa-medal"></i>
                 </div>
                 <div>
-                    <h4>Construção de autoridade</h4>
-                    <p>Posicionamento crescente até domínio do mercado local com algoritmos adaptados</p>
+                    <h4 data-i18n="seoFeature3Title">Construção de autoridade</h4>
+                    <p data-i18n="seoFeature3Desc">Posicionamento crescente até domínio do mercado local com algoritmos adaptados</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="skills-grid" style="margin-top: 4rem;">
+    <div class="skills-grid" style="margin-top: 3rem;">
         <!-- Google Search Console -->
         <div class="skill-card baby-blue">
             <div class="skill-header">
                 <div class="skill-icon baby-blue">
                     <i class="fab fa-google"></i>
                 </div>
-                <div class="skill-name baby-blue">Google Search Console</div>
+                <div class="skill-name baby-blue" data-i18n="seoSkill1Title">Google Search Console</div>
             </div>
             <div class="skill-progress baby-blue">
                 <div class="skill-progress-bar baby-blue" style="width: 23%"></div>
             </div>
             <div class="skill-description">
-                <p>Monitoramento de desempenho na busca, correção de problemas e otimização da presença no Google.</p>
+                <p data-i18n="seoSkill1Desc">Monitoramento de desempenho na busca, correção de problemas e otimização da presença no Google.</p>
                 <ul>
-                    <li>Análise de queries e posicionamento</li>
-                    <li>Otimização de Core Web Vitals</li>
-                    <li>Monitoramento de indexação</li>
-                    <li>Identificação de rich results opportunities</li>
+                    <li data-i18n="seoSkill1Item1">Análise de queries e posicionamento</li>
+                    <li data-i18n="seoSkill1Item2">Otimização de Core Web Vitals</li>
+                    <li data-i18n="seoSkill1Item3">Monitoramento de indexação</li>
+                    <li data-i18n="seoSkill1Item4">Identificação de rich results opportunities</li>
                 </ul>
             </div>
             <div class="skill-subtopics">
@@ -1855,18 +1941,18 @@
                 <div class="skill-icon">
                     <i class="fas fa-key"></i>
                 </div>
-                <div class="skill-name">Ahrefs & Keywords</div>
+                <div class="skill-name" data-i18n="seoSkill2Title">Ahrefs & Keywords</div>
             </div>
             <div class="skill-progress">
                 <div class="skill-progress-bar" style="width: 31%"></div>
             </div>
             <div class="skill-description">
-                <p>Pesquisa e otimização avançada de palavras-chave com foco em tráfego potencial e intento de busca.</p>
+                <p data-i18n="seoSkill2Desc">Pesquisa e otimização avançada de palavras-chave com foco em tráfego potencial e intento de busca.</p>
                 <ul>
-                    <li>Análise de tráfego potencial</li>
-                    <li>Pesquisa de palavras-chave</li>
-                    <li>Análise de concorrência</li>
-                    <li>Otimização de conteúdo</li>
+                    <li data-i18n="seoSkill2Item1">Análise de tráfego potencial</li>
+                    <li data-i18n="seoSkill2Item2">Pesquisa de palavras-chave</li>
+                    <li data-i18n="seoSkill2Item3">Análise de concorrência</li>
+                    <li data-i18n="seoSkill2Item4">Otimização de conteúdo</li>
                 </ul>
             </div>
             <div class="skill-subtopics">
@@ -1882,18 +1968,18 @@
                 <div class="skill-icon baby-blue">
                     <i class="fas fa-analytics"></i>
                 </div>
-                <div class="skill-name baby-blue">Google Analytics</div>
+                <div class="skill-name baby-blue" data-i18n="seoSkill3Title">Google Analytics</div>
             </div>
             <div class="skill-progress baby-blue">
                 <div class="skill-progress-bar baby-blue" style="width: 42%"></div>
             </div>
             <div class="skill-description">
-                <p>Análise avançada de comportamento do usuário, conversões e otimização de campanhas.</p>
+                <p data-i18n="seoSkill3Desc">Análise avançada de comportamento do usuário, conversões e otimização de campanhas.</p>
                 <ul>
-                    <li>Configuração de conversões otimizadas</li>
-                    <li>Análise de comportamento</li>
-                    <li>Segmentação avançada</li>
-                    <li>Integração com Google Ads</li>
+                    <li data-i18n="seoSkill3Item1">Configuração de conversões otimizadas</li>
+                    <li data-i18n="seoSkill3Item2">Análise de comportamento</li>
+                    <li data-i18n="seoSkill3Item3">Segmentação avançada</li>
+                    <li data-i18n="seoSkill3Item4">Integração com Google Ads</li>
                 </ul>
             </div>
             <div class="skill-subtopics">
@@ -1909,18 +1995,18 @@
                 <div class="skill-icon">
                     <i class="fas fa-file-code"></i>
                 </div>
-                <div class="skill-name">On-Page SEO</div>
+                <div class="skill-name" data-i18n="seoSkill4Title">On-Page SEO</div>
             </div>
             <div class="skill-progress">
                 <div class="skill-progress-bar" style="width: 30%"></div>
             </div>
             <div class="skill-description">
-                <p>Otimização técnica e de conteúdo para maximizar a relevância e visibilidade das páginas.</p>
+                <p data-i18n="seoSkill4Desc">Otimização técnica e de conteúdo para maximizar a relevância e visibilidade das páginas.</p>
                 <ul>
-                    <li>Otimização de title tags e meta descriptions</li>
-                    <li>Estruturação de conteúdo</li>
-                    <li>SEO técnico</li>
-                    <li>Schema markup</li>
+                    <li data-i18n="seoSkill4Item1">Otimização de title tags e meta descriptions</li>
+                    <li data-i18n="seoSkill4Item2">Estruturação de conteúdo</li>
+                    <li data-i18n="seoSkill4Item3">SEO técnico</li>
+                    <li data-i18n="seoSkill4Item4">Schema markup</li>
                 </ul>
             </div>
             <div class="skill-subtopics">
@@ -1936,18 +2022,18 @@
                 <div class="skill-icon baby-blue">
                     <i class="fas fa-link"></i>
                 </div>
-                <div class="skill-name baby-blue">Off-Page SEO</div>
+                <div class="skill-name baby-blue" data-i18n="seoSkill5Title">Off-Page SEO</div>
             </div>
             <div class="skill-progress baby-blue">
                 <div class="skill-progress-bar baby-blue" style="width: 45%"></div>
             </div>
             <div class="skill-description">
-                <p>Construção de autoridade através de backlinks, menções e sinais externos.</p>
+                <p data-i18n="seoSkill5Desc">Construção de autoridade através de backlinks, menções e sinais externos.</p>
                 <ul>
-                    <li>Link building estratégico</li>
-                    <li>Digital PR</li>
-                    <li>Brand mentions</li>
-                    <li>Influencer marketing</li>
+                    <li data-i18n="seoSkill5Item1">Link building estratégico</li>
+                    <li data-i18n="seoSkill5Item2">Digital PR</li>
+                    <li data-i18n="seoSkill5Item3">Brand mentions</li>
+                    <li data-i18n="seoSkill5Item4">Influencer marketing</li>
                 </ul>
             </div>
             <div class="skill-subtopics">
@@ -1958,8 +2044,8 @@
         </div>
     </div>
 
-    <div style="margin-top: 4rem; text-align: center;">
-        <h3 class="baby-blue" style="font-size: 1.8rem; margin-bottom: 2rem;">SEO Performance Metrics</h3>
+    <div style="margin-top: 3rem; text-align: center;">
+        <h3 class="baby-blue" style="font-size: 1.8rem; margin-bottom: 2rem;" data-i18n="seoMetricsTitle">SEO Performance Metrics</h3>
         
         <div class="feature-list">
             <div class="feature-item">
@@ -1967,8 +2053,8 @@
                     <i class="fas fa-arrow-up"></i>
                 </div>
                 <div>
-                    <h4>Taxa de Cliques Orgânicos</h4>
-                    <p>O primeiro resultado orgânico no Google possui taxa de cliques média de 31.7%.</p>
+                    <h4 data-i18n="seoMetric1Title">Taxa de Cliques Orgânicos</h4>
+                    <p data-i18n="seoMetric1Desc">O primeiro resultado orgânico no Google possui taxa de cliques média de 31.7%.</p>
                 </div>
             </div>
             <div class="feature-item">
@@ -1976,8 +2062,8 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <div>
-                    <h4>Qualidade do Tráfego</h4>
-                    <p>Visitantes orgânicos demonstram maior tempo na página e menores taxas de rejeição.</p>
+                    <h4 data-i18n="seoMetric2Title">Qualidade do Tráfego</h4>
+                    <p data-i18n="seoMetric2Desc">Visitantes orgânicos demonstram maior tempo na página e menores taxas de rejeição.</p>
                 </div>
             </div>
             <div class="feature-item">
@@ -1985,94 +2071,91 @@
                     <i class="fas fa-sync-alt"></i>
                 </div>
                 <div>
-                    <h4>Retorno Sustentável</h4>
-                    <p>Conteúdos evergreen geram tráfego por anos, amortizando os custos de criação.</p>
+                    <h4 data-i18n="seoMetric3Title">Retorno Sustentável</h4>
+                    <p data-i18n="seoMetric3Desc">Conteúdos evergreen geram tráfego por anos, amortizando os custos de criação.</p>
                 </div>
             </div>
         </div>
         
         <a href="#contact" class="btn btn-baby-blue" style="margin-top: 2rem;">
-            <i class="fas fa-search"></i> Otimizar SEO do Seu Site
+            <i class="fas fa-search"></i> <span data-i18n="seoButton">Otimizar SEO do Seu Site</span>
         </a>
     </div>
 </section>
 
     <section id="bounty" class="fade-in">
-        <h2 class="section-title">Cybersecurity Network</h2>
+        <h2 class="section-title" data-i18n="bountyTitle">Cybersecurity Network</h2>
         <div class="bounty-card">
             <div class="bounty-icon">
                 <i class="fas fa-bug"></i>
             </div>
-            <h3>Intigriti Network</h3>
-            <p>
+            <h3 data-i18n="bountyCard1Title">Intigriti Network</h3>
+            <p data-i18n="bountyCard1Desc">
                 Active profile on the Intigriti bug bounty platform, executing digital infiltration missions 
                 to identify critical vulnerabilities in high-security corporate systems. Specialized in advanced 
                 penetration testing and zero-day vulnerability discovery.
             </p>
             <a href="https://app.intigriti.com/researcher/profile/cairescodify" target="_blank" class="btn btn-primary">
-                <i class="fas fa-external-link-alt"></i> Access Network Profile
+                <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access Network Profile</span>
             </a>
         </div>
 
         <div class="bounty-card" style="margin-top: 2rem;">
-            
-    <div class="bounty-icon">
-        <i class="fas fa-crow"></i>
-    </div>
-    <h3>Bugcrowd Network</h3>
-    <p>
-        Active profile on the Bugcrowd platform, hunting for vulnerabilities and contributing to a safer internet.
-    </p>
-    <a href="https://bugcrowd.com/h/cairescodify" target="_blank" class="btn btn-primary">
-        <i class="fas fa-external-link-alt"></i> Access Bugcrowd Profile
-    </a>
-    </div>
-        
+            <div class="bounty-icon">
+                <i class="fas fa-crow"></i>
+            </div>
+            <h3 data-i18n="bountyCard2Title">Bugcrowd Network</h3>
+            <p data-i18n="bountyCard2Desc">
+                Active profile on the Bugcrowd platform, hunting for vulnerabilities and contributing to a safer internet.
+            </p>
+            <a href="https://bugcrowd.com/h/cairescodify" target="_blank" class="btn btn-primary">
+                <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access Bugcrowd Profile</span>
+            </a>
+        </div>
     </section>
     <section id="vulnerabilities" class="fade-in">
-        <h2 class="section-title">Reported Vulnerabilities</h2>
+        <h2 class="section-title" data-i18n="vulnerabilitiesTitle">Reported Vulnerabilities</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="severity-badge severity-high">High Severity</div>
-                    <h3>Cross-Site Scripting (XSS) – Reflected/DOM-Based</h3>
+                    <h3 data-i18n="vulnerability1Title">Cross-Site Scripting (XSS) – Reflected/DOM-Based</h3>
                     <p><strong>CWE-79</strong> • PRIVATE COMPANY</p>
-                    <p>2025-06 • Resolved</p>
+                    <p>2025-06 • <span data-i18n="resolved">Resolved</span></p>
                 </div>
             </div>
             
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="severity-badge severity-critical">Critical</div>
-                    <h3>SQL Injection</h3>
+                    <h3 data-i18n="vulnerability2Title">SQL Injection</h3>
                     <p><strong>CWE-89</strong> • PRIVATE COMPANY</p>
-                    <p>2024-09 • Resolved</p>
+                    <p>2024-09 • <span data-i18n="resolved">Resolved</span></p>
                 </div>
             </div>
             
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="severity-badge severity-medium">Medium</div>
-                    <h3>Cross-Site Request Forgery</h3>
+                    <h3 data-i18n="vulnerability3Title">Cross-Site Request Forgery</h3>
                     <p><strong>CWE-352</strong> • PRIVATE COMPANY</p>
-                    <p>2023-04 • Resolved</p>
+                    <p>2023-04 • <span data-i18n="resolved">Resolved</span></p>
                 </div>
             </div>
-        </div>
-                    <div class="timeline-item">
+            
+            <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="severity-badge severity-critical">And others</div>
-                    <h3>WHOLESALE</h3>
+                    <h3 data-i18n="vulnerability4Title">WHOLESALE</h3>
                     <p><strong>...</strong> • FATAL_ERROR • </p>
                     <p>:p</p>
                 </div>
             </div>
         </div>
-
     </section>
     <section id="contact" class="fade-in">
-        <h2 class="section-title">Establish Connection</h2>
-        <p class="hero-description" style="margin-bottom: 3rem;">
+        <h2 class="section-title" data-i18n="contactTitle">Establish Connection</h2>
+        <p class="hero-description" style="margin-bottom: 3rem;" data-i18n="contactDesc">
             Contact for collaborations or cybersecurity discussions
         </p>
         <div class="contact-grid">
@@ -2080,42 +2163,350 @@
                 <div class="contact-icon">
                     <i class="fab fa-github"></i>
                 </div>
-                <h3>GitHub</h3>
-                <p>Access code repositories</p>
+                <h3 data-i18n="contactGitHub">GitHub</h3>
+                <p data-i18n="contactGitHubDesc">Access code repositories</p>
             </a>
 
             <a href="https://app.intigriti.com/researcher/profile/cairescodify" target="_blank" class="contact-card">
                 <div class="contact-icon">
                     <i class="fas fa-bug"></i>
                 </div>
-                <h3>Bug Bounty Profile</h3>
-                <p>Vulnerability reports</p>
+                <h3 data-i18n="contactBugBounty">Bug Bounty Profile</h3>
+                <p data-i18n="contactBugBountyDesc">Vulnerability reports</p>
             </a>
 
             <a href="mailto:kauecloud30@gmail.com" class="contact-card baby-blue">
                 <div class="contact-icon baby-blue">
                     <i class="fas fa-envelope"></i>
                 </div>
-                <h3>Email</h3>
-                <p>Secure communication</p>
+                <h3 data-i18n="contactEmail">Email</h3>
+                <p data-i18n="contactEmailDesc">Secure communication</p>
             </a>
             <a href="https://linkedin.com/in/kaue-caires" target="_blank" class="contact-card">
                 <div class="contact-icon">
                     <i class="fab fa-linkedin"></i>
                 </div>
-                <h3>LinkedIn</h3>
-                <p>Professional network</p>
+                <h3 data-i18n="contactLinkedIn">LinkedIn</h3>
+                <p data-i18n="contactLinkedInDesc">Professional network</p>
             </a>
         </div>
     </section>
     <footer>
         <p>
-            <i class="fas fa-terminal"></i> SYSTEM ACTIVE • DataKLaboratory v2.0 • 
-            <span>ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030</span>
+            <i class="fas fa-terminal"></i> <span data-i18n="footerText">SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030</span>
         </p>
     </footer>
 
     <script>
+        // Dicionário de traduções
+        const translations = {
+            'pt-BR': {
+                // Navegação
+                'home': 'Home',
+                'skills': 'Skills',
+                'projects': 'Projetos',
+                'prompt': 'Engenharia de Prompt',
+                'blog': 'Blog Pessoal',
+                'seo': 'SEO & Tráfego',
+                'bounty': 'Bug MORPHEUS',
+                'vulnerabilities': 'Descobertas',
+                'contact': 'Contato',
+                
+                // Hero Section
+                'title': 'Portfólio K.CAIRES',
+                'description': 'Analítico para Estratégias',
+                'feature1-title': 'MINERAÇÃO DE DADOS-STORYTELLING',
+                'feature1-desc': 'Reconhecimento de padrões em grandes conjuntos de dados',
+                'feature2-title': 'SISTEMAS ETL',
+                'feature2-desc': 'Extração, transformação e carregamento eficiente de dados',
+                'feature3-title': 'PAINÉIS VISUAIS',
+                'feature3-desc': 'Visualização em tempo real de sistemas complexos de dados',
+                'feature4-title': 'CONTROLES DE INTERFACE',
+                'feature4-desc': 'Manipulação direta de ambientes de Big Data',
+                'feature5-title': 'ENGENHARIA DE PROMPT',
+                'feature5-desc': 'Técnicas avançadas para otimização de sistemas de IA',
+                'github': 'Perfil GitHub',
+                'viewSkills': 'Ver Matriz de Habilidades',
+                
+                // Projects
+                'projectsTitle': 'Últimos Projetos',
+                'project1-title': 'Math Quest',
+                'project1-desc': 'Jogo educativo de matemática para crianças com desafios interativos e acompanhamento de progresso. Projetado para tornar o aprendizado de matemática divertido e envolvente através da gamificação.',
+                'accessApp': 'Acessar Aplicação',
+                
+                // Skills
+                'skillsTitle': 'Competências Técnicas',
+                'skill1-title': 'MINERAÇÃO DE DADOS',
+                'skill2-title': 'PAINÉIS VISUAIS',
+                'skill3-title': 'MANUTENÇÃO DE BANCOS',
+                'skill4-title': 'CONTROLES DE INTERFACE',
+                'skill5-title': 'CRIPTOGRAFIA DE DADOS',
+                'skill6-title': 'MANUTENÇÃO CIENTÍFICA',
+                'skill7-title': 'ENGENHARIA DE PROMPT',
+                
+                // Prompt Engineering
+                'promptTitle': 'Engenharia de Prompt',
+                'promptCardTitle': 'Engenharia de Prompt de IA Avançada',
+                'promptCardDesc': 'Especializado na criação de prompts de alto impacto para LLMs (Large Language Models) para otimizar:',
+                'promptFeature1': 'Otimização Contextual',
+                'promptFeature1Desc': 'Enquadramento preciso de contexto para resolução complexa de problemas com sistemas de IA',
+                'promptFeature2': 'Raciocínio Multi-etapas',
+                'promptFeature2Desc': 'Prompting de cadeia de pensamento para análise avançada e tomada de decisão',
+                'promptFeature3': 'Prompting Adversarial',
+                'promptFeature3Desc': 'Testes de segurança e red teaming para sistemas de IA e aplicações LLM',
+                'promptButton': 'Framework de Design de Prompt',
+                
+                // Blog
+                'blogTitle': 'Blog Pessoal',
+                'blogPost1Title': 'Técnicas Avançadas de Engenharia de Prompt',
+                'blogPost1Date': '15 de Junho, 2025',
+                'blogPost1Excerpt': 'Explorando as mais recentes técnicas em engenharia de prompt para grandes modelos de linguagem, incluindo prompting de cadeia de pensamento e estratégias de otimização contextual.',
+                'blogPost2Title': 'Melhores Práticas de Visualização de Dados',
+                'blogPost2Date': '28 de Maio, 2025',
+                'blogPost2Excerpt': 'Como criar visualizações de dados convincentes e informativas que contam histórias poderosas e impulsionam decisões de negócios.',
+                'blogPost3Title': 'Segurança Cibernética para Cientistas de Dados',
+                'blogPost3Date': '12 de Maio, 2025',
+                'blogPost3Excerpt': 'Práticas essenciais de segurança que todo profissional de dados deve implementar para proteger dados sensíveis e prevenir violações.',
+                'blogPost4Title': 'O Futuro da IA na Análise de Dados',
+                'blogPost4Date': '30 de Abril, 2025',
+                'blogPost4Excerpt': 'Explorando como a inteligência artificial está transformando o campo da análise de dados e o que esperar nos próximos anos.',
+                'readMore': 'Ler Artigo Completo',
+                'viewAllPosts': 'Ver Todos os Artigos',
+                
+                // SEO
+                'seoTitle': 'SEO & Otimização de Tráfego Orgânico',
+                'seoCardTitle': 'TRÁFEGO ORGÂNICO',
+                'seoCardDesc': 'Estratégias avançadas para aumentar visibilidade e tráfego qualificado através de otimização técnica e de conteúdo, gerando resultados sustentáveis a longo prazo.',
+                'seoFeature1Title': '53% de todo tráfego web',
+                'seoFeature1Desc': 'Vem de fontes orgânicas, segundo BrightEdge Research.',
+                'seoFeature2Title': 'Custo-benefício superior',
+                'seoFeature2Desc': 'Resultados duradouros sem investimento contínuo em ads mas em melhoria de dados',
+                'seoFeature3Title': 'Construção de autoridade',
+                'seoFeature3Desc': 'Posicionamento crescente até domínio do mercado local com algoritmos adaptados',
+                'seoSkill1Title': 'Google Search Console',
+                'seoSkill1Desc': 'Monitoramento de desempenho na busca, correção de problemas e otimização da presença no Google.',
+                'seoSkill1Item1': 'Análise de queries e posicionamento',
+                'seoSkill1Item2': 'Otimização de Core Web Vitals',
+                'seoSkill1Item3': 'Monitoramento de indexação',
+                'seoSkill1Item4': 'Identificação de rich results opportunities',
+                'seoSkill2Title': 'Ahrefs & Palavras-chave',
+                'seoSkill2Desc': 'Pesquisa e otimização avançada de palavras-chave com foco em tráfego potencial e intento de busca.',
+                'seoSkill2Item1': 'Análise de tráfego potencial',
+                'seoSkill2Item2': 'Pesquisa de palavras-chave',
+                'seoSkill2Item3': 'Análise de concorrência',
+                'seoSkill2Item4': 'Otimização de conteúdo',
+                'seoSkill3Title': 'Google Analytics',
+                'seoSkill3Desc': 'Análise avançada de comportamento do usuário, conversões e otimização de campanhas.',
+                'seoSkill3Item1': 'Configuração de conversões otimizadas',
+                'seoSkill3Item2': 'Análise de comportamento',
+                'seoSkill3Item3': 'Segmentação avançada',
+                'seoSkill3Item4': 'Integração com Google Ads',
+                'seoSkill4Title': 'SEO On-Page',
+                'seoSkill4Desc': 'Otimização técnica e de conteúdo para maximizar a relevância e visibilidade das páginas.',
+                'seoSkill4Item1': 'Otimização de title tags e meta descriptions',
+                'seoSkill4Item2': 'Estruturação de conteúdo',
+                'seoSkill4Item3': 'SEO técnico',
+                'seoSkill4Item4': 'Schema markup',
+                'seoSkill5Title': 'SEO Off-Page',
+                'seoSkill5Desc': 'Construção de autoridade através de backlinks, menções e sinais externos.',
+                'seoSkill5Item1': 'Link building estratégico',
+                'seoSkill5Item2': 'Digital PR',
+                'seoSkill5Item3': 'Brand mentions',
+                'seoSkill5Item4': 'Influencer marketing',
+                'seoMetricsTitle': 'Métricas de Performance SEO',
+                'seoMetric1Title': 'Taxa de Cliques Orgânicos',
+                'seoMetric1Desc': 'O primeiro resultado orgânico no Google possui taxa de cliques média de 31.7%.',
+                'seoMetric2Title': 'Qualidade do Tráfego',
+                'seoMetric2Desc': 'Visitantes orgânicos demonstram maior tempo na página e menores taxas de rejeição.',
+                'seoMetric3Title': 'Retorno Sustentável',
+                'seoMetric3Desc': 'Conteúdos evergreen geram tráfego por anos, amortizando os custos de criação.',
+                'seoButton': 'Otimizar SEO do Seu Site',
+                
+                // Bug Bounty
+                'bountyTitle': 'Rede de Segurança Cibernética',
+                'bountyCard1Title': 'Rede Intigriti',
+                'bountyCard1Desc': 'Perfil ativo na plataforma de bug bounty Intigriti, executando missões de infiltração digital para identificar vulnerabilidades críticas em sistemas corporativos de alta segurança. Especializado em testes de penetração avançados e descoberta de vulnerabilidades zero-day.',
+                'bountyCard2Title': 'Rede Bugcrowd',
+                'bountyCard2Desc': 'Perfil ativo na plataforma Bugcrowd, caçando vulnerabilidades e contribuindo para uma internet mais segura.',
+                'accessProfile': 'Acessar Perfil',
+                
+                // Vulnerabilities
+                'vulnerabilitiesTitle': 'Vulnerabilidades Reportadas',
+                'vulnerability1Title': 'Cross-Site Scripting (XSS) – Reflected/DOM-Based',
+                'vulnerability2Title': 'Injeção de SQL',
+                'vulnerability3Title': 'Cross-Site Request Forgery',
+                'vulnerability4Title': 'E outros',
+                'resolved': 'Resolvido',
+                
+                // Contact
+                'contactTitle': 'Estabelecer Conexão',
+                'contactDesc': 'Contato para colaborações ou discussões sobre segurança cibernética',
+                'contactGitHub': 'GitHub',
+                'contactGitHubDesc': 'Acessar repositórios de código',
+                'contactBugBounty': 'Perfil Bug Bounty',
+                'contactBugBountyDesc': 'Relatórios de vulnerabilidades',
+                'contactEmail': 'Email',
+                'contactEmailDesc': 'Comunicação segura',
+                'contactLinkedIn': 'LinkedIn',
+                'contactLinkedInDesc': 'Rede profissional',
+                
+                // Footer
+                'footerText': 'SISTEMA ATIVO • DataKLaboratory v2.0 • DIVISÃO DE ELITE | ENGENHARIA DE DADOS - BRASIL 2030'
+            },
+            'en-US': {
+                // Navigation
+                'home': 'Home',
+                'skills': 'Skills',
+                'projects': 'Projects',
+                'prompt': 'Prompt Engineering',
+                'blog': 'Personal Blog',
+                'seo': 'SEO & Traffic',
+                'bounty': 'Bug MORPHEUS',
+                'vulnerabilities': 'Findings',
+                'contact': 'Contact',
+                
+                // Hero Section
+                'title': 'Portfolio K.CAIRES',
+                'description': 'Analytical for Strategy´s',
+                'feature1-title': 'DATAMINING-STORYTELLING',
+                'feature1-desc': 'Pattern recognition in large datasets',
+                'feature2-title': 'ETL SYSTEMS',
+                'feature2-desc': 'Efficient data extraction, transformation and loading',
+                'feature3-title': 'DASHBOARDS',
+                'feature3-desc': 'Real-time visualization of complex Data Systems',
+                'feature4-title': 'CONTROL INTERFACES',
+                'feature4-desc': 'Direct manipulation of Big Data Environments',
+                'feature5-title': 'PROMPT ENGINEERING',
+                'feature5-desc': 'Advanced techniques for AI system optimization',
+                'github': 'GitHub Profile',
+                'viewSkills': 'View Skills Matrix',
+                
+                // Projects
+                'projectsTitle': 'Latest Projects',
+                'project1-title': 'Math Quest',
+                'project1-desc': 'Educational math game for children with interactive challenges and progress tracking. Designed to make learning math fun and engaging through gamification.',
+                'accessApp': 'Access Application',
+                
+                // Skills
+                'skillsTitle': 'Technical Expertise',
+                'skill1-title': 'DATAMINING',
+                'skill2-title': 'DASHBOARDS',
+                'skill3-title': 'DATABASES MAINTENANCE',
+                'skill4-title': 'INTERFACES CONTROLS',
+                'skill5-title': 'DATA ENCRYPTION',
+                'skill6-title': 'SCIENTIFIC MAINTENANCE',
+                'skill7-title': 'PROMPT ENGINEERING',
+                
+                // Prompt Engineering
+                'promptTitle': 'Prompt Engineering',
+                'promptCardTitle': 'Advanced AI Prompt Engineering',
+                'promptCardDesc': 'Specialized in crafting high-impact prompts for LLMs (Large Language Models) to optimize:',
+                'promptFeature1': 'Contextual Optimization',
+                'promptFeature1Desc': 'Precise context framing for complex problem-solving with AI systems',
+                'promptFeature2': 'Multi-Step Reasoning',
+                'promptFeature2Desc': 'Chain-of-thought prompting for advanced analytics and decision-making',
+                'promptFeature3': 'Adversarial Prompting',
+                'promptFeature3Desc': 'Red teaming and security testing for AI systems and LLM applications',
+                'promptButton': 'Prompt Design Framework',
+                
+                // Blog
+                'blogTitle': 'Personal Blog',
+                'blogPost1Title': 'Advanced Prompt Engineering Techniques',
+                'blogPost1Date': 'June 15, 2025',
+                'blogPost1Excerpt': 'Exploring the latest techniques in prompt engineering for large language models, including chain-of-thought prompting and contextual optimization strategies.',
+                'blogPost2Title': 'Data Visualization Best Practices',
+                'blogPost2Date': 'May 28, 2025',
+                'blogPost2Excerpt': 'How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.',
+                'blogPost3Title': 'Cybersecurity for Data Scientists',
+                'blogPost3Date': 'May 12, 2025',
+                'blogPost3Excerpt': 'Essential security practices every data professional should implement to protect sensitive data and prevent breaches.',
+                'blogPost4Title': 'The Future of AI in Data Analytics',
+                'blogPost4Date': 'April 30, 2025',
+                'blogPost4Excerpt': 'Exploring how artificial intelligence is transforming the field of data analytics and what to expect in the coming years.',
+                'readMore': 'Read Full Article',
+                'viewAllPosts': 'View All Blog Posts',
+                
+                // SEO
+                'seoTitle': 'SEO & Organic Traffic Optimization',
+                'seoCardTitle': 'ORGANIC TRAFFIC',
+                'seoCardDesc': 'Advanced strategies to increase visibility and qualified traffic through technical and content optimization, generating sustainable long-term results.',
+                'seoFeature1Title': '53% of all web traffic',
+                'seoFeature1Desc': 'Comes from organic sources, according to BrightEdge Research.',
+                'seoFeature2Title': 'Superior cost-benefit',
+                'seoFeature2Desc': 'Long-lasting results without continuous investment in ads but in data improvement',
+                'seoFeature3Title': 'Authority building',
+                'seoFeature3Desc': 'Growing positioning until dominating the local market with adapted algorithms',
+                'seoSkill1Title': 'Google Search Console',
+                'seoSkill1Desc': 'Search performance monitoring, issue resolution and Google presence optimization.',
+                'seoSkill1Item1': 'Query and positioning analysis',
+                'seoSkill1Item2': 'Core Web Vitals optimization',
+                'seoSkill1Item3': 'Indexing monitoring',
+                'seoSkill1Item4': 'Rich results opportunities identification',
+                'seoSkill2Title': 'Ahrefs & Keywords',
+                'seoSkill2Desc': 'Advanced keyword research and optimization focusing on potential traffic and search intent.',
+                'seoSkill2Item1': 'Potential traffic analysis',
+                'seoSkill2Item2': 'Keyword research',
+                'seoSkill2Item3': 'Competition analysis',
+                'seoSkill2Item4': 'Content optimization',
+                'seoSkill3Title': 'Google Analytics',
+                'seoSkill3Desc': 'Advanced analysis of user behavior, conversions and campaign optimization.',
+                'seoSkill3Item1': 'Optimized conversions setup',
+                'seoSkill3Item2': 'Behavior analysis',
+                'seoSkill3Item3': 'Advanced segmentation',
+                'seoSkill3Item4': 'Google Ads integration',
+                'seoSkill4Title': 'On-Page SEO',
+                'seoSkill4Desc': 'Technical and content optimization to maximize page relevance and visibility.',
+                'seoSkill4Item1': 'Title tags and meta descriptions optimization',
+                'seoSkill4Item2': 'Content structuring',
+                'seoSkill4Item3': 'Technical SEO',
+                'seoSkill4Item4': 'Schema markup',
+                'seoSkill5Title': 'Off-Page SEO',
+                'seoSkill5Desc': 'Authority building through backlinks, mentions and external signals.',
+                'seoSkill5Item1': 'Strategic link building',
+                'seoSkill5Item2': 'Digital PR',
+                'seoSkill5Item3': 'Brand mentions',
+                'seoSkill5Item4': 'Influencer marketing',
+                'seoMetricsTitle': 'SEO Performance Metrics',
+                'seoMetric1Title': 'Organic Click-Through Rate',
+                'seoMetric1Desc': 'The first organic result on Google has an average click-through rate of 31.7%.',
+                'seoMetric2Title': 'Traffic Quality',
+                'seoMetric2Desc': 'Organic visitors show longer time on page and lower bounce rates.',
+                'seoMetric3Title': 'Sustainable Return',
+                'seoMetric3Desc': 'Evergreen content generates traffic for years, amortizing creation costs.',
+                'seoButton': 'Optimize Your Site SEO',
+                
+                // Bug Bounty
+                'bountyTitle': 'Cybersecurity Network',
+                'bountyCard1Title': 'Intigriti Network',
+                'bountyCard1Desc': 'Active profile on the Intigriti bug bounty platform, executing digital infiltration missions to identify critical vulnerabilities in high-security corporate systems. Specialized in advanced penetration testing and zero-day vulnerability discovery.',
+                'bountyCard2Title': 'Bugcrowd Network',
+                'bountyCard2Desc': 'Active profile on the Bugcrowd platform, hunting for vulnerabilities and contributing to a safer internet.',
+                'accessProfile': 'Access Network Profile',
+                
+                // Vulnerabilities
+                'vulnerabilitiesTitle': 'Reported Vulnerabilities',
+                'vulnerability1Title': 'Cross-Site Scripting (XSS) – Reflected/DOM-Based',
+                'vulnerability2Title': 'SQL Injection',
+                'vulnerability3Title': 'Cross-Site Request Forgery',
+                'vulnerability4Title': 'And others',
+                'resolved': 'Resolved',
+                
+                // Contact
+                'contactTitle': 'Establish Connection',
+                'contactDesc': 'Contact for collaborations or cybersecurity discussions',
+                'contactGitHub': 'GitHub',
+                'contactGitHubDesc': 'Access code repositories',
+                'contactBugBounty': 'Bug Bounty Profile',
+                'contactBugBountyDesc': 'Vulnerability reports',
+                'contactEmail': 'Email',
+                'contactEmailDesc': 'Secure communication',
+                'contactLinkedIn': 'LinkedIn',
+                'contactLinkedInDesc': 'Professional network',
+                
+                // Footer
+                'footerText': 'SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030'
+            }
+        };
 
         // Elemento de áudio
         const audio = document.getElementById('local-audio');
@@ -2134,10 +2525,12 @@
                 musicButton.innerHTML = '<i class="fas fa-music"></i>';
             }
         });
+        
         // Atualizar ícone quando a música terminar
         audio.addEventListener('ended', () => {
             musicButton.innerHTML = '<i class="fas fa-music"></i>';
         });
+        
         // Função para criar o fundo de estrelas
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -2183,6 +2576,7 @@
         let i = 0;
         let deleting = false;
         let pause = 0;
+        
         function typeWriter() {
             if (i < text.length && !deleting && pause <= 0) {
                 typedTextElement.textContent += text.charAt(i);
@@ -2207,6 +2601,7 @@
                 setTimeout(typeWriter, 50);
             }
         }
+        
         function initParticles() {
             const container = document.getElementById('particles-3d');
             const scene = new THREE.Scene();
@@ -2214,6 +2609,7 @@
             const renderer = new THREE.WebGLRenderer({ alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             container.appendChild(renderer.domElement);
+            
             const particlesGeometry = new THREE.BufferGeometry();
             const particlesCount = 2000;
             const posArray = new Float32Array(particlesCount * 3);
@@ -2279,6 +2675,42 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
         }
+        
+        // Função para trocar idioma
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Atualizar o texto do botão
+            const toggleButton = document.getElementById('language-toggle');
+            toggleButton.textContent = lang === 'pt-BR' ? 'EN' : 'PT';
+            
+            // Salvar preferência de idioma
+            localStorage.setItem('language', lang);
+        }
+        
+        // Verificar preferência de idioma salva
+        const savedLanguage = localStorage.getItem('language') || 'pt-BR';
+        setLanguage(savedLanguage);
+        
+        // Configurar o botão de alternância de idioma
+        document.getElementById('language-toggle').addEventListener('click', function() {
+            const currentLang = document.documentElement.lang;
+            const newLang = currentLang === 'pt-BR' ? 'en-US' : 'pt-BR';
+            setLanguage(newLang);
+        });
+        
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 500);
             initParticles();
@@ -2302,6 +2734,7 @@
                 }, 200);
             });
         });
+        
         function handleScrollAnimations() {
             const elements = document.querySelectorAll('.fade-in');
             
@@ -2314,6 +2747,7 @@
                 }
             });
         }
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2328,8 +2762,10 @@
                 }
             });
         });
+        
         window.addEventListener('load', handleScrollAnimations);
         window.addEventListener('scroll', handleScrollAnimations);
+        
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             header.style.background = window.scrollY > 100 
@@ -2369,9 +2805,7 @@
         
         window.addEventListener('resize', checkScreenSize);
         checkScreenSize();
-        
     </script>
-
 </body>
 </html>
 
