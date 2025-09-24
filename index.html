@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataKLaboratory®</title>
+    <title>DataKLaboratory® - k. Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -45,7 +46,6 @@
             perspective: 1000px;
         }
         
-        /* HEADER ESTILIZADO */
         header {
             position: fixed;
             top: 0;
@@ -80,7 +80,7 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            font-size: 2.2rem;
+            font-size: clamp(1.2rem, 4vw, 2.2rem);
             font-weight: 700;
             color: var(--neon-green);
             text-shadow: var(--glow-green);
@@ -165,6 +165,16 @@
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 1001;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(0, 255, 65, 0.1);
         }
         
         .language-switcher {
@@ -182,13 +192,14 @@
             text-shadow: 0 0 5px var(--neon-green);
             box-shadow: 0 0 5px var(--neon-green);
             transition: all 0.3s ease;
+            min-width: 60px;
+            min-height: 40px;
         }
         
         #language-toggle:hover {
             background: rgba(0, 255, 65, 0.2);
         }
         
-        /* FUNDO DE ESTRELAS */
         .stars-bg {
             position: fixed;
             top: 0;
@@ -213,7 +224,6 @@
             50% { opacity: 1; }
         }
         
-        /* AJUSTES Z-INDEX */
         #particles-3d {
             position: fixed;
             top: 0;
@@ -221,6 +231,12 @@
             width: 100%;
             height: 100%;
             z-index: -3;
+        }
+        
+        #particles-3d canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
         }
         
         .holographic-grid {
@@ -258,6 +274,7 @@
             box-shadow: var(--glow-green);
             transform: translateY(0);
             transition: transform 0.3s ease;
+            min-height: 50px;
         }
 
         .music-player:hover {
@@ -299,7 +316,6 @@
             color: var(--text-secondary);
         }
         
-        /* HERO SECTION */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -323,6 +339,8 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 0 50px rgba(0, 255, 65, 0.2);
             animation: hologramFloat 6s infinite alternate ease-in-out;
+            width: 100%;
+            margin: 0 1rem;
         }
         
         @keyframes hologramFloat {
@@ -331,21 +349,22 @@
         }
         
         .hero-content h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 8vw, 6rem);
             font-weight: 900;
             margin-bottom: 1.5rem;
             color: var(--neon-green);
             text-shadow: var(--glow-green);
-            letter-spacing: -3px;
+            letter-spacing: -1px;
             position: relative;
+            line-height: 1.1;
         }
         
         .hero-content h1::after {
             content: 'β';
             position: absolute;
-            top: -20px;
-            right: -40px;
-            font-size: 2.5rem;
+            top: -10px;
+            right: -20px;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             color: var(--neon-purple);
             text-shadow: var(--glow-purple);
             animation: pulse 2s infinite alternate;
@@ -357,7 +376,7 @@
         }
         
         .typing-text {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1rem, 3vw, 1.8rem);
             color: var(--neon-blue);
             margin-bottom: 2.5rem;
             min-height: 2.5rem;
@@ -378,7 +397,7 @@
         .hero-description {
             max-width: 700px;
             margin: 0 auto 2rem;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--text-secondary);
             line-height: 1.8;
             font-weight: 300;
@@ -387,7 +406,7 @@
         
         .feature-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
             text-align: left;
@@ -401,6 +420,7 @@
             background: rgba(0, 30, 15, 0.3);
             border-left: 3px solid var(--neon-green);
             transition: all 0.3s ease;
+            min-height: 100px;
         }
         
         .feature-item:hover {
@@ -436,6 +456,9 @@
             position: relative;
             overflow: hidden;
             letter-spacing: 1px;
+            min-height: 54px;
+            min-width: 180px;
+            justify-content: center;
         }
         
         .btn-primary {
@@ -491,7 +514,7 @@
         
         .section-title {
             text-align: center;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 2.5rem;
             color: var(--neon-green);
@@ -499,6 +522,7 @@
             position: relative;
             display: inline-block;
             padding: 0 1.5rem;
+            line-height: 1.2;
         }
         
         .section-title.baby-blue {
@@ -530,7 +554,6 @@
             left: 100%;
         }
         
-        /* PROJETOS */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -550,6 +573,10 @@
             transform-style: preserve-3d;
             transform: translateZ(20px);
             box-shadow: 0 0 20px rgba(0, 247, 255, 0.1);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .project-card:hover {
@@ -610,6 +637,7 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            flex-grow: 1;
         }
         
         .project-link {
@@ -620,168 +648,100 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            min-height: 40px;
+            justify-content: center;
         }
         
         .project-link:hover {
             text-shadow: 0 0 10px var(--baby-blue);
         }
         
-        /* SKILLS */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .skills-container {
+            display: flex;
+            flex-direction: flex;
+            gap: 5rem;
+            margin-top: 5rem;
         }
         
-        .skill-card {
+        .skills-chart-container {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--neon-green-dark);
+            border: 2px solid var(--neon-green-dark);
             border-radius: 10px;
             padding: 1.5rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
             backdrop-filter: blur(5px);
-            transform-style: preserve-3d;
-            transform: translateZ(20px);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            order: 2;
+            min-height: 500px;
         }
         
-        .skill-card.baby-blue {
-            border: 1px solid var(--baby-blue-dark);
-            box-shadow: 0 0 20px rgba(137, 207, 240, 0.2);
+        .skills-list {
+            display: flex;
+            flex-direction: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            order: 1;
         }
         
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--neon-green);
-            box-shadow: var(--glow-green);
-        }
-        
-        .skill-card.baby-blue::before {
-            background: var(--baby-blue);
-            box-shadow: var(--glow-baby-blue);
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-10px) translateZ(30px);
-            box-shadow: 0 0 30px var(--neon-green-dark);
-            border-color: var(--neon-green);
-        }
-        
-        .skill-card.baby-blue:hover {
-            box-shadow: 0 0 30px var(--baby-blue);
-            border-color: var(--baby-blue);
-        }
-        
-        .skill-header {
+        .skill-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: rgba(0, 30, 15, 0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-height: 70px;
         }
         
-        .skill-icon {
+        .skill-item:hover {
+            background: rgba(0, 50, 25, 0.5);
+            transform: translateX(5px);
+        }
+        
+        .skill-visual {
             width: 50px;
             height: 50px;
-            background: rgba(0, 255, 65, 0.1);
-            border: 1px solid var(--neon-green-dark);
-            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: var(--neon-green);
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+            border-radius: 50%;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--neon-green);
+            flex-shrink: 0;
         }
         
-        .skill-icon.baby-blue {
-            background: rgba(137, 207, 240, 0.1);
-            border: 1px solid var(--baby-blue-dark);
-            color: var(--baby-blue);
-            box-shadow: 0 0 10px rgba(137, 207, 240, 0.2);
+        .skill-info {
+            flex: 1;
+            min-width: 10;
         }
         
         .skill-name {
-            font-size: 1.3rem;
             font-weight: 600;
             color: var(--neon-green-light);
-            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
-        .skill-name.baby-blue {
-            color: var(--baby-blue-light);
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
         }
         
         .skill-progress {
-            width: 100%;
-            height: 10px;
-            background: rgba(0, 255, 65, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .skill-progress.baby-blue {
-            background: rgba(137, 207, 240, 0.1);
-        }
-        
-        .skill-progress-bar {
             height: 100%;
             background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
-            border-radius: 10px;
-            transition: width 2s ease;
-            position: relative;
-            box-shadow: 0 0 10px var(--neon-green);
+            border-radius: 3px;
+            transition: width 1s ease;
         }
         
-        .skill-progress-bar.baby-blue {
-            background: linear-gradient(90deg, var(--baby-blue), var(--neon-blue));
-            box-shadow: 0 0 10px var(--baby-blue);
+        .skill-percentage {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            min-width: 40px;
+            text-align: right;
         }
         
-        .skill-progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-           100% { transform: translateX(100%); }
-        }
-        
-        .skill-subtopics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .subtopic {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.85rem;
-            color: var(--neon-green-light);
-        }
-        
-        .skill-card.baby-blue .subtopic {
-            color: var(--baby-blue-light);
-        }
-        
-        /* BOUNTY CARDS */
         .bounty-card {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--neon-green-dark);
@@ -795,7 +755,6 @@
             box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
             backdrop-filter: blur(5px);
             transform-style: preserve-3d;
-            transform: perspective(1000px) rotateX(5deg);
         }
         
         .bounty-card.baby-blue {
@@ -853,10 +812,11 @@
         }
         
         .bounty-card h3 {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
             margin-bottom: 1.5rem;
             color: var(--neon-green);
             text-shadow: var(--glow-green);
+            line-height: 1.3;
         }
         
         .bounty-card.baby-blue h3 {
@@ -865,27 +825,29 @@
         }
         
         .bounty-card p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             margin-bottom: 2rem;
             line-height: 1.8;
         }
         
-        /* TIMELINE */
-        .timeline {
+        .timeline-container {
             position: relative;
             max-width: 900px;
             margin: 0 auto;
         }
         
+        .timeline {
+            position: relative;
+        }
+        
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 20px;
             top: 0;
             bottom: 0;
             width: 3px;
             background: var(--neon-green);
-            transform: translateX(-50%);
             opacity: 0.5;
             box-shadow: var(--glow-green);
         }
@@ -893,18 +855,9 @@
         .timeline-item {
             position: relative;
             margin: 2rem 0;
-            width: 50%;
+            width: 100%;
             perspective: 1000px;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 2.5rem;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 2.5rem;
+            padding-left: 3rem;
         }
         
         .timeline-content {
@@ -928,20 +881,13 @@
             content: '';
             position: absolute;
             top: 20px;
+            left: 10px;
             width: 16px;
             height: 16px;
             background: var(--neon-green);
             border-radius: 50%;
             z-index: 1;
             box-shadow: var(--glow-green);
-        }
-        
-        .timeline-item:nth-child(odd)::before {
-            right: -8px;
-        }
-        
-        .timeline-item:nth-child(even)::before {
-            left: -8px;
         }
         
         .severity-badge {
@@ -990,7 +936,6 @@
             box-shadow: 0 0 10px rgba(137, 207, 240, 0.3);
         }
         
-        /* CONTACT */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1010,6 +955,10 @@
             box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
             transform-style: preserve-3d;
             transform: translateZ(20px);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .contact-card.baby-blue {
@@ -1077,7 +1026,6 @@
             font-size: 0.9rem;
         }
         
-        /* PROMPT ENGINEERING */
         .prompt-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1095,6 +1043,10 @@
             backdrop-filter: blur(5px);
             transform-style: preserve-3d;
             transform: translateZ(20px);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .prompt-feature:hover {
@@ -1120,7 +1072,6 @@
             font-size: 1rem;
         }
         
-        /* BLOG */
         .blog-section {
             margin-top: 2rem;
             text-align: left;
@@ -1148,6 +1099,10 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .blog-post:hover {
@@ -1172,6 +1127,7 @@
             color: var(--text-secondary);
             margin-bottom: 1.2rem;
             line-height: 1.6;
+            flex-grow: 1;
         }
         
         .read-more {
@@ -1181,13 +1137,14 @@
             color: var(--baby-blue);
             text-decoration: none;
             font-weight: 600;
+            min-height: 40px;
+            justify-content: center;
         }
         
         .read-more:hover {
             text-decoration: underline;
         }
         
-        /* FOOTER */
         footer {
             background: rgba(0, 0, 0, 0.8);
             border-top: 1px solid var(--neon-green-dark);
@@ -1211,11 +1168,10 @@
         }
         
         footer p {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             letter-spacing: 1px;
         }
         
-        /* MOBILE MENU */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -1229,6 +1185,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 2rem;
         }
         
         .mobile-menu.active {
@@ -1237,12 +1194,18 @@
         
         .mobile-menu a {
             color: var(--neon-green);
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
             margin: 1.5rem 0;
             text-decoration: none;
             position: relative;
             padding: 0.5rem 1rem;
             text-shadow: var(--glow-green);
+            width: 100%;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .mobile-menu a::after {
@@ -1268,9 +1231,19 @@
             font-size: 2rem;
             color: var(--neon-green);
             cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: background 0.3s ease;
         }
         
-        /* ANIMAÇÕES */
+        .close-menu:hover {
+            background: rgba(0, 255, 65, 0.1);
+        }
+        
         .fade-in {
             opacity: 0;
             transform: translateY(50px) scale(0.95);
@@ -1282,15 +1255,115 @@
             transform: translateY(0) scale(1);
         }
         
-        /* MEDIA QUERIES - RESPONSIVIDADE OTIMIZADA */
+        .data-visualization {
+            margin: 1rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 1px;
+            border: 1px solid var(--neon-green-dark);
+        }
+        
+        .chart-container {
+            position: flex;
+            height: 500px;
+            align-items: center;
+            margin: 0 auto;
+        }
+        
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .metric-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 20px;
+            display: flex;
+            flex-direction: grid;
+            justify-content: grid;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 40px;
+            min-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .filter-btn.active {
+            background: var(--neon-green);
+            color: #000;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(0, 255, 65, 0.2);
+        }
+        
+        @media (max-width: 100px) {
+            .skills-container {
+                flex-direction: grid;
+            }
+            
+            .skills-chart-container {
+                flex: 1;
+                order: 1;
+            }
+            
+            .skills-list {
+                flex: 1;
+                order: 2;
+            }
+        }
+        
         @media (max-width: 1700px) {
             .nav-links {
                 gap: 1.5rem;
             }
-            
-            .logo {
-                font-size: 1.8rem;
-                padding: 0.4rem 1.2rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .feature-list {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
         }
         
@@ -1314,6 +1387,10 @@
             .feature-list {
                 grid-template-columns: 1fr 1fr;
             }
+            
+            .contact-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
         }
         
         @media (max-width: 768px) {
@@ -1322,12 +1399,7 @@
             }
             
             .mobile-menu-btn {
-                display: block;
-            }
-            
-            .logo {
-                font-size: 1.6rem;
-                padding: 0.4rem 1rem;
+                display: flex;
             }
             
             .logo-container {
@@ -1363,7 +1435,7 @@
                 left: 10px !important;
             }
             
-            .skills-grid, .projects-grid, .prompt-features, .blog-posts, .contact-grid {
+            .projects-grid, .prompt-features, .blog-posts, .contact-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1392,6 +1464,7 @@
             
             .hero-content {
                 padding: 1.5rem;
+                margin: 0;
             }
             
             .hero-content h1 {
@@ -1425,34 +1498,321 @@
                 width: 40px;
             }
             
-            footer p {
-                font-size: 1rem;
+    /* ===== SEÇÃO SKILLS OTIMIZADA ===== */
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .skills-chart-container {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--neon-green);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            animation: pulse 2s infinite;
+        }
+
+        .skills-chart-container h3 {
+            color: var(--neon-green);
+            text-shadow: var(--glow-green);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0, 20, 10, 0.4);
+            border: 1px solid var(--neon-green-dark);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            min-height: 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 40, 20, 0.6);
+            transform: translateY(-5px);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+
+        .skill-visual {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 2px solid var(--neon-green);
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-visual {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--neon-green);
+        }
+
+        .skill-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-name {
+            font-weight: 150;
+            color: var(--neon-green-light);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .skill-percentage {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            text-shadow: var(--glow-green);
+            min-width: 50px;
+            text-align: right;
+        }
+
+        .skill-bar-container {
+            position: relative;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--neon-green), 
+                var(--neon-blue), 
+                var(--neon-purple));
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1rem 0;
+            flex: 1;
+        }
+
+        /* Animações específicas para skills */
+        @keyframes skillProgress {
+            0% { width: 0%; opacity: 0; }
+            100% { width: var(--target-width); opacity: 1; }
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+
+        @media (max-width: 1200px) {
+            .skills-container {
+                gap: 2rem;
+            }
+            
+            .skills-chart-container {
+                min-height: 350px;
             }
         }
-        
-        @media (max-width: 480px) {
-            .nav-links {
+
+        @media (max-width: 992px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .skills-chart-container {
+                order: 1;
+                min-height: 300px;
+            }
+            
+            .skills-list {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .skills-chart-container {
+                padding: 1.5rem;
+                min-height: 250px;
+            }
+            
+            .skill-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.2rem;
+                min-height: auto;
+            }
+            
+            .skill-header {
+                flex-direction: column;
                 gap: 0.5rem;
+                margin-bottom: 0.5rem;
             }
             
-            .logo {
-                font-size: 1.4rem;
+            .skill-visual {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
             
-            .hero-content {
+            .skill-name {
+                font-size: 1rem;
+            }
+            
+            .skill-percentage {
+                font-size: 1rem;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-chart-container {
                 padding: 1rem;
             }
             
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .skills-chart-container h3 {
+                font-size: 1.5rem;
             }
             
-            .feature-item {
+            .skill-item {
                 padding: 1rem;
             }
             
-            .btn {
-                padding: 0.8rem 1.5rem;
+            .skill-visual {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .chart-container {
+                height: 200px;
+            }
+        }
+
+        /* Efeitos de foco para acessibilidade */
+        .skill-item:focus-within {
+            outline: 2px solid var(--neon-green);
+            outline-offset: 2px;
+        }
+
+        /* Suporte para prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .skill-bar {
+                transition: none;
+            }
+            
+            .skill-bar::after {
+                animation: none;
+            }
+            
+            .skill-item::before {
+                transition: none;
+            }
+            
+            .skill-item:hover {
+                transform: none;
+            }
+        }
+            
+            .chart-container {
+                min-height:auto;
+                align-items: flex-start;
+            }
+            
+            footer p {
                 font-size: 1rem;
             }
             
@@ -1465,6 +1825,33 @@
             .track-info {
                 display: none;
             }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.5rem;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-item {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                min-width: 160px;
+            }
             
             .mobile-menu a {
                 font-size: 1.5rem;
@@ -1474,15 +1861,94 @@
             .bounty-card, .skill-card, .project-card, .contact-card, .prompt-feature {
                 padding: 1.2rem;
             }
+            
+            .metrics-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-controls {
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                min-width: 70px;
+                font-size: 0.8rem;
+            }
+            
+            section {
+                padding: 2rem 5%;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1.2rem;
+                padding: 0.4rem 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .typing-text {
+                font-size: 1rem;
+            }
+            
+            .hero-description {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                min-width: 140px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--neon-green);
+            outline-offset: 2px;
+        }
+        
+        @media (hover: none) and (pointer: coarse) {
+            .project-card:hover, 
+            .contact-card:hover, 
+            .prompt-feature:hover,
+            .timeline-content:hover,
+            .metric-card:hover {
+                transform: none;
+            }
+            
+            .btn:hover, .music-button:hover, .filter-btn:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- FUNDO DE ESTRELAS -->
     <div class="stars-bg" id="stars"></div>
      <div class="music-player">
-        <button id="music-button" class="music-button">
+        <button id="music-button" class="music-button" aria-label="Toggle music">
             <i class="fas fa-music"></i>
         </button>
         <div class="track-info">
@@ -1491,7 +1957,6 @@
         </div>
     </div>
     
-    <!-- Elemento de áudio para música local -->
     <audio id="local-audio" loop>
         <source src="9amslowed.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
@@ -1529,17 +1994,16 @@
                 <button id="language-toggle">EN</button>
             </div>
             
-            <div class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-label="Open menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </nav>
     </header>
     
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <div class="close-menu" id="closeMenu">
+        <button class="close-menu" id="closeMenu" aria-label="Close menu">
             <i class="fas fa-times"></i>
-        </div>
+        </button>
         <a href="#home" class="mobile-nav-link" data-i18n="home">Home</a>
         <a href="#skills" class="mobile-nav-link" data-i18n="skills">Skills</a>
         <a href="#projects" class="mobile-nav-link" data-i18n="projects">Projects</a>
@@ -1619,7 +2083,6 @@
         </div>
     </section>
 
-    <!-- SEÇÃO DE PROJETOS -->
     <section id="projects" class="fade-in">
         <h2 class="section-title" data-i18n="projectsTitle">Latest Projects</h2>
         <div class="projects-grid">
@@ -1644,134 +2107,110 @@
 
     <section id="skills" class="fade-in">
         <h2 class="section-title" data-i18n="skillsTitle">Technical Expertise</h2>
-        <div class="skills-grid">
-            <!-- Data Mining -->
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon">
+        
+        <div class="skills-container">
+            <div class="skills-chart-container">
+                <h3 style="color: var(--neon-green); margin-bottom: 1.5rem;">Skills Overview</h3>
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="skills-list">
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-code"></i>
                     </div>
-                    <div class="skill-name" data-i18n="skill1-title">DATAMINING</div>
+                    <div class="skill-info">
+                        <div class="skill-name">DATAMINING</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="33"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">33%</div>
                 </div>
-                <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 33%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">Python</span>
-                    <span class="subtopic">Statistics</span>
-                    <span class="subtopic">ETL</span>
-                </div>
-            </div>
-            
-            <!-- Dashboards -->
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon">
+                
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-terminal"></i>
                     </div>
-                    <div class="skill-name" data-i18n="skill2-title">DASHBOARDS</div>
+                    <div class="skill-info">
+                        <div class="skill-name">DASHBOARDS</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="46"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">46%</div>
                 </div>
-                <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 23%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">Power BI</span>
-                    <span class="subtopic">Databricks</span>
-                    <span class="subtopic">Others</span>
-                </div>
-            </div>
-            
-            <!-- Databases Maintenance -->
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon">
+                
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-database"></i>
                     </div>
-                    <div class="skill-name" data-i18n="skill3-title">DATABASES MAINTENANCE</div>
+                    <div class="skill-info">
+                        <div class="skill-name">DATABASES MAINTENANCE</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="53"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">53%</div>
                 </div>
-                <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 53%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">Python</span>
-                    <span class="subtopic">SQL</span>
-                    <span class="subtopic">PHP</span>
-                </div>
-            </div>
-            
-            <!-- Interfaces Controls -->
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon">
+                
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="skill-name" data-i18n="skill4-title">INTERFACES CONTROLS</div>
+                    <div class="skill-info">
+                        <div class="skill-name">INTERFACES CONTROLS</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="40"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">40%</div>
                 </div>
-                <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 40%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">HTML/CSS</span>
-                    <span class="subtopic">UI/UX</span>
-                    <span class="subtopic">Design Thinking</span>
-                </div>
-            </div>
-            
-            <!-- Data Encryption -->
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-icon">
+                
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-server"></i>
                     </div>
-                    <div class="skill-name" data-i18n="skill5-title">DATA ENCRYPTION</div>
+                    <div class="skill-info">
+                        <div class="skill-name">DATA ENCRYPTION</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="17"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">7%</div>
                 </div>
-                <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 7%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">Web3</span>
-                    <span class="subtopic">Libraries</span>
-                    <span class="subtopic">Learning</span>
-                </div>
-            </div>
-            
-            <!-- Scientific Maintenance -->
-            <div class="skill-card baby-blue">
-                <div class="skill-header">
-                    <div class="skill-icon baby-blue">
+                
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="skill-name baby-blue" data-i18n="skill6-title">SCIENTIFIC MAINTENANCE</div>
+                    <div class="skill-info">
+                        <div class="skill-name">SCIENTIFIC MAINTENANCE</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="13"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">13%</div>
                 </div>
-                <div class="skill-progress baby-blue">
-                    <div class="skill-progress-bar baby-blue" style="width: 13%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">All Data</span>
-                    <span class="subtopic">Research</span>
-                    <span class="subtopic">Analysis</span>
-                </div>
-            </div>
-            
-            <!-- Prompt Engineering -->
-            <div class="skill-card baby-blue">
-                <div class="skill-header">
-                    <div class="skill-icon baby-blue">
+                
+                <div class="skill-item">
+                    <div class="skill-visual">
                         <i class="fas fa-robot"></i>
                     </div>
-                    <div class="skill-name baby-blue" data-i18n="skill7-title">PROMPT ENGINEERING</div>
-                </div>
-                <div class="skill-progress baby-blue">
-                    <div class="skill-progress-bar baby-blue" style="width: 33%"></div>
-                </div>
-                <div class="skill-subtopics">
-                    <span class="subtopic">LLM Optimization</span>
-                    <span class="subtopic">Context Design</span>
-                    <span class="subtopic">AI Systems</span>
+                    <div class="skill-info">
+                        <div class="skill-name">PROMPT ENGINEERING</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="33"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percentage">33%</div>
                 </div>
             </div>
         </div>
     </section>
+    
     <section id="prompt" class="fade-in">
         <h2 class="section-title baby-blue" data-i18n="promptTitle">Prompt Engineering</h2>
         <div class="bounty-card baby-blue">
@@ -1821,8 +2260,6 @@
         <div class="blog-section">
             <div class="blog-posts">
                 <div class="blog-post">
-
-                <div class="blog-post">
                     <h3 data-i18n="blogPost1Title">Prompt Engineer</h3>
                     <div class="blog-date" data-i18n="blogPost1Date">June 13, 2025</div>
                     <p class="blog-excerpt" data-i18n="blogPost1Excerpt">MegaBook - Prompt Engineer (2025 - 2030)</p>
@@ -1830,8 +2267,8 @@
                         <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                    
-                </div>
+                
+                <div class="blog-post">
                     <h3 data-i18n="blogPost2Title">TOP 100 CODES IN PYTHON</h3>
                     <div class="blog-date" data-i18n="blogPost2Date">June 13, 2025</div>
                     <p class="blog-excerpt" data-i18n="blogPost2Excerpt">Top 100 best codes for data analysis/statistics/IA-ML in python</p>
@@ -1839,276 +2276,77 @@
                         <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-
-                <!-- <div class="blog-post">
-                    <h3 data-i18n="blogPost1Title">Prompt Engineer</h3>
-                    <div class="blog-date" data-i18n="blogPost1Date">June 13, 2025</div>
-                    <p class="blog-excerpt" data-i18n="blogPost1Excerpt">MegaBook - Prompt Engineer (2025 - 2030)</p>
-                    <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030?_gl=1*1gr2psk*_gcl_au*ODI5NDczLjE3NTg3Mzc0NTk." class="read-more">
-                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-            <!-- </div>
-        </div>
-            
-                <div class="blog-post">
-                    <h3 data-i18n="blogPost2Title">Data Visualization Best Practices</h3>
-                    <div class="blog-date" data-i18n="blogPost2Date">May 28, 2025</div>
-                    <p class="blog-excerpt" data-i18n="blogPost2Excerpt">How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.</p>
-                    <a href="#" class="read-more">
-                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="blog-post">
-                    <h3 data-i18n="blogPost3Title">Cybersecurity for Data Scientists</h3>
-                    <div class="blog-date" data-i18n="blogPost3Date">May 12, 2025</div>
-                    <p class="blog-excerpt" data-i18n="blogPost3Excerpt">Essential security practices every data professional should implement to protect sensitive data and prevent breaches.</p>
-                    <a href="#" class="read-more">
-                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="blog-post">
-                    <h3 data-i18n="blogPost4Title">The Future of AI in Data Analytics</h3>
-                    <div class="blog-date" data-i18n="blogPost4Date">April 30, 2025</div>
-                    <p class="blog-excerpt" data-i18n="blogPost4Excerpt">Exploring how artificial intelligence is transforming the field of data analytics and what to expect in the coming years.</p>
-                    <a href="#" class="read-more">
-                        <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="#" class="btn btn-baby-blue">
-                    <i class="fas fa-book"></i> <span data-i18n="viewAllPosts">View All Blog Posts</span>
-                </a>
-         -->
             </div>
         </div>
-                
     </section>
 
     <section id="seo" class="fade-in">
-    <h2 class="section-title baby-blue" data-i18n="seoTitle">SEO & Organic Traffic Optimization</h2>
-    
-    <div class="bounty-card baby-blue">
-        <div class="bounty-icon baby-blue">
-            <i class="fas fa-chart-line"></i>
-        </div>
-        <h3 data-i18n="seoCardTitle">TRÁFEGO ORGÂNICO</h3>
-        <p data-i18n="seoCardDesc">
-            Estratégias avançadas para aumentar visibilidade e tráfego qualificado através de otimização
-            técnica e de conteúdo, gerando resultados sustentáveis a longo prazo.
-        </p>
+        <h2 class="section-title baby-blue" data-i18n="seoTitle">SEO & Organic Traffic Optimization</h2>
         
-        <div class="feature-list">
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-search"></i>
+        <div class="data-visualization">
+            <h3 style="color: var(--baby-blue); margin-bottom: 1.5rem;">SEO Performance Dashboard</h3>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-card">
+                    <div class="metric-value">53%</div>
+                    <div class="metric-label">Organic Traffic</div>
                 </div>
-                <div>
-                    <h4 data-i18n="seoFeature1Title">53% de todo tráfego web</h4>
-                    <p data-i18n="seoFeature1Desc">Vem de fontes orgânicas, segundo BrightEdge Research.</p>
+                <div class="metric-card">
+                    <div class="metric-value">31.7%</div>
+                    <div class="metric-label">CTR First Result</div>
                 </div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div>
-                    <h4 data-i18n="seoFeature2Title">Custo-benefício superior</h4>
-                    <p data-i18n="seoFeature2Desc">Resultados duradouros sem investimento contínuo em ads mas em melhoria de dados</p>
+                <div class="metric-card">
+                    <div class="metric-value">75%</div>
+                    <div class="metric-label">Visibility Increase</div>
                 </div>
             </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-medal"></i>
-                </div>
-                <div>
-                    <h4 data-i18n="seoFeature3Title">Construção de autoridade</h4>
-                    <p data-i18n="seoFeature3Desc">Posicionamento crescente até domínio do mercado local com algoritmos adaptados</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="skills-grid" style="margin-top: 3rem;">
-        <!-- Google Search Console -->
-        <div class="skill-card baby-blue">
-            <div class="skill-header">
-                <div class="skill-icon baby-blue">
-                    <i class="fab fa-google"></i>
-                </div>
-                <div class="skill-name baby-blue" data-i18n="seoSkill1Title">Google Search Console</div>
-            </div>
-            <div class="skill-progress baby-blue">
-                <div class="skill-progress-bar baby-blue" style="width: 23%"></div>
-            </div>
-            <div class="skill-description">
-                <p data-i18n="seoSkill1Desc">Monitoramento de desempenho na busca, correção de problemas e otimização da presença no Google.</p>
-                <ul>
-                    <li data-i18n="seoSkill1Item1">Análise de queries e posicionamento</li>
-                    <li data-i18n="seoSkill1Item2">Otimização de Core Web Vitals</li>
-                    <li data-i18n="seoSkill1Item3">Monitoramento de indexação</li>
-                    <li data-i18n="seoSkill1Item4">Identificação de rich results opportunities</li>
-                </ul>
-            </div>
-            <div class="skill-subtopics">
-                <span class="subtopic">Performance</span>
-                <span class="subtopic">Coverage</span>
-                <span class="subtopic">Experience</span>
-            </div>
-        </div>
-
-        <!-- Ahrefs & Keyword Optimization -->
-        <div class="skill-card">
-            <div class="skill-header">
-                <div class="skill-icon">
-                    <i class="fas fa-key"></i>
-                </div>
-                <div class="skill-name" data-i18n="seoSkill2Title">Ahrefs & Keywords</div>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-progress-bar" style="width: 31%"></div>
-            </div>
-            <div class="skill-description">
-                <p data-i18n="seoSkill2Desc">Pesquisa e otimização avançada de palavras-chave com foco em tráfego potencial e intento de busca.</p>
-                <ul>
-                    <li data-i18n="seoSkill2Item1">Análise de tráfego potencial</li>
-                    <li data-i18n="seoSkill2Item2">Pesquisa de palavras-chave</li>
-                    <li data-i18n="seoSkill2Item3">Análise de concorrência</li>
-                    <li data-i18n="seoSkill2Item4">Otimização de conteúdo</li>
-                </ul>
-            </div>
-            <div class="skill-subtopics">
-                <span class="subtopic">KD Analysis</span>
-                <span class="subtopic">Traffic Potential</span>
-                <span class="subtopic">SERP Analysis</span>
-            </div>
-        </div>
-
-        <!-- Google Analytics -->
-        <div class="skill-card baby-blue">
-            <div class="skill-header">
-                <div class="skill-icon baby-blue">
-                    <i class="fas fa-analytics"></i>
-                </div>
-                <div class="skill-name baby-blue" data-i18n="seoSkill3Title">Google Analytics</div>
-            </div>
-            <div class="skill-progress baby-blue">
-                <div class="skill-progress-bar baby-blue" style="width: 42%"></div>
-            </div>
-            <div class="skill-description">
-                <p data-i18n="seoSkill3Desc">Análise avançada de comportamento do usuário, conversões e otimização de campanhas.</p>
-                <ul>
-                    <li data-i18n="seoSkill3Item1">Configuração de conversões otimizadas</li>
-                    <li data-i18n="seoSkill3Item2">Análise de comportamento</li>
-                    <li data-i18n="seoSkill3Item3">Segmentação avançada</li>
-                    <li data-i18n="seoSkill3Item4">Integração com Google Ads</li>
-                </ul>
-            </div>
-            <div class="skill-subtopics">
-                <span class="subtopic">GA4</span>
-                <span class="subtopic">Conversões</span>
-                <span class="subtopic">Audience</span>
-            </div>
-        </div>
-
-        <!-- On-Page SEO -->
-        <div class="skill-card">
-            <div class="skill-header">
-                <div class="skill-icon">
-                    <i class="fas fa-file-code"></i>
-                </div>
-                <div class="skill-name" data-i18n="seoSkill4Title">On-Page SEO</div>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-progress-bar" style="width: 30%"></div>
-            </div>
-            <div class="skill-description">
-                <p data-i18n="seoSkill4Desc">Otimização técnica e de conteúdo para maximizar a relevância e visibilidade das páginas.</p>
-                <ul>
-                    <li data-i18n="seoSkill4Item1">Otimização de title tags e meta descriptions</li>
-                    <li data-i18n="seoSkill4Item2">Estruturação de conteúdo</li>
-                    <li data-i18n="seoSkill4Item3">SEO técnico</li>
-                    <li data-i18n="seoSkill4Item4">Schema markup</li>
-                </ul>
-            </div>
-            <div class="skill-subtopics">
-                <span class="subtopic">Content</span>
-                <span class="subtopic">Technical</span>
-                <span class="subtopic">Structure</span>
-            </div>
-        </div>
-
-        <!-- Off-Page SEO -->
-        <div class="skill-card baby-blue">
-            <div class="skill-header">
-                <div class="skill-icon baby-blue">
-                    <i class="fas fa-link"></i>
-                </div>
-                <div class="skill-name baby-blue" data-i18n="seoSkill5Title">Off-Page SEO</div>
-            </div>
-            <div class="skill-progress baby-blue">
-                <div class="skill-progress-bar baby-blue" style="width: 45%"></div>
-            </div>
-            <div class="skill-description">
-                <p data-i18n="seoSkill5Desc">Construção de autoridade através de backlinks, menções e sinais externos.</p>
-                <ul>
-                    <li data-i18n="seoSkill5Item1">Link building estratégico</li>
-                    <li data-i18n="seoSkill5Item2">Digital PR</li>
-                    <li data-i18n="seoSkill5Item3">Brand mentions</li>
-                    <li data-i18n="seoSkill5Item4">Influencer marketing</li>
-                </ul>
-            </div>
-            <div class="skill-subtopics">
-                <span class="subtopic">Backlinks</span>
-                <span class="subtopic">Authority</span>
-                <span class="subtopic">E-E-A-T</span>
-            </div>
-        </div>
-    </div>
-
-    <div style="margin-top: 3rem; text-align: center;">
-        <h3 class="baby-blue" style="font-size: 1.8rem; margin-bottom: 2rem;" data-i18n="seoMetricsTitle">SEO Performance Metrics</h3>
-        
-        <div class="feature-list">
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-arrow-up"></i>
-                </div>
-                <div>
-                    <h4 data-i18n="seoMetric1Title">Taxa de Cliques Orgânicos</h4>
-                    <p data-i18n="seoMetric1Desc">O primeiro resultado orgânico no Google possui taxa de cliques média de 31.7%.</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div>
-                    <h4 data-i18n="seoMetric2Title">Qualidade do Tráfego</h4>
-                    <p data-i18n="seoMetric2Desc">Visitantes orgânicos demonstram maior tempo na página e menores taxas de rejeição.</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-sync-alt"></i>
-                </div>
-                <div>
-                    <h4 data-i18n="seoMetric3Title">Retorno Sustentável</h4>
-                    <p data-i18n="seoMetric3Desc">Conteúdos evergreen geram tráfego por anos, amortizando os custos de criação.</p>
-                </div>
+            
+            <div class="chart-container">
+                <canvas id="seoChart"></canvas>
             </div>
         </div>
         
-        <a href="#contact" class="btn btn-baby-blue" style="margin-top: 2rem;">
-            <i class="fas fa-search"></i> <span data-i18n="seoButton">Otimizar SEO do Seu Site</span>
-        </a>
-    </div>
-</section>
+        <div class="bounty-card baby-blue">
+            <div class="bounty-icon baby-blue">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 data-i18n="seoCardTitle">TRÁFEGO ORGÂNICO</h3>
+            <p data-i18n="seoCardDesc">
+                Estratégias avançadas para aumentar visibilidade e tráfego qualificado através de otimização
+                técnica e de conteúdo, gerando resultados sustentáveis a longo prazo.
+            </p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div>
+                        <h4 data-i18n="seoFeature1Title">53% de todo tráfego web</h4>
+                        <p data-i18n="seoFeature1Desc">Vem de fontes orgânicas, segundo BrightEdge Research.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div>
+                        <h4 data-i18n="seoFeature2Title">Custo-benefício superior</h4>
+                        <p data-i18n="seoFeature2Desc">Resultados duradouros sem investimento contínuo em ads mas em melhoria de dados</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div>
+                        <h4 data-i18n="seoFeature3Title">Construção de autoridade</h4>
+                        <p data-i18n="seoFeature3Desc">Posicionamento crescente até domínio do mercado local com algoritmos adaptados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="bounty" class="fade-in">
         <h2 class="section-title" data-i18n="bountyTitle">Cybersecurity Network</h2>
@@ -2140,46 +2378,58 @@
             </a>
         </div>
     </section>
+    
     <section id="vulnerabilities" class="fade-in">
         <h2 class="section-title" data-i18n="vulnerabilitiesTitle">Reported Vulnerabilities</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="severity-badge severity-high">High Severity</div>
-                    <h3 data-i18n="vulnerability1Title">Cross-Site Scripting (XSS) – Reflected/DOM-Based</h3>
-                    <p><strong>CWE-79</strong> • PRIVATE COMPANY</p>
-                    <p>2025-06 • <span data-i18n="resolved">Resolved</span></p>
+        
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="critical">Critical</button>
+            <button class="filter-btn" data-filter="high">High</button>
+            <button class="filter-btn" data-filter="medium">Medium</button>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item" data-severity="high">
+                    <div class="timeline-content">
+                        <div class="severity-badge severity-high">High Severity</div>
+                        <h3 data-i18n="vulnerability1Title">Cross-Site Scripting (XSS) – Reflected/DOM-Based</h3>
+                        <p><strong>CWE-79</strong> • PRIVATE COMPANY</p>
+                        <p>2025-06 • <span data-i18n="resolved">Resolved</span></p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="severity-badge severity-critical">Critical</div>
-                    <h3 data-i18n="vulnerability2Title">SQL Injection</h3>
-                    <p><strong>CWE-89</strong> • PRIVATE COMPANY</p>
-                    <p>2024-09 • <span data-i18n="resolved">Resolved</span></p>
+                
+                <div class="timeline-item" data-severity="critical">
+                    <div class="timeline-content">
+                        <div class="severity-badge severity-critical">Critical</div>
+                        <h3 data-i18n="vulnerability2Title">SQL Injection</h3>
+                        <p><strong>CWE-89</strong> • PRIVATE COMPANY</p>
+                        <p>2024-09 • <span data-i18n="resolved">Resolved</span></p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="severity-badge severity-medium">Medium</div>
-                    <h3 data-i18n="vulnerability3Title">Cross-Site Request Forgery</h3>
-                    <p><strong>CWE-352</strong> • PRIVATE COMPANY</p>
-                    <p>2023-04 • <span data-i18n="resolved">Resolved</span></p>
+                
+                <div class="timeline-item" data-severity="medium">
+                    <div class="timeline-content">
+                        <div class="severity-badge severity-medium">Medium</div>
+                        <h3 data-i18n="vulnerability3Title">Cross-Site Request Forgery</h3>
+                        <p><strong>CWE-352</strong> • PRIVATE COMPANY</p>
+                        <p>2023-04 • <span data-i18n="resolved">Resolved</span></p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="severity-badge severity-critical">And others</div>
-                    <h3 data-i18n="vulnerability4Title">WHOLESALE</h3>
-                    <p><strong>...</strong> • FATAL_ERROR • </p>
-                    <p>:p</p>
+                
+                <div class="timeline-item" data-severity="critical">
+                    <div class="timeline-content">
+                        <div class="severity-badge severity-critical">And others</div>
+                        <h3 data-i18n="vulnerability4Title">WHOLESALE</h3>
+                        <p><strong>...</strong> • FATAL_ERROR • </p>
+                        <p>:p</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    
     <section id="contact" class="fade-in">
         <h2 class="section-title" data-i18n="contactTitle">Establish Connection</h2>
         <p class="hero-description" style="margin-bottom: 3rem;" data-i18n="contactDesc">
@@ -2218,6 +2468,7 @@
             </a>
         </div>
     </section>
+    
     <footer>
         <p>
             <i class="fas fa-terminal"></i> <span data-i18n="footerText">SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030</span>
@@ -2225,10 +2476,8 @@
     </footer>
 
     <script>
-        // Dicionário de traduções
         const translations = {
             'pt-BR': {
-                // Navegação
                 'home': 'Home',
                 'skills': 'Skills',
                 'projects': 'Projetos',
@@ -2238,8 +2487,6 @@
                 'bounty': 'Bug MORPHEUS',
                 'vulnerabilities': 'Descobertas',
                 'contact': 'Contato',
-                
-                // Hero Section
                 'title': 'Portfólio K.CAIRES',
                 'description': 'Analítico para Estratégias',
                 'feature1-title': 'MINERAÇÃO DE DADOS-STORYTELLING',
@@ -2254,24 +2501,11 @@
                 'feature5-desc': 'Técnicas avançadas para otimização de sistemas de IA',
                 'github': 'Perfil GitHub',
                 'viewSkills': 'Ver Matriz de Habilidades',
-                
-                // Projects
                 'projectsTitle': 'Últimos Projetos',
                 'project1-title': 'Math Quest',
                 'project1-desc': 'Jogo educativo de matemática para crianças com desafios interativos e acompanhamento de progresso. Projetado para tornar o aprendizado de matemática divertido e envolvente através da gamificação.',
                 'accessApp': 'Acessar Aplicação',
-                
-                // Skills
                 'skillsTitle': 'Competências Técnicas',
-                'skill1-title': 'MINERAÇÃO DE DADOS',
-                'skill2-title': 'PAINÉIS VISUAIS',
-                'skill3-title': 'MANUTENÇÃO DE BANCOS',
-                'skill4-title': 'CONTROLES DE INTERFACE',
-                'skill5-title': 'CRIPTOGRAFIA DE DADOS',
-                'skill6-title': 'MANUTENÇÃO CIENTÍFICA',
-                'skill7-title': 'ENGENHARIA DE PROMPT',
-                
-                // Prompt Engineering
                 'promptTitle': 'Engenharia de Prompt',
                 'promptCardTitle': 'Engenharia de Prompt de IA Avançada',
                 'promptCardDesc': 'Especializado na criação de prompts de alto impacto para LLMs (Large Language Models) para otimizar:',
@@ -2282,8 +2516,6 @@
                 'promptFeature3': 'Prompting Adversarial',
                 'promptFeature3Desc': 'Testes de segurança e red teaming para sistemas de IA e aplicações LLM',
                 'promptButton': 'Framework de Design de Prompt',
-                
-                // Blog
                 'blogTitle': 'Blog Pessoal',
                 'blogPost1Title': 'Python - Do básico ao Avançado (MACHINE LEARNING)',
                 'blogPost1Date': '15 de Junho, 2025',
@@ -2291,16 +2523,7 @@
                 'blogPost2Title': 'Melhores Práticas de Visualização de Dados',
                 'blogPost2Date': '28 de Maio, 2025',
                 'blogPost2Excerpt': 'Como criar visualizações de dados convincentes e informativas que contam histórias poderosas e impulsionam decisões de negócios.',
-                'blogPost3Title': 'Segurança Cibernética para Cientistas de Dados',
-                'blogPost3Date': '12 de Maio, 2025',
-                'blogPost3Excerpt': 'Práticas essenciais de segurança que todo profissional de dados deve implementar para proteger dados sensíveis e prevenir violações.',
-                'blogPost4Title': 'O Futuro da IA na Análise de Dados',
-                'blogPost4Date': '30 de Abril, 2025',
-                'blogPost4Excerpt': 'Explorando como a inteligência artificial está transformando o campo da análise de dados e o que esperar nos próximos anos.',
                 'readMore': 'Ler Artigo Completo',
-                'viewAllPosts': 'Ver Todos os Artigos',
-                
-                // SEO
                 'seoTitle': 'SEO & Otimização de Tráfego Orgânico',
                 'seoCardTitle': 'TRÁFEGO ORGÂNICO',
                 'seoCardDesc': 'Estratégias avançadas para aumentar visibilidade e tráfego qualificado através de otimização técnica e de conteúdo, gerando resultados sustentáveis a longo prazo.',
@@ -2310,62 +2533,18 @@
                 'seoFeature2Desc': 'Resultados duradouros sem investimento contínuo em ads mas em melhoria de dados',
                 'seoFeature3Title': 'Construção de autoridade',
                 'seoFeature3Desc': 'Posicionamento crescente até domínio do mercado local com algoritmos adaptados',
-                'seoSkill1Title': 'Google Search Console',
-                'seoSkill1Desc': 'Monitoramento de desempenho na busca, correção de problemas e otimização da presença no Google.',
-                'seoSkill1Item1': 'Análise de queries e posicionamento',
-                'seoSkill1Item2': 'Otimização de Core Web Vitals',
-                'seoSkill1Item3': 'Monitoramento de indexação',
-                'seoSkill1Item4': 'Identificação de rich results opportunities',
-                'seoSkill2Title': 'Ahrefs & Palavras-chave',
-                'seoSkill2Desc': 'Pesquisa e otimização avançada de palavras-chave com foco em tráfego potencial e intento de busca.',
-                'seoSkill2Item1': 'Análise de tráfego potencial',
-                'seoSkill2Item2': 'Pesquisa de palavras-chave',
-                'seoSkill2Item3': 'Análise de concorrência',
-                'seoSkill2Item4': 'Otimização de conteúdo',
-                'seoSkill3Title': 'Google Analytics',
-                'seoSkill3Desc': 'Análise avançada de comportamento do usuário, conversões e otimização de campanhas.',
-                'seoSkill3Item1': 'Configuração de conversões otimizadas',
-                'seoSkill3Item2': 'Análise de comportamento',
-                'seoSkill3Item3': 'Segmentação avançada',
-                'seoSkill3Item4': 'Integração com Google Ads',
-                'seoSkill4Title': 'SEO On-Page',
-                'seoSkill4Desc': 'Otimização técnica e de conteúdo para maximizar a relevância e visibilidade das páginas.',
-                'seoSkill4Item1': 'Otimização de title tags e meta descriptions',
-                'seoSkill4Item2': 'Estruturação de conteúdo',
-                'seoSkill4Item3': 'SEO técnico',
-                'seoSkill4Item4': 'Schema markup',
-                'seoSkill5Title': 'SEO Off-Page',
-                'seoSkill5Desc': 'Construção de autoridade através de backlinks, menções e sinais externos.',
-                'seoSkill5Item1': 'Link building estratégico',
-                'seoSkill5Item2': 'Digital PR',
-                'seoSkill5Item3': 'Brand mentions',
-                'seoSkill5Item4': 'Influencer marketing',
-                'seoMetricsTitle': 'Métricas de Performance SEO',
-                'seoMetric1Title': 'Taxa de Cliques Orgânicos',
-                'seoMetric1Desc': 'O primeiro resultado orgânico no Google possui taxa de cliques média de 31.7%.',
-                'seoMetric2Title': 'Qualidade do Tráfego',
-                'seoMetric2Desc': 'Visitantes orgânicos demonstram maior tempo na página e menores taxas de rejeição.',
-                'seoMetric3Title': 'Retorno Sustentável',
-                'seoMetric3Desc': 'Conteúdos evergreen geram tráfego por anos, amortizando os custos de criação.',
-                'seoButton': 'Otimizar SEO do Seu Site',
-                
-                // Bug Bounty
                 'bountyTitle': 'Rede de Segurança Cibernética',
                 'bountyCard1Title': 'Rede Intigriti',
                 'bountyCard1Desc': 'Perfil ativo na plataforma de bug bounty Intigriti, executando missões de infiltração digital para identificar vulnerabilidades críticas em sistemas corporativos de alta segurança. Especializado em testes de penetração avançados e descoberta de vulnerabilidades zero-day.',
                 'bountyCard2Title': 'Rede Bugcrowd',
                 'bountyCard2Desc': 'Perfil ativo na plataforma Bugcrowd, caçando vulnerabilidades e contribuindo para uma internet mais segura.',
                 'accessProfile': 'Acessar Perfil',
-                
-                // Vulnerabilities
                 'vulnerabilitiesTitle': 'Vulnerabilidades Reportadas',
                 'vulnerability1Title': 'Cross-Site Scripting (XSS) – Reflected/DOM-Based',
                 'vulnerability2Title': 'Injeção de SQL',
                 'vulnerability3Title': 'Cross-Site Request Forgery',
                 'vulnerability4Title': 'E outros',
                 'resolved': 'Resolvido',
-                
-                // Contact
                 'contactTitle': 'Estabelecer Conexão',
                 'contactDesc': 'Contato para colaborações ou discussões sobre segurança cibernética',
                 'contactGitHub': 'GitHub',
@@ -2376,12 +2555,9 @@
                 'contactEmailDesc': 'Comunicação segura',
                 'contactLinkedIn': 'LinkedIn',
                 'contactLinkedInDesc': 'Rede profissional',
-                
-                // Footer
-                'footerText': 'SISTEMA ATIVO • DataKLaboratory v2.0 • DIVISÃO DE ELITE | ENGENHARIA DE DADOS - BRASIL 2030'
+                'footerText': 'SISTEMA ATIVO • DataKLaboratory v2.0 • DIVISÃO DE ELITE | ENGENHARIA DE DADOS - BRAZIL 2030'
             },
             'en-US': {
-                // Navigation
                 'home': 'Home',
                 'skills': 'Skills',
                 'projects': 'Projects',
@@ -2391,8 +2567,6 @@
                 'bounty': 'Bug MORPHEUS',
                 'vulnerabilities': 'Findings',
                 'contact': 'Contact',
-                
-                // Hero Section
                 'title': 'Portfolio K.CAIRES',
                 'description': 'Analytical for Strategy´s',
                 'feature1-title': 'DATAMINING-STORYTELLING',
@@ -2407,24 +2581,11 @@
                 'feature5-desc': 'Advanced techniques for AI system optimization',
                 'github': 'GitHub Profile',
                 'viewSkills': 'View Skills Matrix',
-                
-                // Projects
                 'projectsTitle': 'Latest Projects',
                 'project1-title': 'Math Quest',
                 'project1-desc': 'Educational math game for children with interactive challenges and progress tracking. Designed to make learning math fun and engaging through gamification.',
                 'accessApp': 'Access Application',
-                
-                // Skills
                 'skillsTitle': 'Technical Expertise',
-                'skill1-title': 'DATAMINING',
-                'skill2-title': 'DASHBOARDS',
-                'skill3-title': 'DATABASES MAINTENANCE',
-                'skill4-title': 'INTERFACES CONTROLS',
-                'skill5-title': 'DATA ENCRYPTION',
-                'skill6-title': 'SCIENTIFIC MAINTENANCE',
-                'skill7-title': 'PROMPT ENGINEERING',
-                
-                // Prompt Engineering
                 'promptTitle': 'Prompt Engineering',
                 'promptCardTitle': 'Advanced AI Prompt Engineering',
                 'promptCardDesc': 'Specialized in crafting high-impact prompts for LLMs (Large Language Models) to optimize:',
@@ -2435,25 +2596,14 @@
                 'promptFeature3': 'Adversarial Prompting',
                 'promptFeature3Desc': 'Red teaming and security testing for AI systems and LLM applications',
                 'promptButton': 'Prompt Design Framework',
-                
-                // Blog
                 'blogTitle': 'Personal Blogs',
                 'blogPost1Title': 'personal blogs Techniques',
                 'blogPost1Date': 'June 15, 2025',
                 'blogPost1Excerpt': 'Exploring the latest techniques in prompt engineering for large language models, including chain-of-thought prompting and contextual optimization strategies.',
-                'blogPost2Title': 'Data Visualization Best Practices',
+                'blogPost2Title': '',
                 'blogPost2Date': 'May 28, 2025',
                 'blogPost2Excerpt': 'How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.',
-                'blogPost3Title': 'Cybersecurity for Data Scientists',
-                'blogPost3Date': 'May 12, 2025',
-                'blogPost3Excerpt': 'Essential security practices every data professional should implement to protect sensitive data and prevent breaches.',
-                'blogPost4Title': 'The Future of AI in Data Analytics',
-                'blogPost4Date': 'April 30, 2025',
-                'blogPost4Excerpt': 'Exploring how artificial intelligence is transforming the field of data analytics and what to expect in the coming years.',
                 'readMore': 'Read Full Article',
-                'viewAllPosts': 'View All Blog Posts',
-                
-                // SEO
                 'seoTitle': 'SEO & Organic Traffic Optimization',
                 'seoCardTitle': 'ORGANIC TRAFFIC',
                 'seoCardDesc': 'Advanced strategies to increase visibility and qualified traffic through technical and content optimization, generating sustainable long-term results.',
@@ -2463,62 +2613,18 @@
                 'seoFeature2Desc': 'Long-lasting results without continuous investment in ads but in data improvement',
                 'seoFeature3Title': 'Authority building',
                 'seoFeature3Desc': 'Growing positioning until dominating the local market with adapted algorithms',
-                'seoSkill1Title': 'Google Search Console',
-                'seoSkill1Desc': 'Search performance monitoring, issue resolution and Google presence optimization.',
-                'seoSkill1Item1': 'Query and positioning analysis',
-                'seoSkill1Item2': 'Core Web Vitals optimization',
-                'seoSkill1Item3': 'Indexing monitoring',
-                'seoSkill1Item4': 'Rich results opportunities identification',
-                'seoSkill2Title': 'Ahrefs & Keywords',
-                'seoSkill2Desc': 'Advanced keyword research and optimization focusing on potential traffic and search intent.',
-                'seoSkill2Item1': 'Potential traffic analysis',
-                'seoSkill2Item2': 'Keyword research',
-                'seoSkill2Item3': 'Competition analysis',
-                'seoSkill2Item4': 'Content optimization',
-                'seoSkill3Title': 'Google Analytics',
-                'seoSkill3Desc': 'Advanced analysis of user behavior, conversions and campaign optimization.',
-                'seoSkill3Item1': 'Optimized conversions setup',
-                'seoSkill3Item2': 'Behavior analysis',
-                'seoSkill3Item3': 'Advanced segmentation',
-                'seoSkill3Item4': 'Google Ads integration',
-                'seoSkill4Title': 'On-Page SEO',
-                'seoSkill4Desc': 'Technical and content optimization to maximize page relevance and visibility.',
-                'seoSkill4Item1': 'Title tags and meta descriptions optimization',
-                'seoSkill4Item2': 'Content structuring',
-                'seoSkill4Item3': 'Technical SEO',
-                'seoSkill4Item4': 'Schema markup',
-                'seoSkill5Title': 'Off-Page SEO',
-                'seoSkill5Desc': 'Authority building through backlinks, mentions and external signals.',
-                'seoSkill5Item1': 'Strategic link building',
-                'seoSkill5Item2': 'Digital PR',
-                'seoSkill5Item3': 'Brand mentions',
-                'seoSkill5Item4': 'Influencer marketing',
-                'seoMetricsTitle': 'SEO Performance Metrics',
-                'seoMetric1Title': 'Organic Click-Through Rate',
-                'seoMetric1Desc': 'The first organic result on Google has an average click-through rate of 31.7%.',
-                'seoMetric2Title': 'Traffic Quality',
-                'seoMetric2Desc': 'Organic visitors show longer time on page and lower bounce rates.',
-                'seoMetric3Title': 'Sustainable Return',
-                'seoMetric3Desc': 'Evergreen content generates traffic for years, amortizing creation costs.',
-                'seoButton': 'Optimize Your Site SEO',
-                
-                // Bug Bounty
                 'bountyTitle': 'Cybersecurity Network',
                 'bountyCard1Title': 'Intigriti Network',
                 'bountyCard1Desc': 'Active profile on the Intigriti bug bounty platform, executing digital infiltration missions to identify critical vulnerabilities in high-security corporate systems. Specialized in advanced penetration testing and zero-day vulnerability discovery.',
                 'bountyCard2Title': 'Bugcrowd Network',
                 'bountyCard2Desc': 'Active profile on the Bugcrowd platform, hunting for vulnerabilities and contributing to a safer internet.',
                 'accessProfile': 'Access Network Profile',
-                
-                // Vulnerabilities
                 'vulnerabilitiesTitle': 'Reported Vulnerabilities',
                 'vulnerability1Title': 'Cross-Site Scripting (XSS) – Reflected/DOM-Based',
                 'vulnerability2Title': 'SQL Injection',
                 'vulnerability3Title': 'Cross-Site Request Forgery',
                 'vulnerability4Title': 'And others',
                 'resolved': 'Resolved',
-                
-                // Contact
                 'contactTitle': 'Establish Connection',
                 'contactDesc': 'Contact for collaborations or cybersecurity discussions',
                 'contactGitHub': 'GitHub',
@@ -2529,17 +2635,13 @@
                 'contactEmailDesc': 'Secure communication',
                 'contactLinkedIn': 'LinkedIn',
                 'contactLinkedInDesc': 'Professional network',
-                
-                // Footer
                 'footerText': 'SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030'
             }
         };
 
-        // Elemento de áudio
         const audio = document.getElementById('local-audio');
         const musicButton = document.getElementById('music-button');
         
-        // Controle de clique no botão
         musicButton.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play()
@@ -2553,40 +2655,32 @@
             }
         });
         
-        // Atualizar ícone quando a música terminar
         audio.addEventListener('ended', () => {
             musicButton.innerHTML = '<i class="fas fa-music"></i>';
         });
         
-        // Função para criar o fundo de estrelas
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const starsCount = 500;
             
-            // Limpar estrelas existentes
             starsContainer.innerHTML = '';
             
             for (let i = 0; i < starsCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
                 
-                // Tamanho aleatório entre 1px e 3px
                 const size = Math.random() * 2 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 
-                // Posição aleatória
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
                 
-                // Duração da animação aleatória
                 const duration = Math.random() * 5 + 5;
                 star.style.setProperty('--duration', `${duration}s`);
                 
-                // Brilho inicial aleatório
                 star.style.opacity = Math.random() * 0.5 + 0.1;
                 
-                // Adicionar cor neon ocasionalmente
                 if (Math.random() > 0.8) {
                     const colors = ['#00ff41', '#00eeff', '#bd00ff'];
                     const color = colors[Math.floor(Math.random() * colors.length)];
@@ -2596,6 +2690,96 @@
                 
                 starsContainer.appendChild(star);
             }
+        }
+        
+        function initParticles() {
+            const container = document.getElementById('particles-3d');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1500;
+            
+            const posArray = new Float32Array(particlesCount * 3);
+            const colorArray = new Float32Array(particlesCount * 3);
+            
+            const colors = [
+                [0, 255, 65],
+                [0, 238, 255],
+                [189, 0, 255],
+                [137, 207, 240]
+            ];
+
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 100;
+                
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                colorArray[i] = color[0] / 255;
+                colorArray[i + 1] = color[1] / 255;
+                colorArray[i + 2] = color[2] / 255;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.1,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
+            camera.position.z = 5;
+
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = - (event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const smoothFactor = 0.05;
+                targetX += (mouseX * 10 - targetX) * smoothFactor;
+                targetY += (mouseY * 10 - targetY) * smoothFactor;
+                
+                particlesMesh.rotation.y += 0.001 + (targetX * 0.0005);
+                particlesMesh.rotation.x += 0.001 + (targetY * 0.0005);
+                
+                particlesMesh.rotation.z += 0.0005;
+                
+                camera.position.x += (targetX * 0.5 - camera.position.x) * 0.02;
+                camera.position.y += (targetY * 0.5 - camera.position.y) * 0.02;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
         }
         
         const text = "Basic Data Mining and Data Analytics for Insights";
@@ -2629,81 +2813,167 @@
             }
         }
         
-        function initParticles() {
-            const container = document.getElementById('particles-3d');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
+        function initSkillsChart() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const isMobile = window.innerWidth <= 768;
+            const pointLabelSize = isMobile ? 10 : 12;
+            const tickSize = isMobile ? 8 : 10;
             
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 2000;
-            const posArray = new Float32Array(particlesCount * 3);
-            const colorArray = new Float32Array(particlesCount * 3);
-            
-            for (let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 50;
-                colorArray[i] = Math.random();
-            }
-            
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-            
-            const particlesMaterial = new THREE.PointsMaterial({
-                size: 0.1,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.8,
-                blending: THREE.AdditiveBlending
-            });
-            
-            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(particlesMesh);
-            
-            camera.position.z = 5;
-            
-            let mouseX = 0;
-            let mouseY = 0;
-            document.addEventListener('mousemove', (event) => {
-                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-            });
-            
-            const clock = new THREE.Clock();
-            const tick = () => {
-                const elapsedTime = clock.getElapsedTime();
-                
-                for (let i = 0; i < particlesCount; i++) {
-                    const i3 = i * 3;
-                    const x = particlesGeometry.attributes.position.array[i3];
-                    const y = particlesGeometry.attributes.position.array[i3 + 1];
-                    const z = particlesGeometry.attributes.position.array[i3 + 2];
-                    
-                    particlesGeometry.attributes.position.array[i3] += Math.sin(elapsedTime * 0.5 + x) * 0.01;
-                    particlesGeometry.attributes.position.array[i3 + 1] += Math.cos(elapsedTime * 0.3 + y) * 0.01;
-                    particlesGeometry.attributes.position.array[i3 + 2] += Math.sin(elapsedTime * 0.4 + z) * 0.01;
+            const skillsChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['DATAMINING', 'DASHBOARDS', 'DATABASES', 'INTERFACES', 'ENCRYPTION', 'SCIENTIFIC', 'PROMPT ENGINEERING'],
+                    datasets: [{
+                        label: 'Skill Level',
+                        data: [33, 46, 53, 40, 17, 10, 33],
+                        backgroundColor: 'rgba(0, 255, 65, 0.2)',
+                        borderColor: '#00ff41',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#00ff41',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#00ff41'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            pointLabels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: pointLabelSize
+                                }
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: '#ffffff',
+                                font: {
+                                    size: tickSize
+                                },
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: isMobile ? 12 : 14
+                                }
+                            }
+                        }
+                    }
                 }
-                particlesGeometry.attributes.position.needsUpdate = true;
-                
-                camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
-                camera.position.y += (mouseY * 10 - camera.position.y) * 0.05;
-                camera.lookAt(scene.position);
-                
-                renderer.render(scene, camera);
-                window.requestAnimationFrame(tick);
-            };
-            
-            tick();
-            
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
             });
         }
         
-        // Função para trocar idioma
+        function initSEOChart() {
+            const ctx = document.getElementById('seoChart').getContext('2d');
+            const seoChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Organic Traffic', 'CTR First Result', 'Visibility Increase', 'Conversion Rate', 'Page Speed'],
+                    datasets: [{
+                        label: 'Performance Metrics',
+                        data: [53, 31.7, 75, 42, 88],
+                        backgroundColor: [
+                            'rgba(137, 207, 240, 0.7)',
+                            'rgba(0, 255, 65, 0.7)',
+                            'rgba(0, 238, 255, 0.7)',
+                            'rgba(189, 0, 255, 0.7)',
+                            'rgba(255, 165, 0, 0.7)'
+                        ],
+                        borderColor: [
+                            '#89CFF0',
+                            '#00ff41',
+                            '#00eeff',
+                            '#bd00ff',
+                            '#ffa500'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: '#ffffff'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#ffffff'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initVulnerabilityFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    timelineItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-severity') === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateX(0)';
+                            }, 100);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateX(-20px)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+        
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const level = bar.getAttribute('data-level');
+                setTimeout(() => {
+                    bar.style.width = level + '%';
+                }, Math.random() * 500);
+            });
+        }
+        
         function setLanguage(lang) {
             document.documentElement.lang = lang;
             const elements = document.querySelectorAll('[data-i18n]');
@@ -2719,19 +2989,15 @@
                 }
             });
             
-            // Atualizar o texto do botão
             const toggleButton = document.getElementById('language-toggle');
             toggleButton.textContent = lang === 'pt-BR' ? 'EN' : 'PT';
             
-            // Salvar preferência de idioma
             localStorage.setItem('language', lang);
         }
         
-        // Verificar preferência de idioma salva
         const savedLanguage = localStorage.getItem('language') || 'pt-BR';
         setLanguage(savedLanguage);
         
-        // Configurar o botão de alternância de idioma
         document.getElementById('language-toggle').addEventListener('click', function() {
             const currentLang = document.documentElement.lang;
             const newLang = currentLang === 'pt-BR' ? 'en-US' : 'pt-BR';
@@ -2740,10 +3006,13 @@
         
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 500);
-            initParticles();
             createStars();
+            initParticles();
+            initSkillsChart();
+            initSEOChart();
+            initVulnerabilityFilters();
+            animateSkillBars();
             
-            // Tocar música automaticamente após um pequeno delay
             setTimeout(() => {
                 audio.play()
                     .then(() => {
@@ -2751,15 +3020,6 @@
                     })
                     .catch(e => console.log("Autoplay bloqueado:", e));
             }, 1000);
-            
-            const skillBars = document.querySelectorAll('.skill-progress-bar');
-            skillBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 200);
-            });
         });
         
         function handleScrollAnimations() {
@@ -2784,7 +3044,6 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    // Close mobile menu if open
                     mobileMenu.classList.remove('active');
                 }
             });
@@ -2800,7 +3059,6 @@
                 : 'rgba(0, 0, 0, 0.85)';
         });
         
-        // Mobile Menu Functionality
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const closeMenuBtn = document.getElementById('closeMenu');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -2820,10 +3078,9 @@
             });
         });
         
-        // Show mobile menu button on small screens
         function checkScreenSize() {
             if (window.innerWidth <= 768) {
-                mobileMenuBtn.style.display = 'block';
+                mobileMenuBtn.style.display = 'flex';
             } else {
                 mobileMenuBtn.style.display = 'none';
                 mobileMenu.classList.remove('active');
@@ -2835,9 +3092,6 @@
     </script>
 </body>
 </html>
-
-
-
 
 
 
