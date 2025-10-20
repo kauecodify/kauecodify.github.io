@@ -10,7 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --primary-bg: #121212;
@@ -25,21 +24,28 @@
     --glow-blue: 0 0 8px rgba(0, 238, 255, 0.3);
     --glow-baby-blue: 0 0 8px rgba(137, 207, 240, 0.3);
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', 'Courier New', monospace;
 }
-
 body {
     background: var(--primary-bg);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
 }
-
+canvas#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    opacity: 0.6;
+}
 header {
     position: fixed;
     top: 0;
@@ -51,7 +57,6 @@ header {
     padding: 0.8rem 0;
     transition: background 0.3s ease;
 }
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -60,13 +65,11 @@ nav {
     max-width: 1400px;
     margin: 0 auto;
 }
-
 .logo-container {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
-
 .logo {
     display: flex;
     align-items: center;
@@ -80,19 +83,16 @@ nav {
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .logo:hover {
     transform: scale(1.05);
     box-shadow: var(--glow-blue);
 }
-
 .nav-links {
     display: flex;
     gap: 1.5rem;
     list-style: none;
     margin-left: auto;
 }
-
 .nav-links a {
     color: var(--text-secondary);
     text-decoration: none;
@@ -101,11 +101,9 @@ nav {
     text-transform: uppercase;
     transition: color 0.3s ease;
 }
-
 .nav-links a:hover {
     color: var(--neon-blue);
 }
-
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -116,11 +114,9 @@ nav {
     background: var(--neon-blue);
     transition: width 0.3s ease;
 }
-
 .nav-links a:hover::after {
     width: 100%;
 }
-
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -130,11 +126,9 @@ nav {
     cursor: pointer;
     z-index: 1001;
 }
-
 .language-switcher {
     margin-left: 1rem;
 }
-
 #language-toggle {
     background: transparent;
     border: 1px solid var(--neon-blue);
@@ -148,12 +142,10 @@ nav {
     min-width: 48px;
     min-height: 48px;
 }
-
 #language-toggle:hover {
     background: rgba(0, 238, 255, 0.2);
     transform: scale(1.05);
 }
-
 .stars-bg {
     position: fixed;
     top: 0;
@@ -163,7 +155,6 @@ nav {
     z-index: -5;
     background: var(--primary-bg);
 }
-
 .star {
     position: absolute;
     background-color: #ffffff;
@@ -171,12 +162,10 @@ nav {
     animation: twinkle 5s infinite ease-in-out;
     opacity: 0.5;
 }
-
 @keyframes twinkle {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.8; }
 }
-
 #particles-3d {
     position: fixed;
     top: 0;
@@ -185,7 +174,6 @@ nav {
     height: 100%;
     z-index: -3;
 }
-
 .holographic-grid {
     position: fixed;
     top: 0;
@@ -198,7 +186,6 @@ nav {
     background-size: 60px 60px;
     opacity: 0.2;
 }
-
 .music-player {
     position: fixed;
     bottom: 15px;
@@ -214,11 +201,9 @@ nav {
     align-items: center;
     gap: 0.5rem;
 }
-
 .music-player:hover {
     transform: translateY(-3px);
 }
-
 .music-button {
     background: transparent;
     border: none;
@@ -232,12 +217,10 @@ nav {
     align-items: center;
     justify-content: center;
 }
-
 .music-button:hover {
     transform: scale(1.1);
     color: var(--baby-blue);
 }
-
 .xrl8-logo {
     display: none;
     position: fixed;
@@ -248,7 +231,6 @@ nav {
     z-index: 1002;
     transition: opacity 0.3s ease;
 }
-
 .hero {
     min-height: 100vh;
     display: flex;
@@ -258,7 +240,6 @@ nav {
     padding: 2rem;
     padding-top: 100px;
 }
-
 .hero-content {
     max-width: 800px;
     padding: 1.5rem;
@@ -268,7 +249,6 @@ nav {
     border: 1px solid var(--neon-blue);
     transition: transform 0.5s ease;
 }
-
 .hero-content h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(1.8rem, 5vw, 3.5rem);
@@ -276,49 +256,41 @@ nav {
     color: var(--neon-blue);
     margin-bottom: 1rem;
 }
-
 .typing-text {
     font-size: clamp(0.9rem, 2vw, 1.3rem);
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
-
 .hero-description {
     max-width: 600px;
     margin: 0 auto 1.5rem;
     font-size: clamp(0.9rem, 1.5vw, 1rem);
     color: var(--text-secondary);
 }
-
 .feature-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
 }
-
 .feature-item {
     padding: 1rem;
     background: rgba(0, 0, 0, 0.3);
     border-left: 2px solid var(--neon-blue);
     transition: transform 0.3s ease;
 }
-
 .feature-item:hover {
     transform: translateY(-3px);
 }
-
 .feature-icon {
     color: var(--neon-blue);
     font-size: 1.2rem;
 }
-
 .cta-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
 }
-
 .btn {
     padding: 0.8rem 1.5rem;
     border: none;
@@ -334,30 +306,56 @@ nav {
     min-height: 48px;
     justify-content: center;
 }
-
 .btn-primary {
     background: var(--neon-blue);
     color: #000;
+    box-shadow: var(--glow-blue);
 }
-
 .btn-secondary, .btn-baby-blue {
     background: transparent;
     border: 1px solid var(--neon-blue);
     color: var(--neon-blue);
 }
-
 .btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.05);
     background: rgba(0, 238, 255, 0.2);
-    box-shadow: var(--glow-blue);
+    box-shadow: 0 0 15px rgba(0, 238, 255, 0.5);
+    animation: pulse 1s infinite;
 }
-
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 238, 255, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 238, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 238, 255, 0); }
+}
+.project-link, .btn-primary {
+    background: linear-gradient(45deg, var(--neon-blue), var(--baby-blue));
+    color: #000;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+.project-link::before, .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    transform: rotate(30deg);
+    transition: all 0.5s;
+    opacity: 0;
+}
+.project-link:hover::before, .btn-primary:hover::before {
+    opacity: 1;
+    top: -100%;
+    left: -100%;
+}
 section {
     padding: 3rem 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .section-title {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(1.6rem, 3.5vw, 2.2rem);
@@ -366,42 +364,35 @@ section {
     text-align: center;
     margin-bottom: 2rem;
 }
-
 .section-title.baby-blue {
     color: var(--baby-blue);
 }
-
-.projects-grid, .prompt-features, .blog-posts, .contact-grid {
+.prompt-features, .blog-posts, .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
 }
-
-.project-card, .prompt-feature, .blog-post, .contact-card {
+.prompt-feature, .blog-post, .contact-card {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--neon-blue);
     border-radius: 10px;
     padding: 1.2rem;
     transition: transform 0.3s ease;
 }
-
-.project-card:hover, .prompt-feature:hover, .blog-post:hover, .contact-card:hover {
+.prompt-feature:hover, .blog-post:hover, .contact-card:hover {
     transform: translateY(-5px);
 }
-
 .skills-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
-
 .skills-chart-container {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--neon-blue);
     border-radius: 10px;
     padding: 1.5rem;
 }
-
 .skill-item {
     display: flex;
     align-items: center;
@@ -411,11 +402,9 @@ section {
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
-
 .skill-item:hover {
     transform: translateY(-3px);
 }
-
 .skill-visual {
     width: 50px;
     height: 50px;
@@ -426,7 +415,6 @@ section {
     border: 1px solid var(--neon-blue);
     color: var(--neon-blue);
 }
-
 .bounty-card {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--neon-blue);
@@ -436,11 +424,9 @@ section {
     max-width: 700px;
     margin: 2rem auto;
 }
-
 .bounty-card.baby-blue {
     border: 1px solid var(--baby-blue);
 }
-
 .bounty-icon {
     width: 60px;
     height: 60px;
@@ -453,12 +439,10 @@ section {
     color: var(--neon-blue);
     margin: 0 auto 1rem;
 }
-
 .bounty-icon.baby-blue {
     border: 1px solid var(--baby-blue);
     color: var(--baby-blue);
 }
-
 .timeline::before {
     content: '';
     position: absolute;
@@ -469,7 +453,6 @@ section {
     background: var(--neon-blue);
     opacity: 0.3;
 }
-
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -480,7 +463,6 @@ section {
     background: var(--neon-blue);
     border-radius: 50%;
 }
-
 .timeline-content {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--neon-blue);
@@ -488,11 +470,9 @@ section {
     padding: 1rem;
     transition: transform 0.3s ease;
 }
-
 .timeline-content:hover {
     transform: translateY(-5px);
 }
-
 footer {
     background: rgba(0, 0, 0, 0.7);
     border-top: 1px solid var(--neon-blue);
@@ -500,7 +480,6 @@ footer {
     text-align: center;
     color: var(--text-muted);
 }
-
 /* Mobile Menu */
 .mobile-menu {
     position: fixed;
@@ -517,11 +496,9 @@ footer {
     padding: 2rem;
     transition: right 0.3s ease;
 }
-
 .mobile-menu.active {
     right: 0;
 }
-
 .mobile-nav-link {
     color: var(--text-secondary);
     text-decoration: none;
@@ -529,11 +506,9 @@ footer {
     padding: 0.8rem 0;
     transition: color 0.3s ease;
 }
-
 .mobile-nav-link:hover {
     color: var(--neon-blue);
 }
-
 .close-menu {
     background: none;
     border: none;
@@ -542,122 +517,132 @@ footer {
     align-self: flex-end;
     cursor: pointer;
 }
-
 /* Media Queries */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
     }
-
     .mobile-menu-btn {
         display: flex;
     }
-
     .logo-container {
         position: static;
         transform: none;
     }
-
     .skills-container {
         grid-template-columns: 1fr;
     }
-
     .hero-content h1 {
         font-size: clamp(1.5rem, 4vw, 2.2rem);
     }
-
-    .projects-grid, .prompt-features, .blog-posts, .contact-grid {
+    .prompt-features, .blog-posts, .contact-grid {
         grid-template-columns: 1fr;
     }
-
     .xrl8-logo {
         display: block;
         width: 60px;
     }
-
     .music-player {
         padding: 6px 12px;
         bottom: 10px;
         right: 10px;
     }
 }
-
 @media (max-width: 480px) {
     .hero-content {
         padding: 1rem;
     }
-
     .hero-content h1 {
         font-size: clamp(1.2rem, 3.5vw, 1.8rem);
     }
-
     .typing-text {
         font-size: clamp(0.8rem, 2vw, 1rem);
     }
-
     .hero-description {
         font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     }
-
     .btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
         min-width: 100px;
         min-height: 44px;
     }
-
     .section-title {
         font-size: clamp(1.4rem, 3vw, 1.8rem);
     }
-
-    .projects-grid, .prompt-features, .blog-posts, .contact-grid {
+    .prompt-features, .blog-posts, .contact-grid {
         gap: 1rem;
     }
-
     .xrl8-logo {
         width: 50px;
         top: 15px;
         left: 15px;
     }
-
     #language-toggle {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
         min-width: 44px;
         min-height: 44px;
     }
-
     .music-button {
         font-size: 1rem;
         width: 44px;
         height: 44px;
     }
 }
-
 @media (max-width: 360px) {
     .hero-content {
         padding: 0.8rem;
     }
-
     .section-title {
         font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     }
-
     .btn {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
     }
-
     .xrl8-logo {
         width: 40px;
         top: 10px;
         left: 10px;
     }
 }
+
+/* Ticker de linguagens */
+.ticker-container {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 5;
+    padding: 0.5rem 0;
+}
+.ticker {
+    display: flex;
+    animation: ticker-move 30s linear infinite;
+    white-space: nowrap;
+}
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 2rem;
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+.ticker-item i {
+    font-size: 1.5rem;
+}
+@keyframes ticker-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 </style>
-
 <script>
-
 function initParticles() {
     const container = document.getElementById('particles-3d');
     if (!container) return;
@@ -668,14 +653,12 @@ function initParticles() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
-
     // Ajustar número de partículas com base no tamanho da tela
     const isMobile = window.innerWidth <= 768;
     const particlesCount = isMobile ? 300 : 500; // Reduzir partículas em dispositivos móveis
     const posArray = new Float32Array(particlesCount * 3);
     const colorArray = new Float32Array(particlesCount * 3);
     const colors = [[0, 238, 255]]; // Apenas neon-blue
-
     for (let i = 0; i < particlesCount * 3; i++) {
         posArray[i] = (Math.random() - 0.5) * 100;
         const color = colors[0];
@@ -683,7 +666,6 @@ function initParticles() {
         colorArray[i + 1] = color[1] / 255;
         colorArray[i + 2] = color[2] / 255;
     }
-
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
     const particlesMaterial = new THREE.PointsMaterial({
@@ -693,21 +675,17 @@ function initParticles() {
         opacity: 0.6,
         blending: THREE.AdditiveBlending
     });
-
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
     camera.position.z = 5;
-
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
     let targetY = 0;
-
     document.addEventListener('mousemove', (event) => {
         mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         mouseY = - (event.clientY / window.innerHeight) * 2 + 1;
     });
-
     function animate() {
         requestAnimationFrame(animate);
         const smoothFactor = isMobile ? 0.02 : 0.03; // Movimento mais lento em dispositivos móveis
@@ -720,23 +698,18 @@ function initParticles() {
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
     }
-
     animate();
-
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
 }
-
 </script>
-
 </head>
 <body>
-
+    <canvas id="canvas"></canvas>
     <img src="xrl8.png" alt="XRL8 Logo" class="xrl8-logo">
-
     <nav>
     <div class="stars-bg" id="stars"></div>
      <div class="music-player">
@@ -748,27 +721,26 @@ function initParticles() {
             <div class="track-artist">Ludwig van Beethoven</div>
         </div>
     </div>
-    
+   
     <audio id="local-audio" loop>
         <source src="9amslowed.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
-    
+   
     <div id="particles-3d"></div>
     <div class="holographic-grid"></div>
     </nav>
-     
+    
     <header>
-        
+       
         <nav>
-            
+           
             <div class="logo-container">
                 <div class="logo">
                     <i class="fas fa-terminal"></i>
                     <span>Kaue Caires®</span>
                 </div>
             </div>
-
             <!-- <div>
                 <ul class="nav-links">
                     <li><a href="#home" data-i18n="home">Home</a></li>
@@ -782,24 +754,23 @@ function initParticles() {
                     <li><a href="#contact" data-i18n="contact">Contact</a></li>
                 </ul>
             </div> -->
-            
+           
             <div class="language-switcher">
                 <button id="language-toggle">EN</button>
             </div>
-            
+           
             <button class="mobile-menu-btn" aria-label="Open menu">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
     </header>
-    
+   
     <div class="mobile-menu" id="mobileMenu">
         <button class="close-menu" id="closeMenu" aria-label="Close menu">
             <i class="fas fa-times"></i>
         </button>
         <a href="#home" class="mobile-nav-link" data-i18n="home">Home</a>
         <a href="#skills" class="mobile-nav-link" data-i18n="skills">Skills</a>
-        <a href="#projects" class="mobile-nav-link" data-i18n="projects">Projects</a>
         <a href="#prompt" class="mobile-nav-link" data-i18n="prompt">Prompt Engineering</a>
         <a href="#blog" class="mobile-nav-link" data-i18n="blog">Personal Blogs</a>
         <!-- <a href="#seo" class="mobile-nav-link" data-i18n="seo">SEO</a> -->
@@ -816,7 +787,7 @@ function initParticles() {
             <p class="hero-description" data-i18n="description">
                 Analytical for Strategy´s
             </p>
-            
+           
             <div class="feature-list">
                 <div class="feature-item">
                     <div class="feature-icon">
@@ -864,7 +835,7 @@ function initParticles() {
                     </div>
                 </div>
             </div>
-            
+           
             <div class="cta-buttons">
                 <a href="https://github.com/kauecodify" target="_blank" class="btn btn-primary">
                     <i class="fab fa-github"></i> <span data-i18n="github">GitHub Profile</span>
@@ -875,32 +846,9 @@ function initParticles() {
             </div>
         </div>
     </section>
-
-    <section id="projects" class="fade-in">
-        <h2 class="section-title" data-i18n="projectsTitle">Latest Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3 class="project-name" data-i18n="project1-title">Prompt Engineer - Tipologia de Dados</h3>
-                </div>
-                <p class="project-description" data-i18n="project1-desc">
-                    Educational math game for children with interactive challenges and progress tracking. 
-                    Designed to make learning math fun and engaging through gamification.
-                </p>
-                <a href="https://ebookmaker.ai/prompt-engineer--tipologia-de-dados-f3vee" 
-                   target="_blank" class="project-link">
-                    <i class="fas fa-external-link-alt"></i> <span data-i18n="accessApp">Access Application</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <section id="skills" class="fade-in">
         <h2 class="section-title" data-i18n="skillsTitle">Technical Expertise</h2>
-        
+       
         <div class="skills-container">
             <div class="skills-chart-container">
                 <h3 style="color: var(--neon-green); margin-bottom: 1.5rem;">Skills Overview</h3>
@@ -908,7 +856,7 @@ function initParticles() {
                     <canvas id="skillsChart"></canvas>
                 </div>
             </div>
-            
+           
             <!-- <div class="skills-list">
                 <div class="skill-item">
                     <div class="skill-visual">
@@ -922,7 +870,7 @@ function initParticles() {
                     </div>
                     <div class="skill-percentage">33%</div>
                 </div>
-                
+               
                 <div class="skill-item">
                     <div class="skill-visual">
                         <i class="fas fa-terminal"></i>
@@ -935,7 +883,7 @@ function initParticles() {
                     </div>
                     <div class="skill-percentage">46%</div>
                 </div>
-                
+               
                 <div class="skill-item">
                     <div class="skill-visual">
                         <i class="fas fa-database"></i>
@@ -948,7 +896,7 @@ function initParticles() {
                     </div>
                     <div class="skill-percentage">53%</div>
                 </div>
-                
+               
                 <div class="skill-item">
                     <div class="skill-visual">
                         <i class="fas fa-shield-alt"></i>
@@ -961,7 +909,7 @@ function initParticles() {
                     </div>
                     <div class="skill-percentage">40%</div>
                 </div>
-                
+               
                 <div class="skill-item">
                     <div class="skill-visual">
                         <i class="fas fa-server"></i>
@@ -974,7 +922,7 @@ function initParticles() {
                     </div>
                     <div class="skill-percentage">7%</div>
                 </div>
-                
+               
                 <div class="skill-item">
                     <div class="skill-visual">
                         <i class="fas fa-graduation-cap"></i>
@@ -987,7 +935,7 @@ function initParticles() {
                     </div>
                     <div class="skill-percentage">13%</div>
                 </div>
-                
+               
                 <div class="skill-item">
                     <div class="skill-visual">
                         <i class="fas fa-robot"></i>
@@ -1003,7 +951,7 @@ function initParticles() {
             </div> -->
         </div>
     </section>
-    
+   
     <section id="prompt" class="fade-in">
         <h2 class="section-title baby-blue" data-i18n="promptTitle">Prompt Engineering</h2>
         <div class="bounty-card baby-blue">
@@ -1014,7 +962,7 @@ function initParticles() {
             <p data-i18n="promptCardDesc">
                 Specialized in crafting high-impact prompts for LLMs (Large Language Models) to optimize:
             </p>
-            
+           
             <div class="prompt-features">
                 <div class="prompt-feature">
                     <div class="prompt-feature-icon">
@@ -1023,7 +971,7 @@ function initParticles() {
                     <h4 data-i18n="promptFeature1">Contextual Optimization</h4>
                     <p data-i18n="promptFeature1Desc">Precise context framing for complex problem-solving with AI systems</p>
                 </div>
-                
+               
                 <div class="prompt-feature">
                     <div class="prompt-feature-icon">
                         <i class="fas fa-project-diagram"></i>
@@ -1031,7 +979,7 @@ function initParticles() {
                     <h4 data-i18n="promptFeature2">Multi-Step Reasoning</h4>
                     <p data-i18n="promptFeature2Desc">Chain-of-thought prompting for advanced analytics and decision-making</p>
                 </div>
-                
+               
                 <div class="prompt-feature">
                     <div class="prompt-feature-icon">
                         <i class="fas fa-shield-alt"></i>
@@ -1040,45 +988,44 @@ function initParticles() {
                     <p data-i18n="promptFeature3Desc">Red teaming and security testing for AI systems and LLM applications</p>
                 </div>
             </div>
-            
+           
             <a href="#" class="btn btn-baby-blue" style="margin-top: 2rem;">
                 <i class="fas fa-key"></i> <span data-i18n="promptButton">Prompt Design Framework</span>
             </a>
         </div>
     </section>
-    
+   
     <section id="blog" class="fade-in">
         <h2 class="section-title baby-blue" data-i18n="blogTitle">Personal Blogs</h2>
-        
+       
         <div class="blog-section">
             <div class="blog-posts">
                 <div class="blog-post">
                     <h3 data-i18n="blogPost2Title">Prompt Engineer</h3>
                     <div class="blog-date" data-i18n="blogPost2Date">June 13, 2025</div>
                     <p class="blog-excerpt" data-i18n="blogPost2Excerpt">MegaBook - Prompt Engineer (2025 - 2030)</p>
-                    <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030?_gl=1*1gr2psk*_gcl_au*ODI5NDczLjE3NTg3Mzc0NTk." class="read-more">
+                    <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030?_gl=1*1gr2psk*_gcl_au*ODI5NDczLjE3NTg3Mzc0NTk." class="read-more btn btn-primary">
                         <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+               
                 <div class="blog-post">
                     <h3 data-i18n="blogPost1Title">TOP 100 CODES IN PYTHON</h3>
                     <div class="blog-date" data-i18n="blogPost1Date">June 13, 2025</div>
                     <p class="blog-excerpt" data-i18n="blogPost1Excerpt">Top 100 best codes for data analysis/statistics/IA-ML in python</p>
-                    <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" class="read-more">
+                    <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" class="read-more btn btn-primary">
                         <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- <section id="seo" class="fade-in">
         <h2 class="section-title baby-blue" data-i18n="seoTitle">SEO & Organic Traffic Optimization</h2>
-        
+       
         <div class="data-visualization">
             <h3 style="color: var(--baby-blue); margin-bottom: 1.5rem;">SEO Performance Dashboard</h3>
-            
+           
             <div class="metrics-dashboard">
                 <div class="metric-card">
                     <div class="metric-value">53%</div>
@@ -1093,12 +1040,12 @@ function initParticles() {
                     <div class="metric-label">Visibility Increase</div>
                 </div>
             </div>
-            
+           
             <div class="chart-container">
                 <canvas id="seoChart"></canvas>
             </div>
         </div>
-        
+       
         <div class="bounty-card baby-blue">
             <div class="bounty-icon baby-blue">
                 <i class="fas fa-chart-line"></i>
@@ -1108,7 +1055,7 @@ function initParticles() {
                 Estratégias avançadas para aumentar visibilidade e tráfego qualificado através de otimização
                 técnica e de conteúdo, gerando resultados sustentáveis a longo prazo.
             </p>
-            
+           
             <div class="feature-list">
                 <div class="feature-item">
                     <div class="feature-icon">
@@ -1140,15 +1087,14 @@ function initParticles() {
             </div>
         </div>
     </section> -->
-
    <section id="bounty" class="fade-in">
     <h2 class="section-title" data-i18n="bountyTitle">Cybersecurity Network</h2>
-    
+   
     <div class="bounty-card">
         <div class="bounty-icon">
             <i class="fas fa-bug"></i>
         </div>
-    
+   
         <h3 data-i18n="bountyCard1Title">Intigriti Network</h3>
         <p data-i18n="bountyCard1Desc">
             Active profile on the Intigriti bug bounty platform, executing digital infiltration missions
@@ -1159,7 +1105,7 @@ function initParticles() {
             <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access Network Profile</span>
         </a>
     </div>
-    
+   
     <div class="bounty-card" style="margin-top: 2rem;">
         <div class="bounty-icon">
             <i class="fas fa-crow"></i>
@@ -1172,7 +1118,6 @@ function initParticles() {
             <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access Bugcrowd Profile</span>
         </a>
     </div>
-
     <div class="bounty-card" style="margin-top: 2rem;">
         <div class="bounty-icon">
             <i class="fas fa-shield-alt"></i>
@@ -1186,12 +1131,29 @@ function initParticles() {
         </a>
     </div>
 </section>
-    
+   
     <footer>
         <p>
             <i class="fas fa-terminal"></i> <span data-i18n="footerText">SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030</span>
         </p>
     </footer>
+
+    <!-- Ticker de linguagens -->
+    <div class="ticker-container">
+        <div class="ticker">
+            <div class="ticker-item"><i class="fab fa-html5"></i> HTML</div>
+            <div class="ticker-item"><i class="fab fa-css3-alt"></i> CSS</div>
+            <div class="ticker-item"><i class="fab fa-python"></i> Python</div>
+            <div class="ticker-item"><i class="fab fa-java"></i> Java</div>
+            <div class="ticker-item"><i class="fas fa-database"></i> MySQL</div>
+            <!-- Duplicar para loop seamless -->
+            <div class="ticker-item"><i class="fab fa-html5"></i> HTML</div>
+            <div class="ticker-item"><i class="fab fa-css3-alt"></i> CSS</div>
+            <div class="ticker-item"><i class="fab fa-python"></i> Python</div>
+            <div class="ticker-item"><i class="fab fa-java"></i> Java</div>
+            <div class="ticker-item"><i class="fas fa-database"></i> MySQL</div>
+        </div>
+    </div>
 
     <script>
 const translations = {
@@ -1364,10 +1326,9 @@ const translations = {
         'footerText': 'SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030'
     }
 };
-
         const audio = document.getElementById('local-audio');
         const musicButton = document.getElementById('music-button');
-        
+       
         musicButton.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play()
@@ -1380,83 +1341,77 @@ const translations = {
                 musicButton.innerHTML = '<i class="fas fa-music"></i>';
             }
         });
-        
+       
         audio.addEventListener('ended', () => {
             musicButton.innerHTML = '<i class="fas fa-music"></i>';
         });
-        
+       
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const starsCount = 500;
-            
+           
             starsContainer.innerHTML = '';
-            
+           
             for (let i = 0; i < starsCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
-                
+               
                 const size = Math.random() * 2 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
-                
+               
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
-                
+               
                 const duration = Math.random() * 5 + 5;
                 star.style.setProperty('--duration', `${duration}s`);
-                
+               
                 star.style.opacity = Math.random() * 0.5 + 0.1;
-                
+               
                 if (Math.random() > 0.8) {
                     const colors = ['#00ff41', '#00eeff', '#bd00ff'];
                     const color = colors[Math.floor(Math.random() * colors.length)];
                     star.style.backgroundColor = color;
                     star.style.boxShadow = `0 0 8px ${color}, 0 0 12px ${color}`;
                 }
-                
+               
                 starsContainer.appendChild(star);
             }
         }
-        
+       
         function initParticles() {
             const container = document.getElementById('particles-3d');
             if (!container) return;
-
             container.innerHTML = '';
-
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            
+           
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setClearColor(0x000000, 0);
             container.appendChild(renderer.domElement);
-
             const particlesGeometry = new THREE.BufferGeometry();
             const particlesCount = 1500;
-            
+           
             const posArray = new Float32Array(particlesCount * 3);
             const colorArray = new Float32Array(particlesCount * 3);
-            
+           
             const colors = [
                 [0, 255, 65],
                 [0, 238, 255],
                 [189, 0, 255],
                 [137, 207, 240]
             ];
-
             for (let i = 0; i < particlesCount * 3; i++) {
                 posArray[i] = (Math.random() - 0.5) * 100;
-                
+               
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 colorArray[i] = color[0] / 255;
                 colorArray[i + 1] = color[1] / 255;
                 colorArray[i + 2] = color[2] / 255;
             }
-
             particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
             particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-
             const particlesMaterial = new THREE.PointsMaterial({
                 size: 0.1,
                 vertexColors: true,
@@ -1464,56 +1419,48 @@ const translations = {
                 opacity: 0.8,
                 blending: THREE.AdditiveBlending
             });
-
             const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
             scene.add(particlesMesh);
-
             camera.position.z = 5;
-
             let mouseX = 0;
             let mouseY = 0;
             let targetX = 0;
             let targetY = 0;
-
             document.addEventListener('mousemove', (event) => {
                 mouseX = (event.clientX / window.innerWidth) * 2 - 1;
                 mouseY = - (event.clientY / window.innerHeight) * 2 + 1;
             });
-
             function animate() {
                 requestAnimationFrame(animate);
-                
+               
                 const smoothFactor = 0.05;
                 targetX += (mouseX * 10 - targetX) * smoothFactor;
                 targetY += (mouseY * 10 - targetY) * smoothFactor;
-                
+               
                 particlesMesh.rotation.y += 0.001 + (targetX * 0.0005);
                 particlesMesh.rotation.x += 0.001 + (targetY * 0.0005);
-                
+               
                 particlesMesh.rotation.z += 0.0005;
-                
+               
                 camera.position.x += (targetX * 0.5 - camera.position.x) * 0.02;
                 camera.position.y += (targetY * 0.5 - camera.position.y) * 0.02;
                 camera.lookAt(scene.position);
-
                 renderer.render(scene, camera);
             }
-
             animate();
-
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
         }
-        
+       
         const text = "Basic Data Mining and Data Analytics for Insights";
         const typedTextElement = document.getElementById('typed-text');
         let i = 0;
         let deleting = false;
         let pause = 0;
-        
+       
         function typeWriter() {
             if (i < text.length && !deleting && pause <= 0) {
                 typedTextElement.textContent += text.charAt(i);
@@ -1538,13 +1485,13 @@ const translations = {
                 setTimeout(typeWriter, 50);
             }
         }
-        
+       
         function initSkillsChart() {
             const ctx = document.getElementById('skillsChart').getContext('2d');
             const isMobile = window.innerWidth <= 768;
             const pointLabelSize = isMobile ? 10 : 12;
             const tickSize = isMobile ? 8 : 10;
-            
+           
             const skillsChart = new Chart(ctx, {
                 type: 'radar',
                 data: {
@@ -1601,7 +1548,7 @@ const translations = {
                 }
             });
         }
-        
+       
         function initSEOChart() {
             const ctx = document.getElementById('seoChart').getContext('2d');
             const seoChart = new Chart(ctx, {
@@ -1659,18 +1606,18 @@ const translations = {
                 }
             });
         }
-        
+       
         function initVulnerabilityFilters() {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const timelineItems = document.querySelectorAll('.timeline-item');
-            
+           
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                    
+                   
                     const filter = button.getAttribute('data-filter');
-                    
+                   
                     timelineItems.forEach(item => {
                         if (filter === 'all' || item.getAttribute('data-severity') === filter) {
                             item.style.display = 'block';
@@ -1689,7 +1636,7 @@ const translations = {
                 });
             });
         }
-        
+       
         function animateSkillBars() {
             const skillBars = document.querySelectorAll('.skill-progress');
             skillBars.forEach(bar => {
@@ -1699,11 +1646,11 @@ const translations = {
                 }, Math.random() * 500);
             });
         }
-        
+       
         function setLanguage(lang) {
             document.documentElement.lang = lang;
             const elements = document.querySelectorAll('[data-i18n]');
-            
+           
             elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang][key]) {
@@ -1714,22 +1661,22 @@ const translations = {
                     }
                 }
             });
-            
+           
             const toggleButton = document.getElementById('language-toggle');
             toggleButton.textContent = lang === 'pt-BR' ? 'EN' : 'PT';
-            
+           
             localStorage.setItem('language', lang);
         }
-        
+       
         const savedLanguage = localStorage.getItem('language') || 'pt-BR';
         setLanguage(savedLanguage);
-        
+       
         document.getElementById('language-toggle').addEventListener('click', function() {
             const currentLang = document.documentElement.lang;
             const newLang = currentLang === 'pt-BR' ? 'en-US' : 'pt-BR';
             setLanguage(newLang);
         });
-        
+       
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 500);
             createStars();
@@ -1738,7 +1685,7 @@ const translations = {
             initSEOChart();
             initVulnerabilityFilters();
             animateSkillBars();
-            
+           
             setTimeout(() => {
                 audio.play()
                     .then(() => {
@@ -1747,20 +1694,20 @@ const translations = {
                     .catch(e => console.log("Autoplay bloqueado:", e));
             }, 1000);
         });
-        
+       
         function handleScrollAnimations() {
             const elements = document.querySelectorAll('.fade-in');
-            
+           
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
-                
+               
                 if (elementTop < window.innerHeight - elementVisible) {
                     element.classList.add('visible');
                 }
             });
         }
-        
+       
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1774,36 +1721,36 @@ const translations = {
                 }
             });
         });
-        
+       
         window.addEventListener('load', handleScrollAnimations);
         window.addEventListener('scroll', handleScrollAnimations);
-        
+       
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            header.style.background = window.scrollY > 100 
-                ? 'rgba(0, 0, 0, 0.95)' 
+            header.style.background = window.scrollY > 100
+                ? 'rgba(0, 0, 0, 0.95)'
                 : 'rgba(0, 0, 0, 0.85)';
         });
-        
+       
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const closeMenuBtn = document.getElementById('closeMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
+       
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
         });
-        
+       
         closeMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
-        
+       
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
         });
-        
+       
         function checkScreenSize() {
             if (window.innerWidth <= 768) {
                 mobileMenuBtn.style.display = 'flex';
@@ -1812,9 +1759,135 @@ const translations = {
                 mobileMenu.classList.remove('active');
             }
         }
-        
+       
         window.addEventListener('resize', checkScreenSize);
         checkScreenSize();
+
+// Código para o efeito de estrelas com interação do mouse e otimização mobile
+(function() {
+    "use strict";
+    var canvas = document.getElementById('canvas'),
+        ctx = canvas.getContext('2d'),
+        w = canvas.width = window.innerWidth,
+        h = canvas.height = window.innerHeight,
+        hue = 180, // Ajustado para neon-blue
+        stars = [],
+        count = 0,
+        maxStars = window.innerWidth <= 768 ? 600 : 1200, // Reduzido para melhor performance mobile
+        mouseX = w / 2,
+        mouseY = h / 2,
+        lastFrameTime = 0,
+        frameInterval = 1000 / 30; // Limitar a 30 FPS para mobile
+
+    // Cache gradient
+    var canvas2 = document.createElement('canvas'),
+        ctx2 = canvas2.getContext('2d');
+    canvas2.width = 100;
+    canvas2.height = 100;
+    var half = canvas2.width / 2,
+        gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+    gradient2.addColorStop(0.025, '#fff');
+    gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+    gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+    gradient2.addColorStop(1, 'transparent');
+    ctx2.fillStyle = gradient2;
+    ctx2.beginPath();
+    ctx2.arc(half, half, half, 0, Math.PI * 2);
+    ctx2.fill();
+
+    function random(min, max) {
+        if (arguments.length < 2) {
+            max = min;
+            min = 0;
+        }
+        if (min > max) {
+            var hold = max;
+            max = min;
+            min = hold;
+        }
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function maxOrbit(x, y) {
+        var max = Math.max(x, y),
+            diameter = Math.round(Math.sqrt(max * max + max * max));
+        return diameter / 2;
+    }
+
+    var Star = function() {
+        this.orbitRadius = random(maxOrbit(w, h));
+        this.radius = random(60, this.orbitRadius) / 12;
+        this.orbitX = w / 2;
+        this.orbitY = h / 2;
+        this.timePassed = random(0, maxStars);
+        this.speed = random(this.orbitRadius) / (window.innerWidth <= 768 ? 90000 : 50000); // Mais lenta no mobile
+        this.alpha = random(2, 10) / 10;
+        count++;
+        stars[count] = this;
+    };
+
+    Star.prototype.draw = function() {
+        var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+            y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+            twinkle = random(10);
+        if (twinkle === 1 && this.alpha > 0) {
+            this.alpha -= 0.05;
+        } else if (twinkle === 2 && this.alpha < 1) {
+            this.alpha += 0.05;
+        }
+        ctx.globalAlpha = this.alpha;
+        ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+        this.timePassed += this.speed;
+    };
+
+    for (var i = 0; i < maxStars; i++) {
+        new Star();
+    }
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    });
+
+    function animation(currentTime) {
+        if (currentTime - lastFrameTime < frameInterval) {
+            requestAnimationFrame(animation);
+            return;
+        }
+        lastFrameTime = currentTime;
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.globalCompositeOperation = 'lighter';
+
+        // Atualizar centro da órbita baseado no mouse
+        const centerX = mouseX || w / 2;
+        const centerY = mouseY || h / 2;
+        for (var i = 1, l = stars.length; i < l; i++) {
+            stars[i].orbitX += (centerX - stars[i].orbitX) * 0.005; // Atrai para o mouse suavemente
+            stars[i].orbitY += (centerY - stars[i].orbitY) * 0.005;
+            stars[i].draw();
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        maxStars = window.innerWidth <= 768 ? 600 : 1200;
+        stars = [];
+        count = 0;
+        for (var i = 0; i < maxStars; i++) {
+            new Star();
+        }
+    });
+
+    animation(0);
+})();
     </script>
 </body>
 </html>
