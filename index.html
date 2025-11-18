@@ -9,473 +9,762 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
     <style>
-        :root {
-            --primary-bg: #121212;
-            --neon-blue: #00eeff;
-            --baby-blue: #89CFF0;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --text-muted: #666666;
-            --glow-blue: 0 0 8px rgba(0, 238, 255, 0.3);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Courier New', monospace;
-        }
-        body {
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-        canvas#canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            opacity: 0.6;
-        }
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(18, 18, 18, 0.4);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--neon-blue);
-            z-index: 1000;
-            padding: 0.8rem 5%;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .logo-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 600;
-            color: var(--neon-blue);
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--neon-blue);
-            border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .logo:hover {
-            transform: scale(1.05);
-            box-shadow: var(--glow-blue);
-        }
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            margin-left: auto;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: var(--neon-blue);
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--neon-blue);
-            transition: width 0.3s;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--neon-blue);
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .language-switcher {
-            margin-left: 1rem;
-        }
-        #language-toggle {
-            background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            min-width: 48px;
-        }
-        #language-toggle:hover {
-            background: rgba(0, 238, 255, 0.2);
-            transform: scale(1.05);
-        }
-        .music-player {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--neon-blue);
-            border-radius: 20px;
-            padding: 8px 16px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: transform 0.3s;
-        }
-        .music-player:hover {
-            transform: translateY(-3px);
-        }
-        .music-button {
-            background: transparent;
-            border: none;
-            color: var(--neon-blue);
-            font-size: 1.2rem;
-            cursor: pointer;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s, color 0.3s;
-        }
-        .music-button:hover {
-            transform: scale(1.1);
-            color: var(--baby-blue);
-        }
-        .xrl8-logo {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 80px;
-            z-index: 1002;
-        }
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 2rem 2rem 100px;
-        }
-        .hero-content {
-            max-width: 800px;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            border-radius: 10px;
-            border: 1px solid var(--neon-blue);
-            transition: transform 0.5s;
-        }
-        .hero-content h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-weight: 700;
-            color: var(--neon-blue);
-            margin-bottom: 1rem;
-        }
-        .typing-text {
-            font-size: clamp(0.9rem, 2vw, 1.3rem);
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        .hero-description {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            font-size: clamp(0.9rem, 1.5vw, 1rem);
-            color: var(--text-secondary);
-        }
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        .feature-item {
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 2px solid var(--neon-blue);
-            transition: transform 0.3s;
-        }
-        .feature-item:hover {
-            transform: translateY(-3px);
-        }
-        .feature-icon {
-            color: var(--neon-blue);
-            font-size: 1.2rem;
-        }
-        .cta-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-size: clamp(0.9rem, 1.5vw, 1rem);
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            min-width: 120px;
-            min-height: 48px;
-            justify-content: center;
-        }
-        .btn-primary {
-            background: linear-gradient(45deg, var(--neon-blue), var(--baby-blue));
-            color: #000;
-            box-shadow: var(--glow-blue);
-        }
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-        }
-        .btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            background: rgba(0, 238, 255, 0.2);
-            box-shadow: 0 0 15px rgba(0, 238, 255, 0.5);
-            animation: pulse 1s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 238, 255, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 238, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 238, 255, 0); }
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            transform: rotate(30deg);
-            transition: all 0.5s;
-            opacity: 0;
-        }
-        .btn-primary:hover::before {
-            opacity: 1;
-            top: -100%;
-            left: -100%;
-        }
-        section {
-            padding: 3rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-            font-weight: 600;
-            color: var(--neon-blue);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .section-title.baby-blue {
-            color: var(--baby-blue);
-        }
-        .prompt-features, .blog-posts, .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-        .prompt-feature, .blog-post, .contact-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--neon-blue);
-            border-radius: 10px;
-            padding: 1.2rem;
-            transition: transform 0.3s;
-        }
-        .prompt-feature:hover, .blog-post:hover, .contact-card:hover {
-            transform: translateY(-5px);
-        }
-        .skills-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        .skills-chart-container {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--neon-blue);
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
-        .bounty-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--neon-blue);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            max-width: 700px;
-            margin: 2rem auto;
-        }
-        .bounty-card.baby-blue {
-            border: 1px solid var(--baby-blue);
-        }
-        .bounty-icon {
-            width: 60px;
-            height: 60px;
-            border: 1px solid var(--neon-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--neon-blue);
-            margin: 0 auto 1rem;
-        }
-        .bounty-icon.baby-blue {
-            border: 1px solid var(--baby-blue);
-            color: var(--baby-blue);
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.7);
-            border-top: 1px solid var(--neon-blue);
-            padding: 1.5rem;
-            text-align: center;
-            color: var(--text-muted);
-        }
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1002;
+:root {
+    --primary-bg: #121212;
+    --neon-blue: #00eeff6e;
+    --baby-blue: #89CFF0;
+    --gold: #41bd89;
+    --text-primary: #1ba891;
+    --text-secondary: #b0b0b0;
+    --text-muted: #666666;
+    --glow-blue: 0 0 8px rgba(0, 238, 255, 0.3);
+    --color-neutral-900: oklch(100% 0.00011 271.152);
+}
+
+img {
+  position: center;
+  z-index: 9999;
+  width: 200px;
+  height: 200px;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+    border: 1px solid var(--neon-blue);
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--neon-blue);
+    border: 2px solid var(--primary-bg);
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--baby-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+* {
+    scrollbar-color: var(--neon-blue) var(--primary-bg);
+    scrollbar-width: thin;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Courier New', monospace;
+}
+body {
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    color-scheme: light dark;
+}
+canvas#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    opacity: 0.6;
+}
+.svg-container {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* === HEADER & NAV === */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(18, 18, 18, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--neon-blue);
+    z-index: 1000;
+    padding: 0.8rem 5%;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--neon-blue);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(0, 238, 255, 0.05);
+}
+.logo:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-blue);
+    background: rgba(0, 238, 255, 0.15);
+}
+.nav-links {
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+    margin-left: auto;
+}
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+    padding: 0.45rem 0.75rem;
+    border-radius: 6px;
+}
+.nav-links a:hover {
+    color: var(--neon-blue);
+    background: rgba(0, 238, 255, 0.1);
+}
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--neon-blue);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+.mobile-menu-btn, .close-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--neon-blue);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+.mobile-menu-btn:hover, .close-menu:hover {
+    background: rgba(0, 238, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.language-switcher {
+    margin-left: 1rem;
+}
+#language-toggle {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    min-width: 48px;
+    font-family: 'Inter', sans-serif;
+}
+#language-toggle:hover {
+    background: rgba(0, 238, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* === MUSIC PLAYER === */
+.music-player {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--neon-blue);
+    border-radius: 20px;
+    padding: 8px 16px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s;
+}
+.music-player:hover {
+    transform: translateY(-3px);
+}
+.music-button {
+    background: transparent;
+    border: none;
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    border-radius: 50%;
+}
+.music-button:hover {
+    transform: scale(1.15);
+    color: var(--baby-blue);
+    background: rgba(137, 207, 240, 0.15);
+}
+
+.xrl8-logo {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    z-index: 1002;
+}
+
+/* === HERO SECTION === */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 2rem 2rem 100px;
+}
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid var(--neon-blue);
+    transition: transform 0.5s;
+    width: 100%;
+}
+.hero-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--neon-blue);
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+}
+.typing-text {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto 1.8rem;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.strategy-technique-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: rgb(90, 199, 163);
+}
+.strategy-btn,
+.technique-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 10px;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 2px solid transparent;
+    min-width: 150px;
+    max-width: 220px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: 0 4px 6px rgba(184, 180, 180, 0.2);
+}
+.strategy-btn {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+.technique-btn {
+    background: linear-gradient(135deg, rgba(0, 238, 255, 0.1), transparent);
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+}
+.strategy-btn:hover,
+.technique-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 238, 255, 0.4);
+}
+.strategy-btn:active,
+.technique-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* === FEATURE LIST === */
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.8rem;
+}
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.2rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-left: 3px solid var(--neon-blue);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    max-width: 240px;
+    flex: 1 1 200px;
+}
+.feature-item:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 238, 255, 0.08);
+    border-left-color: var(--baby-blue);
+}
+.feature-icon {
+    color: var(--neon-blue);
+    font-size: 1.3rem;
+}
+.feature-item h4 {
+    font-size: 0.95rem;
+    margin: 0;
+    color: var(--neon-blue);
+}
+.feature-item p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* === SECTIONS === */
+section {
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--neon-blue);
+    border-radius: 2px;
+}
+.strategies-section .section-title { color: var(--gold); }
+.techniques-section .section-title { color: var(--neon-blue); }
+
+/* === DRAMATIC CARDS === */
+.dramatic-cards-section {
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+.card-container {
+    padding: 2px;
+    border-radius: 1.5em;
+    position: relative;
+    background: linear-gradient(-30deg, var(--gradient-color), transparent, var(--gradient-color)),
+                linear-gradient(to bottom, var(--color-neutral-900), var(--color-neutral-900));
+    flex: 1 1 350px;
+    max-width: 22rem;
+}
+.card-container[↖️] {
+    --f: url(#🌀↖️);
+    --electric-border-color: #48ddab;
+    --electric-light-color: oklch(from var(--electric-border-color) l c h);
+    --gradient-color: oklch(from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4);
+}
+.card-container[🎨] {
+    --f: url(#🌀🎨);
+    --electric-border-color: var(--neon-blue);
+    --electric-light-color: oklch(from var(--electric-border-color) l c h);
+    --gradient-color: oklch(from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4);
+}
+.inner-container { position: relative; }
+.border-outer {
+    border: 2px solid oklch(from var(--electric-border-color) l c h / 0.5);
+    border-radius: 1.5em;
+    padding-right: .15em;
+    padding-bottom: .15em;
+}
+.main-card {
+    width: 100%;
+    aspect-ratio: 6 / 10;
+    border-radius: 1.5em;
+    padding: 20px;
+    border: 3px solid var(--electric-border-color);
+    margin-top: 4px;
+    margin-left: -4px;
+    filter: var(--f);
+    background: var(--primary-bg);
+    display: flex;
+}
+.glow-layer-1, .glow-layer-2 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 24px;
+    pointer-events: none;
+}
+.glow-layer-1 {
+    border: 2px solid oklch(from var(--electric-border-color) l c h / 0.6);
+    filter: blur(1px);
+}
+.glow-layer-2 {
+    border: 2px solid var(--electric-light-color);
+    filter: blur(4px);
+}
+.overlay-1, .overlay-2, .background-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    pointer-events: none;
+}
+.overlay-1, .overlay-2 {
+    opacity: 1;
+    mix-blend-mode: overlay;
+    transform: scale(1.1);
+    filter: blur(16px);
+    background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
+}
+.overlay-2 { opacity: 0.5; }
+.background-glow {
+    filter: blur(32px);
+    transform: scale(1.1);
+    opacity: 0.3;
+    z-index: -1;
+    background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--electric-border-color));
+}
+.content-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    pointer-events: none;
+}
+.content-top {
+    padding: 1.25rem 1.25rem 0.5rem;
+}
+.content-bottom {
+    padding: 0.5rem 1.25rem 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.scrollbar-glass {
+    background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%),
+                rgba(255,255,255,0.04);
+    border-radius: 14px;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+.title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+.description {
+    opacity: 0.7;
+    font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+    line-height: 1.5;
+    margin: 0.6rem 0;
+}
+.divider {
+    margin: 0.75rem 0;
+    border: none;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.1;
+    mask-image: linear-gradient(to right, transparent, black, transparent);
+}
+
+/* === FOOTER === */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 1px solid var(--neon-blue);
+    padding: 1.8rem;
+    text-align: center;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 10;
+}
+
+/* === MOBILE MENU === */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-menu.active {
+    right: 0;
+}
+.mobile-nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    transition: all 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.mobile-nav-link:last-child { border-bottom: none; }
+.mobile-nav-link:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px var(--neon-blue);
+    transform: translateX(5px);
+}
+
+/* === TICKER === */
+.ticker-container {
+    position: flex;
+    bottom: 60px;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 5;
+    padding: 0.5rem 0;
+}
+.ticker {
+    display: flex;
+    animation: ticker-move 25s linear infinite;
+    white-space: nowrap;
+}
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 2rem;
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-blue);
+    font-weight: 500;
+}
+.ticker-item i { font-size: 1.4rem; }
+@keyframes ticker-move {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .logo-container { 
+        position: static; 
+        transform: none; 
+        margin: 0 auto; 
+    }
+    .hero { padding: 2rem 1rem; }
+    .hero-content { padding: 1.5rem; }
+    .hero-content h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+    .typing-text { font-size: clamp(0.95rem, 3vw, 1.15rem); }
+    .strategy-technique-buttons { flex-direction: column; align-items: center; }
+    .feature-list { justify-content: center; }
+    .xrl8-logo { display: block; width: 60px; }
+    .music-player { padding: 6px 12px; bottom: 10px; right: 10px; }
+    .main-card { width: 100%; }
+    .content-top, .content-bottom { padding: 1rem; }
+    .title { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+}
+
+@media (max-width: 1080px) {
+    .hero-content { padding: 1.2rem; }
+    .hero-content h1 { font-size: clamp(1.5rem, 5.5vw, 2rem); }
+    .typing-text { font-size: clamp(0.9rem, 2.8vw, 1.05rem); }
+    .hero-description { font-size: clamp(0.85rem, 2.2vw, 0.95rem); }
+    .section-title { font-size: clamp(1.5rem, 4vw, 1.9rem); }
+    .xrl8-logo { width: 50px; top: 15px; left: 15px; }
+    #language-toggle { 
+        padding: 0.45rem 0.9rem; 
+        font-size: 0.85rem; 
+        min-width: 46px;
+    }
+    .music-button { 
+        font-size: 1.1rem; 
+        width: 46px; 
+        height: 46px; 
+    }
+    .strategy-btn, .technique-btn {
+        font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+        padding: 0.85rem 1.5rem;
+        min-width: 140px;
+        
+    }
+    .feature-item { 
+        min-width: 160px; 
+        padding: 1rem; 
+    }
+    .feature-item h4 { font-size: 0.9rem; }
+    .feature-item p { font-size: 0.8rem; }
+}
+
+@media (max-width: 360px) {
+    .hero-content { padding: 1rem; }
+    .hero-content h1 { font-size: clamp(1.35rem, 5vw, 1.8rem); }
+    .typing-text { font-size: clamp(0.85rem, 2.6vw, 1rem); }
+    .section-title { font-size: clamp(1.3rem, 3.5vw, 1.6rem); }
+    .xrl8-logo { width: 45px; top: 12px; left: 12px; }
+    .strategy-btn, .technique-btn {
+        font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+        padding: 0.8rem 1.3rem;
+        min-width: 130px;
+    }
+    .main-container { gap: 1.2rem; }
+    .card-container { max-width: 100%; }
+    .title { font-size: clamp(1.25rem, 4.5vw, 1.5rem); }
+    .description { font-size: clamp(0.75rem, 1.5vw, 0.85rem); }
+}
+
+        .content-bottom {
             display: flex;
             flex-direction: column;
-            padding: 2rem;
-            transition: right 0.3s;
+            gap: 1rem;
+            margin-top: auto;
         }
-        .mobile-menu.active {
-            right: 0;
-        }
-        .mobile-nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.8rem 0;
-            transition: color 0.3s;
-        }
-        .mobile-nav-link:hover {
-            color: var(--neon-blue);
-        }
-        .close-menu {
-            background: none;
-            border: none;
-            color: var(--neon-blue);
-            font-size: 1.5rem;
-            align-self: flex-end;
-            cursor: pointer;
-        }
-        .ticker-container {
-            position: fixed;
-            bottom: 60px;
-            width: 100%;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 5;
-            padding: 0.5rem 0;
-        }
-        .ticker {
-            display: flex;
-            animation: ticker-move 30s linear infinite;
-            white-space: nowrap;
-        }
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-right: 2rem;
-            color: var(--neon-blue);
-            font-size: 1.2rem;
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-        .ticker-item i {
-            font-size: 1.5rem;
-        }
-        @keyframes ticker-move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: flex; }
-            .logo-container { position: static; transform: none; }
-            .skills-container { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
-            .prompt-features, .blog-posts, .contact-grid { grid-template-columns: 1fr; }
-            .xrl8-logo { display: block; width: 60px; }
-            .music-player { padding: 6px 12px; bottom: 10px; right: 10px; }
-        }
-        @media (max-width: 480px) {
-            .hero-content { padding: 1rem; }
-            .hero-content h1 { font-size: clamp(1.2rem, 3.5vw, 1.8rem); }
-            .typing-text { font-size: clamp(0.8rem, 2vw, 1rem); }
-            .hero-description { font-size: clamp(0.8rem, 1.5vw, 0.9rem); }
-            .btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; min-width: 100px; min-height: 44px; }
-            .section-title { font-size: clamp(1.4rem, 3vw, 1.8rem); }
-            .prompt-features, .blog-posts, .contact-grid { gap: 1rem; }
-            .xrl8-logo { width: 50px; top: 15px; left: 15px; }
-            #language-toggle { padding: 0.4rem 0.8rem; font-size: 0.8rem; min-width: 44px; min-height: 44px; }
-            .music-button { font-size: 1rem; width: 44px; height: 44px; }
-        }
-        @media (max-width: 360px) {
-            .hero-content { padding: 0.8rem; }
-            .section-title { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
-            .btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
-            .xrl8-logo { width: 40px; top: 10px; left: 10px; }
-        }
-    </style>
+</style>
+
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <img src="xrl8.png" alt="XRL8 Logo" class="xrl8-logo">
+    <svg class="svg-container" aria-hidden="true">
+        <defs>
+            <filter id="🌀↖️" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+                    <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+                    <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+                    <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+                    <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+                <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+                <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+                <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+            <filter id="🌀🎨" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
+                <feColorMatrix type="hueRotate" result="pt1">
+                    <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+                </feColorMatrix>
+                <feComposite />
+                <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+                <feColorMatrix type="hueRotate" result="pt2">
+                    <animate attributeName="values" values="0; 333; 199; 286; 64; 168; 256; 157; 360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
+                </feColorMatrix>
+                <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+                <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+        </defs>
+    </svg>
+    <img src="wide.gif" width="200px" height="200px">
     <div class="music-player">
         <button id="music-button" class="music-button" aria-label="Toggle music">
             <i class="fas fa-music"></i>
         </button>
         <div class="track-info">
-            <div class="track-title">Moonlight Sonata</div>
-            <div class="track-artist">Ludwig van Beethoven</div>
+            <div class="track-title"></div>
+            <div class="track-artist"></div>
         </div>
     </div>
     <audio id="local-audio" loop>
@@ -490,9 +779,9 @@
                     <span>Kaue Caires®</span>
                 </div>
             </div>
-            <div class="language-switcher">
+            <!-- <div class="language-switcher">
                 <button id="language-toggle">EN</button>
-            </div>
+            </div> -->
             <button class="mobile-menu-btn" aria-label="Open menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -502,154 +791,271 @@
         <button class="close-menu" id="closeMenu" aria-label="Close menu">
             <i class="fas fa-times"></i>
         </button>
-        <a href="#home" class="mobile-nav-link" data-i18n="home">Home</a>
-        <a href="#skills" class="mobile-nav-link" data-i18n="skills">Skills</a>
-        <a href="#prompt" class="mobile-nav-link" data-i18n="prompt">Prompt Engineering</a>
-        <a href="#blog" class="mobile-nav-link" data-i18n="blog">Personal Blogs</a>
-        <a href="#bounty" class="mobile-nav-link" data-i18n="bounty">Bug MORPHEUS</a>
-        <a href="#contact" class="mobile-nav-link" data-i18n="contact">Contact</a>
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#strategies" class="mobile-nav-link">Strategy´s</a>
+        <a href="#techniques" class="mobile-nav-link">Tech</a>
+        <!-- <a href="#showcase" class="mobile-nav-link">Showcase</a> -->
     </div>
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 data-i18n="title">Portfólio</h1>
+        <div class="dramatic-cards-section">
+            <h2>Portfólio</h2>
             <div class="typing-text" id="typing-text">
                 <span id="typed-text"></span><span class="cursor">|</span>
             </div>
-            <p class="hero-description" data-i18n="description">Analytical for Strategy´s</p>
+            <p class="hero-description">Analytical for Strategy´s</p>
+            <div class="strategy-technique-buttons">
+                <a href="#strategies" class="strategy-btn">
+                    <i class="fas fa-chart-line"></i> Perfil
+                </a>
+                <a href="#techniques" class="technique-btn">
+                    <i class="fas fa-cogs"></i> Técnicas
+                </a>
+            </div>
             <div class="feature-list">
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-database"></i></div>
                     <div>
-                        <h4 data-i18n="feature1-title">DATAMINING-STORYTELLING</h4>
-                        <p data-i18n="feature1-desc">Pattern recognition in large datasets</p>
+                        <h4>DATAMINING-STORYTELLING</h4>
+                        <p>Pattern recognition in large datasets</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
                     <div>
-                        <h4 data-i18n="feature2-title">ETL SYSTEMS</h4>
-                        <p data-i18n="feature2-desc">Efficient data extraction, transformation and loading</p>
+                        <h4>ETL SYSTEMS</h4>
+                        <p>Efficient data extraction, transformation and loading</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
                     <div>
-                        <h4 data-i18n="feature3-title">DASHBOARDS</h4>
-                        <p data-i18n="feature3-desc">Real-time visualization of complex Data Systems</p>
+                        <h4>DASHBOARDS</h4>
+                        <p>Real-time visualization of complex Data Systems</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
                     <div>
-                        <h4 data-i18n="feature4-title">CONTROL INTERFACES</h4>
-                        <p data-i18n="feature4-desc">Direct manipulation of Big Data Environments</p>
+                        <h4>CONTROL INTERFACES</h4>
+                        <p>Direct manipulation of Big Data Environments</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-robot"></i></div>
                     <div>
-                        <h4 data-i18n="feature5-title">PROMPT ENGINEERING</h4>
-                        <p data-i18n="feature5-desc">Advanced techniques for AI system optimization</p>
+                        <h4>PROMPT ENGINEERING</h4>
+                        <p>Advanced techniques for AI system optimization</p>
                     </div>
                 </div>
             </div>
-            <div class="cta-buttons">
-                <a href="https://github.com/kauecodify" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-github"></i> <span data-i18n="github">GitHub Profile</span>
-                </a>
-                <a href="#skills" class="btn btn-secondary">
-                    <i class="fas fa-shield-alt"></i> <span data-i18n="viewSkills">View Skills Matrix</span>
-                </a>
-            </div>
         </div>
     </section>
-    <section id="skills" class="fade-in">
-        <h2 class="section-title" data-i18n="skillsTitle">Technical Expertise</h2>
-        <div class="skills-container">
-            <div class="skills-chart-container">
-                <h3 style="color: var(--neon-blue); margin-bottom: 1.5rem;">Skills Overview</h3>
-                <canvas id="skillsChart"></canvas>
-            </div>
-        </div>
-    </section>
-    <section id="prompt" class="fade-in">
-        <h2 class="section-title baby-blue" data-i18n="promptTitle">Prompt Engineering</h2>
-        <div class="bounty-card baby-blue">
-            <div class="bounty-icon baby-blue"><i class="fas fa-brain"></i></div>
-            <h3 data-i18n="promptCardTitle">Advanced AI Prompt Engineering</h3>
-            <p data-i18n="promptCardDesc">Specialized in crafting high-impact prompts for LLMs to optimize:</p>
-            <div class="prompt-features">
-                <div class="prompt-feature">
-                    <div class="prompt-feature-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h4 data-i18n="promptFeature1">Contextual Optimization</h4>
-                    <p data-i18n="promptFeature1Desc">Precise context framing for complex problem-solving with AI systems</p>
+
+    <!-- === HOME === -->
+
+<section id="strategies" class="dramatic-cards-section">
+    <h2 class="section-title">Home
+    <div class="main-container">
+
+        <!-- Blog & Narrativas -->
+
+                <div 🎨 class="card-container">
+            <div class="inner-container">
+                <div class="border-outer">
+                    <div class="main-card"></div>
                 </div>
-                <div class="prompt-feature">
-                    <div class="prompt-feature-icon"><i class="fas fa-project-diagram"></i></div>
-                    <h4 data-i18n="promptFeature2">Multi-Step Reasoning</h4>
-                    <p data-i18n="promptFeature2Desc">Chain-of-thought prompting for advanced analytics and decision-making</p>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+            <div class="content-container">
+                <div class="content-top">
+                    <div class="scrollbar-glass">Strategy</div>
+                    <p class="title">Conceitos estratégicos</p>
                 </div>
-                <div class="prompt-feature">
-                    <div class="prompt-feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4 data-i18n="promptFeature3">Adversarial Prompting</h4>
-                    <p data-i18n="promptFeature3Desc">Red teaming and security testing for AI systems and LLM applications</p>
+                <hr class="divider" />
+                <div class="content-bottom">
+                    <p class="description">
+                        <strong>• Otimização Contextual</strong><br>
+                        Adaptação ao cenário empresarial.
+                    </p>
+                    <p class="description" style="margin-top:0.5rem;">
+                        <strong>• Raciocínio em Cadeia</strong><br>
+                        Decomposição lógica de problemas.
+                    </p>
+                    <p class="description" style="margin-top:0.5rem;">
+                        <strong>• Métricas</strong><br>
+                        Analise do cenário macro.
+                    </p>
+                    <p class="description" style="margin-top:0.5rem;">
+                    <strong>• Modelagem Estratégica Competitiva</strong><br>
+                    Avaliação de concorrência, posicionamento e projeções de performance.
+                        </p>
                 </div>
             </div>
-            <a href="#" class="btn btn-secondary" style="margin-top: 2rem;">
-                <i class="fas fa-key"></i> <span data-i18n="promptButton">Prompt Design Framework</span>
-            </a>
         </div>
-    </section>
-    <section id="blog" class="fade-in">
-        <h2 class="section-title baby-blue" data-i18n="blogTitle">Personal Blogs</h2>
-        <div class="blog-posts">
-            <div class="blog-post">
-                <h3 data-i18n="blogPost2Title">Prompt Engineer</h3>
-                <div class="blog-date" data-i18n="blogPost2Date">June 13, 2025</div>
-                <p class="blog-excerpt" data-i18n="blogPost2Excerpt">MegaBook - Prompt Engineer (2025 - 2030)</p>
-                <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030" class="btn btn-primary">
-                    <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
-                </a>
+    </div>
+
+        <!-- <div 🎨 class="card-container">
+            <div class="inner-container">
+                <div class="border-outer">
+                    <div class="main-card"></div>
+                </div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
             </div>
-            <div class="blog-post">
-                <h3 data-i18n="blogPost1Title">TOP 100 CODES IN PYTHON</h3>
-                <div class="blog-date" data-i18n="blogPost1Date">June 13, 2025</div>
-                <p class="blog-excerpt" data-i18n="blogPost1Excerpt">Top 100 best codes for data analysis/statistics/IA-ML in python</p>
-                <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" class="btn btn-primary">
-                    <span data-i18n="readMore">Read Full Article</span> <i class="fas fa-arrow-right"></i>
-                </a>
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+            <div class="content-container">
+                <div class="content-top">
+                    <div class="scrollbar-glass">...</div>
+                    <p class="title">Últimos Projetos</p>
+                </div>
+                <hr class="divider" />
+                <div class="content-bottom">
+                    <p class="description">
+                        <strong>Prompt Engineer</strong><br>
+                        MegaBook - Prompt Engineer (2025–2030)
+                    </p>
+                    <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030" 
+                    target="_blank" 
+                    class="technique-btn"
+                    style="display: inline-flex; margin-top: 0.6rem; font-size: 0.9rem; padding: 0.65rem 1.3rem;">
+                        <i class="fas fa-book-open"></i> Ler artigo
+                    </a>
+
+                    <p class="description" style="margin-top: 1.2rem;">
+                        <strong>TOP 100 CODES IN PYTHON</strong><br>
+                        Códigos para análise de dados e IA/ML
+                    </p>
+                    <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" 
+                    target="_blank" 
+                    class="technique-btn"
+                    style="display: inline-flex; margin-top: 0.6rem; font-size: 0.9rem; padding: 0.65rem 1.3rem;">
+                        <i class="fab fa-python"></i> Ler artigo
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
+</section>
+
+<section id="techniques" class="dramatic-cards-section">
+    <h2 class="section-title">Perfil
+    <div class="main-container">
+
+        <!-- Habilidades -->
+
+        <div 🎨 class="card-container">
+            <div class="inner-container">
+                <div class="border-outer">
+                    <div class="main-card" id="skills-card-placeholder"></div>
+                </div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+            <div class="content-container">
+                <div class="content-top">
+                    <div class="scrollbar-glass">Matriz</div>
+                    <p class="title">Habilidades</p>
+                </div>
+                <hr class="divider" />
+                <div class="content-bottom">
+                    <p class="description">Matriz de competências técnica:</p>
+                    <div style="margin-top:1rem; background:rgba(0,0,0,0.3); border-radius:8px; padding:0.8rem;">
+                        <canvas id="skillsChartMini" width="200" height="200" style="max-width:100%;"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-    <section id="bounty" class="fade-in">
-        <h2 class="section-title" data-i18n="bountyTitle">Cybersecurity Network</h2>
-        <div class="bounty-card">
-            <div class="bounty-icon"><i class="fas fa-bug"></i></div>
-            <h3 data-i18n="bountyCard1Title">Intigriti Network</h3>
-            <p data-i18n="bountyCard1Desc">Active profile on the Intigriti bug bounty platform, executing digital infiltration missions to identify critical vulnerabilities in high-security corporate systems. Specialized in advanced penetration testing and zero-day vulnerability discovery.</p>
-            <a href="https://app.intigriti.com/researcher/profile/cairescodify" target="_blank" class="btn btn-primary">
-                <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access Network Profile</span>
-            </a>
-        </div>
+
+        <!-- Segurança Ofensiva -->
+
+        <!-- <div 🎨 class="card-container">
+            <div class="inner-container">
+                <div class="border-outer">
+                    <div class="main-card"></div>
+                </div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+            <div class="content-container">
+                <div class="content-top">
+                    <div class="scrollbar-glass">SOC</div>
+                    <p class="title">Cybersecurity</p>
+                </div>
         <div class="bounty-card" style="margin-top: 2rem;">
             <div class="bounty-icon"><i class="fas fa-crow"></i></div>
-            <h3 data-i18n="bountyCard2Title">Bugcrowd Network</h3>
-            <p data-i18n="bountyCard2Desc">Active profile on the Bugcrowd platform, hunting for vulnerabilities and contributing to a safer internet.</p>
+            <h2 data-i18n="bountyCard2Title">Bugcrowd Network</h2>
+            <p data-i18n="bountyCard2Desc">Profile on the Bugcrowd platform.</p>
             <a href="https://bugcrowd.com/h/cairescodify" target="_blank" class="btn btn-primary">
                 <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access Bugcrowd Profile</span>
             </a>
         </div>
         <div class="bounty-card" style="margin-top: 2rem;">
             <div class="bounty-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3 data-i18n="bountyCard3Title">HackerOne Network</h3>
-            <p data-i18n="bountyCard3Desc">Active profile on the HackerOne platform, specializing in identifying and reporting vulnerabilities to enhance system security and protect digital assets.</p>
+            <h2 data-i18n="bountyCard3Title">HackerOne Network</h2>
+            <p data-i18n="bountyCard3Desc">Profile on the HackerOne platform.</p>
             <a href="https://hackerone.com/uzi404" target="_blank" class="btn btn-primary">
                 <i class="fas fa-external-link-alt"></i> <span data-i18n="accessProfile">Access HackerOne Profile</span>
             </a>
         </div>
+            </div>
+        </div> -->
+
+        <!-- Sistemas -->
+
+        <div 🎨 class="card-container">
+            <div class="inner-container">
+                <div class="border-outer">
+                    <div class="main-card"></div>
+                </div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+            <div class="content-container">
+                <div class="content-top">
+                    <div class="scrollbar-glass">code | low-code</div>
+                    <p class="title">Systems</p>
+                </div>
+                <hr class="divider" />
+                <div class="content-bottom">
+                    <p class="description">
+                        <strong>• ETL & Pipelines</strong><br>
+                        Fluxos automatizados com Python/SQL.
+                    </p>
+                    <p class="description" style="margin-top:0.5rem;">
+                        <strong>• Dashboards</strong><br>
+                        Visualizações em tempo real.
+                    </p>
+                    <p class="description" style="margin-top:0.5rem;">
+                        <strong>• IA</strong><br>
+                        Interfaces de agentes back-end | front-end.
+                    </p>
+                    <p class="description" style="margin-top:0.5rem;">
+                        <strong>• Integração IoT & Back-End</strong><br>
+                        Conexão entre dispositivos, APIs e automações inteligentes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     </section>
     <footer>
-        <p><i class="fas fa-terminal"></i> <span data-i18n="footerText">SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030</span></p>
+        <p><i class="fas fa-terminal"></i> SYSTEM ACTIVE • ELITE DIVISION | DATA ENGINEERING - WORLDWIDE 2030</p>
     </footer>
     <div class="ticker-container">
         <div class="ticker">
@@ -658,69 +1064,9 @@
             <div class="ticker-item"><i class="fab fa-python"></i> Python</div>
             <div class="ticker-item"><i class="fab fa-java"></i> Java</div>
             <div class="ticker-item"><i class="fas fa-database"></i> MySQL</div>
-            <div class="ticker-item"><i class="fab fa-html5"></i> HTML</div>
-            <div class="ticker-item"><i class="fab fa-css3-alt"></i> CSS</div>
-            <div class="ticker-item"><i class="fab fa-python"></i> Python</div>
-            <div class="ticker-item"><i class="fab fa-java"></i> Java</div>
-            <div class="ticker-item"><i class="fas fa-database"></i> MySQL</div>
         </div>
     </div>
     <script>
-        // Translations
-        const translations = {
-            'pt-BR': {
-                home: 'Home', skills: 'Skills', prompt: 'Engenharia de Prompt', blog: 'Blog Pessoal',
-                bounty: 'Bug MORPHEUS', contact: 'Contato', title: 'Portfólio', description: 'Analítico para Estratégias',
-                'feature1-title': 'MINERAÇÃO DE DADOS-STORYTELLING', 'feature1-desc': 'Reconhecimento de padrões em grandes conjuntos de dados',
-                'feature2-title': 'SISTEMAS ETL', 'feature2-desc': 'Extração, transformação e carregamento eficiente de dados',
-                'feature3-title': 'PAINÉIS VISUAIS', 'feature3-desc': 'Visualização em tempo real de sistemas complexos de dados',
-                'feature4-title': 'CONTROLES DE INTERFACE', 'feature4-desc': 'Manipulação direta de ambientes de Big Data',
-                'feature5-title': 'ENGENHARIA DE PROMPT', 'feature5-desc': 'Técnicas avançadas para otimização de sistemas de IA',
-                github: 'Perfil GitHub', viewSkills: 'Ver Matriz de Habilidades', skillsTitle: 'Competências Técnicas',
-                promptTitle: 'Engenharia de Prompt', promptCardTitle: 'Engenharia de Prompt de IA Avançada',
-                promptCardDesc: 'Especializado na criação de prompts de alto impacto para LLMs para otimizar:',
-                promptFeature1: 'Otimização Contextual', promptFeature1Desc: 'Enquadramento preciso de contexto para resolução complexa de problemas com sistemas de IA',
-                promptFeature2: 'Raciocínio Multi-etapas', promptFeature2Desc: 'Prompting de cadeia de pensamento para análise avançada e tomada de decisão',
-                promptFeature3: 'Prompting Adversarial', promptFeature3Desc: 'Testes de segurança e red teaming para sistemas de IA e aplicações LLM',
-                promptButton: 'Framework de Design de Prompt', blogTitle: 'Blog Pessoal',
-                blogPost1Title: 'Python - Do básico ao Avançado (MACHINE LEARNING)', blogPost1Date: '15 de Junho, 2025',
-                blogPost1Excerpt: 'Técnicas para criação de modelos de coddings, incluindo cadeia de pensamento e estratégias de otimização contextual junto aos princípios em linguagem Python.',
-                blogPost2Title: 'MegaBook - Prompt Engineer (2025 - 2030)', blogPost2Date: '25 de outubro, 2025',
-                blogPost2Excerpt: 'Como criar visualizações de dados convincentes e informativas que contam histórias poderosas e impulsionam decisões de negócios.',
-                readMore: 'Ler Artigo Completo', bountyTitle: 'Rede de Segurança Cibernética',
-                bountyCard1Title: 'Rede Intigriti', bountyCard1Desc: 'Perfil ativo na plataforma de bug bounty Intigriti, executando missões de infiltração digital para identificar vulnerabilidades críticas em sistemas corporativos de alta segurança. Especializado em testes de penetração avançados e descoberta de vulnerabilidades zero-day.',
-                bountyCard2Title: 'Rede Bugcrowd', bountyCard2Desc: 'Perfil ativo na plataforma Bugcrowd, caçando vulnerabilidades e contribuindo para uma internet mais segura.',
-                bountyCard3Title: 'Rede HackerOne', bountyCard3Desc: 'Perfil ativo na plataforma HackerOne, especializado em identificar e reportar vulnerabilidades para aprimorar a segurança de sistemas e proteger ativos digitais.',
-                accessProfile: 'Acessar Perfil', footerText: 'SISTEMA ATIVO • DataKLaboratory v2.0 • DIVISÃO DE ELITE | ENGENHARIA DE DADOS - BRAZIL 2030'
-            },
-            'en-US': {
-                home: 'Home', skills: 'Skills', prompt: 'Prompt Engineering', blog: 'Personal Blogs',
-                bounty: 'Bug MORPHEUS', contact: 'Contact', title: 'Portfolio', description: 'Analytical for Strategy´s',
-                'feature1-title': 'DATAMINING-STORYTELLING', 'feature1-desc': 'Pattern recognition in large datasets',
-                'feature2-title': 'ETL SYSTEMS', 'feature2-desc': 'Efficient data extraction, transformation and loading',
-                'feature3-title': 'DASHBOARDS', 'feature3-desc': 'Real-time visualization of complex Data Systems',
-                'feature4-title': 'CONTROL INTERFACES', 'feature4-desc': 'Direct manipulation of Big Data Environments',
-                'feature5-title': 'PROMPT ENGINEERING', 'feature5-desc': 'Advanced techniques for AI system optimization',
-                github: 'GitHub Profile', viewSkills: 'View Skills Matrix', skillsTitle: 'Technical Expertise',
-                promptTitle: 'Prompt Engineering', promptCardTitle: 'Advanced AI Prompt Engineering',
-                promptCardDesc: 'Specialized in crafting high-impact prompts for LLMs to optimize:',
-                promptFeature1: 'Contextual Optimization', promptFeature1Desc: 'Precise context framing for complex problem-solving with AI systems',
-                promptFeature2: 'Multi-Step Reasoning', promptFeature2Desc: 'Chain-of-thought prompting for advanced analytics and decision-making',
-                promptFeature3: 'Adversarial Prompting', promptFeature3Desc: 'Red teaming and security testing for AI systems and LLM applications',
-                promptButton: 'Prompt Design Framework', blogTitle: 'Personal Blogs',
-                blogPost1Title: 'Python - From Basics to Advanced (MACHINE LEARNING)', blogPost1Date: 'June 15, 2025',
-                blogPost1Excerpt: 'Techniques for building coding models, including chain-of-thought and contextual optimization strategies with Python principles.',
-                blogPost2Title: 'MegaBook - Prompt Engineer (2025 - 2030)', blogPost2Date: 'October 25, 2025',
-                blogPost2Excerpt: 'How to create compelling and informative data visualizations that tell powerful stories and drive business decisions.',
-                readMore: 'Read Full Article', bountyTitle: 'Cybersecurity Network',
-                bountyCard1Title: 'Intigriti Network', bountyCard1Desc: 'Active profile on the Intigriti bug bounty platform, executing digital infiltration missions to identify critical vulnerabilities in high-security corporate systems. Specialized in advanced penetration testing and zero-day vulnerability discovery.',
-                bountyCard2Title: 'Bugcrowd Network', bountyCard2Desc: 'Active profile on the Bugcrowd platform, hunting for vulnerabilities and contributing to a safer internet.',
-                bountyCard3Title: 'HackerOne Network', bountyCard3Desc: 'Active profile on the HackerOne platform, specializing in identifying and reporting vulnerabilities to enhance system security and protect digital assets.',
-                accessProfile: 'Access Network Profile', footerText: 'SYSTEM ACTIVE • DataKLaboratory v2.0 • ELITE DIVISION | DATA ENGINEERING - BRAZIL 2030'
-            }
-        };
-
-        // Utility: Debounce function for resize events
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -728,8 +1074,6 @@
                 timeout = setTimeout(() => func.apply(this, arguments), wait);
             };
         }
-
-        // Music Player
         function initMusicPlayer() {
             const audio = document.getElementById('local-audio');
             const musicButton = document.getElementById('music-button');
@@ -747,8 +1091,6 @@
                 musicButton.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
-
-        // Particles Animation
         function initParticles() {
             const container = document.getElementById('particles-3d');
             if (!container) return;
@@ -812,8 +1154,6 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }, 100));
         }
-
-        // Typing Animation
         function initTypingAnimation() {
             const text = "Basic Data Mining and Data Analytics for Insights";
             const typedTextElement = document.getElementById('typed-text');
@@ -837,52 +1177,38 @@
             }
             typeWriter();
         }
-
-        // Skills Chart
-        function initSkillsChart() {
-            const ctx = document.getElementById('skillsChart').getContext('2d');
-            const isMobile = window.innerWidth <= 768;
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['DATAMINING', 'DASHBOARDS', 'DATABASES', 'INTERFACES', 'ENCRYPTION', 'SCIENTIFIC', 'PROMPT ENGINEERING'],
-                    datasets: [{
-                        label: 'Skill Level',
-                        data: [33, 46, 53, 40, 17, 10, 33],
-                        backgroundColor: 'rgba(0, 238, 255, 0.2)',
-                        borderColor: '#00eeff',
-                        borderWidth: 2,
-                        pointBackgroundColor: '#00eeff',
-                        pointBorderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        r: {
-                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                            pointLabels: { color: '#ffffff', font: { size: isMobile ? 10 : 12 } },
-                            ticks: { backdropColor: 'transparent', color: '#ffffff', font: { size: isMobile ? 8 : 10 }, stepSize: 20 }
-                        }
-                    },
-                    plugins: { legend: { labels: { color: '#ffffff', font: { size: isMobile ? 12 : 14 } } } }
+   // Substitua initSkillsChart() por esta versão compacta
+function initSkillsChart() {
+    const ctx = document.getElementById('skillsChartMini')?.getContext('2d');
+    if (!ctx) return;
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['DATAMINING', 'DASHBOARDS', 'DATABASES', 'INTERFACES', 'ENCRYPTION', 'SCIENTIFIC', 'PROMPT ENG'],
+            datasets: [{
+                label: 'Nível',
+                data: [33, 46, 53, 40, 17, 10, 33],
+                backgroundColor: 'rgba(0, 238, 255, 0.15)',
+                borderColor: '#00eeff',
+                borderWidth: 1,
+                pointRadius: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255,255,255,0.1)' },
+                    grid: { color: 'rgba(255,255,255,0.1)' },
+                    pointLabels: { color: '#888', font: { size: 8 } },
+                    ticks: { display: false }
                 }
-            });
+            },
+            plugins: { legend: { display: false } }
         }
-
-        // Language Toggle
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) element.textContent = translations[lang][key];
-            });
-            document.getElementById('language-toggle').textContent = lang === 'pt-BR' ? 'EN' : 'PT';
-            localStorage.setItem('language', lang);
-        }
-
-        // Starfield Animation
+    });
+}
         function initStarfield() {
             const canvas = document.getElementById('canvas'),
                   ctx = canvas.getContext('2d');
@@ -891,7 +1217,7 @@
                 stars = [], count = 0,
                 maxStars = window.innerWidth <= 480 ? 200 : window.innerWidth <= 768 ? 400 : 800,
                 mouseX = w / 2, mouseY = h / 2,
-                lastFrameTime = 0, frameInterval = 1000 / 25; // Reduced to 25 FPS
+                lastFrameTime = 0, frameInterval = 1000 / 25;
             const canvas2 = document.createElement('canvas'),
                   ctx2 = canvas2.getContext('2d');
             canvas2.width = canvas2.height = 100;
@@ -970,8 +1296,6 @@
             }, 100));
             animation(0);
         }
-
-        // Mobile Menu
         function initMobileMenu() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn'),
                   closeMenuBtn = document.getElementById('closeMenu'),
@@ -987,35 +1311,19 @@
             window.addEventListener('resize', debounce(checkScreenSize, 100));
             checkScreenSize();
         }
-
-        // Scroll Animations and Navigation
         function initScrollAndNav() {
-            function handleScrollAnimations() {
-                document.querySelectorAll('.fade-in').forEach(element => {
-                    if (element.getBoundingClientRect().top < window.innerHeight - 150) {
-                        element.classList.add('visible');
-                    }
-                });
-            }
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', (e) => {
                     e.preventDefault();
-                    document.querySelector(anchor.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
                     });
                 });
             });
-            window.addEventListener('scroll', handleScrollAnimations);
-            window.addEventListener('load', handleScrollAnimations);
         }
-
-        // Initialize
         window.addEventListener('load', () => {
-            setLanguage(localStorage.getItem('language') || 'pt-BR');
-            document.getElementById('language-toggle').addEventListener('click', () => {
-                setLanguage(document.documentElement.lang === 'pt-BR' ? 'en-US' : 'pt-BR');
-            });
             initMusicPlayer();
             initParticles();
             initTypingAnimation();
@@ -1023,6 +1331,7 @@
             initStarfield();
             initMobileMenu();
             initScrollAndNav();
+            // Tenta tocar áudio após 1s (não bloqueia conteúdo)
             setTimeout(() => {
                 document.getElementById('local-audio').play().catch(e => console.log("Autoplay bloqueado:", e));
             }, 1000);
@@ -1030,6 +1339,7 @@
     </script>
 </body>
 </html>
+
 
 
 
