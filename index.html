@@ -94,7 +94,7 @@ header {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--neon-blue);
     z-index: 1000;
-    padding: 0.8rem 5%;
+    padding: 50px;
 }
 nav {
     display: flex;
@@ -518,6 +518,28 @@ section {
     font-family: 'Inter', sans-serif;
     pointer-events: none;
 }
+.content-container a,
+.content-container button {
+    pointer-events: auto;
+    cursor: pointer;
+}
+.content-container a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: text-shadow 0.2s;
+}
+.content-container a:hover {
+    text-shadow: 0 0 6px var(--neon-blue);
+}
+.content-container a {
+    pointer-events: auto;
+    cursor: pointer;
+    color: var(--neon-blue);
+    text-decoration: none;
+}
+.content-container a:hover {
+    text-shadow: 0 0 6px var(--neon-blue);
+}
 .content-top {
     padding: 1.25rem 1.25rem 0.5rem;
 }
@@ -770,7 +792,7 @@ footer {
     <audio id="local-audio" loop>
         <source src="9amslowed.mp3" type="audio/mpeg">
     </audio>
-    <div id="particles-3d"></div>
+    <!-- <div id="particles-3d"></div> -->
     <header>
         <nav>
             <div class="logo-container">
@@ -960,7 +982,51 @@ footer {
             </div>
         </div>
     </div>
-</section>
+
+<!-- Últimas Pesquisas -->
+ 
+<div 🎨 class="card-container">
+    <div class="inner-container">
+        <div class="border-outer">
+            <div class="main-card"></div>
+        </div>
+        <div class="glow-layer-1"></div>
+        <div class="glow-layer-2"></div>
+    </div>
+    <div class="overlay-1"></div>
+    <div class="overlay-2"></div>
+    <div class="background-glow"></div>
+    <div class="content-container">
+        <div class="content-top">
+            <div class="scrollbar-glass">Search</div>
+            <p class="title">últimas pesquisas</p>
+        </div>
+        <hr class="divider" />
+        <div class="content-bottom">
+            <p class="description">
+                <strong>
+                    <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="color: var(--neon-blue); text-decoration: none;">
+                        Mega-Book: Engenharia de Prompt (2025–2030)
+                    </a>
+                </strong>
+            </p>
+            <p class="description" style="margin-top: 1rem;">
+                <strong>
+                    <a href="https://pt.scribd.com/document/868732200/Neuromarketing-Aplicado-Na-Pratica" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="color: var(--neon-blue); text-decoration: none;">
+                        Neuromarketing Aplicado na Prática
+                    </a>
+                </strong>
+            </p>
+        </div>
+    </div>
+</div>
+
     </section>
     <footer>
         <p><i class="fas fa-terminal"></i> SYSTEM ACTIVE • ELITE DIVISION | DATA ENGINEERING - WORLDWIDE 2030</p>
@@ -1247,6 +1313,7 @@ function initSkillsChart() {
     </script>
 </body>
 </html>
+
 
 
 
