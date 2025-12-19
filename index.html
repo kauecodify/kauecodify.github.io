@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>K. Portfolio</title>
+  <title>K. Portfólio</title>
+  <!-- Corrigido o link do Google Fonts (removidos espaços extras) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
@@ -19,31 +20,31 @@
       --card-bg-dark: #1e1e1e;
     }
 
-  .skills-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 0.8rem;
-  }
-  .skills-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    color: var(--text-light);
-  }
-  .skills-list i {
-    color: var(--accent);
-    min-width: 20px;
-    text-align: center;
-  }
-  @media (max-width: 600px) {
     .skills-list {
-      grid-template-columns: 1fr;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.8rem;
     }
-  }
+    .skills-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+    .skills-list i {
+      color: var(--accent);
+      min-width: 20px;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+    }
 
     @media (prefers-color-scheme: dark) {
       :root {
@@ -120,6 +121,31 @@
 
     .nav-links a:hover {
       color: var(--accent);
+    }
+
+    .lang-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-left: 1rem;
+    }
+
+    .lang-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .lang-btn {
+        background: var(--card-bg-dark);
+        color: var(--text-light);
+      }
     }
 
     nav {
@@ -286,6 +312,11 @@
         flex-direction: column;
         align-items: center;
       }
+      .lang-btn {
+        margin-left: 0.5rem;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -297,132 +328,267 @@
         <span>K. Caires</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#perfil">Perfil</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#skills">Habilidades</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#seguranca">Segurança</a></li>
+        <li><a href="#perfil" data-i18n="perfil">Perfil</a></li>
+        <li><a href="#projetos" data-i18n="projetos">Projetos</a></li>
+        <li><a href="#skills" data-i18n="skills">Habilidades</a></li>
+        <li><a href="#blog" data-i18n="blog">Blog</a></li>
+        <li><a href="#seguranca" data-i18n="seguranca">Segurança</a></li>
       </ul>
+      <button id="language-toggle" class="lang-btn" aria-label="Trocar idioma">PT</button>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Portfólio</h1>
-    <p>Estudante de Engenharia da Computação e Big Data e Inteligência Analítica</p>
+    <h1 data-i18n="portfolio-title">Portfólio</h1>
+    <p data-i18n="hero-desc">Estudante de Engenharia da Computação e Big Data e Inteligência Analítica</p>
     <div class="feature-list">
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-database"></i></div>
-        <h4>Mineração de Dados</h4>
-        <p>Reconhecimento de padrões em grandes volumes de dados com IA/ML</p>
+        <h4 data-i18n="feature1-title">Mineração de Dados</h4>
+        <p data-i18n="feature1-desc">Reconhecimento de padrões em grandes volumes de dados com IA/ML</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-robot"></i></div>
-        <h4>Engenharia de Prompt</h4>
-        <p>Criação e Otimização de LLMs</p>
+        <h4 data-i18n="feature2-title">Engenharia de Prompt</h4>
+        <p data-i18n="feature2-desc">Criação e Otimização de LLMs</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-mobile"></i></div>
-        <h4>Dashboards</h4>
-        <p>Filtro de métricas</p>
+        <h4 data-i18n="feature3-title">Dashboards</h4>
+        <p data-i18n="feature3-desc">Filtro de métricas</p>
       </div>
     </div>
-    </div>
     <a href="https://github.com/kauecodify" class="btn" target="_blank">
-      <i class="fab fa-github"></i> GitHub
+      <i class="fab fa-github"></i> <span data-i18n="github">GitHub</span>
     </a>
   </section>
 
   <section id="projetos">
-    <h2 class="section-title">Projetos</h2>
+    <h2 class="section-title" data-i18n="projects-title">Projetos</h2>
     <div class="cards-grid">
       <div class="card">
         <h3>Simplemergetables</h3>
-        <p>Classificação contextual de dados não estruturados para estruturação requerida.</p>
-        <a href="https://github.com/kauecodify/simplemergetables" class="btn" target="_blank">Acessar</a>
+        <p data-i18n="project-desc">Classificação contextual de dados não estruturados para estruturação requerida.</p>
+        <a href="https://github.com/kauecodify/simplemergetables" class="btn" target="_blank" data-i18n="btn-access">Acessar</a>
       </div>
     </div>
   </section>
 
-<section id="skills">
-  <h2 class="section-title">Habilidades Técnicas</h2>
-  <div class="cards-grid">
-    <div class="card">
-      <h3><i class="fas fa-code"></i> Linguagens & Ferramentas</h3>
-      <ul class="skills-list">
-        <li><i class="fab fa-python"></i> Python</li>
-        <li><i class="fas fa-database"></i> SQL</li>
-        <li><i class="fas fa-file-code"></i> SAS</li>
-        <li><i class="fas fa-chart-bar"></i> Power BI</li>
-        <li><i class="fas fa-chart-pie"></i> Tableau</li>
-        <li><i class="fas fa-gem"></i> Databricks</li>
-        <li><i class="fas fa-book-open"></i> Jupyter</li>
-        <li><i class="fab fa-aws"></i> AWS</li>
-        <li><i class="fas fa-file-excel"></i> Excel</li>
-        <li><i class="fab fa-google"></i> Google Analytics</li>
-      </ul>
+  <section id="skills">
+    <h2 class="section-title" data-i18n="skills-title">Habilidades Técnicas</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <h3 data-i18n="lang-tools"><i class="fas fa-code"></i> Linguagens & Ferramentas</h3>
+        <ul class="skills-list">
+          <li><i class="fab fa-python"></i> Python</li>
+          <li><i class="fas fa-database"></i> SQL</li>
+          <li><i class="fas fa-file-code"></i> SAS</li>
+          <li><i class="fas fa-chart-bar"></i> Power BI</li>
+          <li><i class="fas fa-chart-pie"></i> Tableau</li>
+          <li><i class="fas fa-gem"></i> Databricks</li>
+          <li><i class="fas fa-book-open"></i> Jupyter</li>
+          <li><i class="fab fa-aws"></i> AWS</li>
+          <li><i class="fas fa-file-excel"></i> Excel</li>
+          <li><i class="fab fa-google"></i> Google Analytics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="work-areas"><i class="fas fa-layer-group"></i> Áreas de Atuação</h3>
+        <ul class="skills-list">
+          <li><i class="fas fa-project-diagram"></i> ETL</li>
+          <li><i class="fas fa-tachometer-alt"></i> Dashboards</li>
+          <li><i class="fas fa-mountain"></i> Data Mining</li>
+          <li><i class="fas fa-calculator"></i> Modelagem Estatística</li>
+          <li><i class="fas fa-bullseye"></i> SEO</li>
+          <li><i class="fas fa-brain"></i> Prompt Engineering</li>
+          <li><i class="fas fa-shield-alt"></i> Testes de Segurança</li>
+          <li><i class="fas fa-search"></i> Pesquisa de mercado</li>
+        </ul>
+      </div>
     </div>
-    <div class="card">
-      <h3><i class="fas fa-layer-group"></i> Áreas de Atuação</h3>
-      <ul class="skills-list">
-        <li><i class="fas fa-project-diagram"></i> ETL</li>
-        <li><i class="fas fa-tachometer-alt"></i> Dashboards</li>
-        <li><i class="fas fa-mountain"></i> Data Mining</li>
-        <li><i class="fas fa-calculator"></i> Modelagem Estatística</li>
-        <li><i class="fas fa-bullseye"></i> SEO</li>
-        <li><i class="fas fa-brain"></i> Prompt Engineering</li>
-        <li><i class="fas fa-shield-alt"></i> Testes de Segurança</li>
-        <li><i class="fas fa-search"></i> Pesquisa de mercado</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
 
   <section id="blog">
-    <h2 class="section-title">Publicações</h2>
+    <h2 class="section-title" data-i18n="publications-title">Publicações</h2>
     <div class="cards-grid">
       <div class="card">
         <h3>MegaBook: Engenharia de Prompt (2025–2030)</h3>
-        <p>Estratégias avançadas para interação com LLMs e sistemas de IA generativa.</p>
-        <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030" class="btn" target="_blank">Ler</a>
+        <p data-i18n="book1-desc">Estratégias avançadas para interação com LLMs e sistemas de IA generativa.</p>
+        <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030" class="btn" target="_blank" data-i18n="btn-read">Ler</a>
       </div>
       <div class="card">
         <h3>Python – Do Básico ao Machine Learning</h3>
-        <p>Códigos práticos para análise de dados, automação e modelos preditivos.</p>
-        <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" class="btn" target="_blank">Ler</a>
+        <p data-i18n="book2-desc">Códigos práticos para análise de dados, automação e modelos preditivos.</p>
+        <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" class="btn" target="_blank" data-i18n="btn-read">Ler</a>
       </div>
     </div>
   </section>
 
   <section id="seguranca">
-    <h2 class="section-title">Rede de Segurança Cibernética</h2>
+    <h2 class="section-title" data-i18n="security-title">Rede de Segurança Cibernética</h2>
     <div class="cards-grid">
       <div class="card">
         <h3>Bugcrowd</h3>
-        <p>Perfil ativo na plataforma de bug bounty.</p>
-        <a href="https://bugcrowd.com/h/cairescodify" class="btn" target="_blank">Acessar</a>
+        <p data-i18n="bugcrowd-desc">Perfil ativo na plataforma de bug bounty.</p>
+        <a href="https://bugcrowd.com/h/cairescodify" class="btn" target="_blank" data-i18n="btn-access">Acessar</a>
       </div>
       <div class="card">
         <h3>HackerOne</h3>
-        <p>Reporte de vulnerabilidades críticas.</p>
-        <a href="https://hackerone.com/uzi404" class="btn" target="_blank">Acessar</a>
+        <p data-i18n="hackerone-desc">Reporte de vulnerabilidades críticas.</p>
+        <a href="https://hackerone.com/uzi404" class="btn" target="_blank" data-i18n="btn-access">Acessar</a>
       </div>
     </div>
   </section>
 
-    <script>
+  <footer id="digitalizer-footer">
+    <p id="footer-text">© 2030 | K. Caires | System Active...</p>
+  </footer>
 
-    function revealOnScroll() {
-      const elements = document.querySelectorAll('.fade-in');
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add('visible');
-        }
-      });
+  <style>
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      border-top: 1px solid #00eeff31;
+      padding: 1rem 0;
+      text-align: center;
+      color: #abafb1;
+      font-family: 'Courier New', monospace;
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
     }
 
-    window.addEventListener('load', revealOnScroll);
-    window.addEventListener('scroll', revealOnScroll);
+    #footer-text {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px rgba(71, 71, 71, 0.7);
+      white-space: nowrap;
+      animation: digitalBlink 4s infinite;
+      position: relative;
+    }
+
+    #footer-text::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 10px;
+      height: 100%;
+      background: rgba(37, 107, 75, 0.637);
+      box-shadow: 0 0 10px #454646;
+      animation: scanLine 8s linear infinite;
+    }
+
+    @keyframes digitalBlink {
+      0%, 90%, 100% { opacity: 1; }
+      92%, 98% { opacity: 0.4; }
+    }
+
+    @keyframes scanLine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @media (min-width: 768px) {
+      #footer-text:hover {
+        text-shadow:
+          0 0 5px #edeeee4d,
+          2px 0 0 #316d7c86,
+          -2px 0 0 #6c6d6d40;
+        animation: none;
+      }
+    }
+  </style>
+
+  <script>
+    const translations = {
+      pt: {
+        'perfil': 'Perfil',
+        'projetos': 'Projetos',
+        'skills': 'Habilidades',
+        'blog': 'Blog',
+        'seguranca': 'Segurança',
+        'portfolio-title': 'Portfólio',
+        'hero-desc': 'Estudante de Engenharia da Computação e Big Data e Inteligência Analítica',
+        'feature1-title': 'Mineração de Dados',
+        'feature1-desc': 'Reconhecimento de padrões em grandes volumes de dados com IA/ML',
+        'feature2-title': 'Engenharia de Prompt',
+        'feature2-desc': 'Criação e Otimização de LLMs',
+        'feature3-title': 'Dashboards',
+        'feature3-desc': 'Filtro de métricas',
+        'github': 'GitHub',
+        'projects-title': 'Projetos',
+        'project-desc': 'Classificação contextual de dados não estruturados para estruturação requerida.',
+        'skills-title': 'Habilidades Técnicas',
+        'lang-tools': 'Linguagens & Ferramentas',
+        'work-areas': 'Áreas de Atuação',
+        'publications-title': 'Publicações',
+        'book1-desc': 'Estratégias avançadas para interação com LLMs e sistemas de IA generativa.',
+        'book2-desc': 'Códigos práticos para análise de dados, automação e modelos preditivos.',
+        'security-title': 'Rede de Segurança Cibernética',
+        'bugcrowd-desc': 'Perfil ativo na plataforma de bug bounty.',
+        'hackerone-desc': 'Reporte de vulnerabilidades críticas.',
+        'btn-access': 'Acessar',
+        'btn-read': 'Ler'
+      },
+      en: {
+        'perfil': 'Profile',
+        'projetos': 'Projects',
+        'skills': 'Skills',
+        'blog': 'Blog',
+        'seguranca': 'Security',
+        'portfolio-title': 'Portfolio',
+        'hero-desc': 'Student of Computer Engineering and Big Data & Analytics Intelligence',
+        'feature1-title': 'Data Mining',
+        'feature1-desc': 'Pattern recognition in large-scale data with AI/ML',
+        'feature2-title': 'Prompt Engineering',
+        'feature2-desc': 'Creation and Optimization of LLMs',
+        'feature3-title': 'Dashboards',
+        'feature3-desc': 'Metric filtering',
+        'github': 'GitHub',
+        'projects-title': 'Projects',
+        'project-desc': 'Contextual classification of unstructured data for required structuring.',
+        'skills-title': 'Technical Skills',
+        'lang-tools': 'Languages & Tools',
+        'work-areas': 'Areas of Expertise',
+        'publications-title': 'Publications',
+        'book1-desc': 'Advanced strategies for interacting with LLMs and generative AI systems.',
+        'book2-desc': 'Practical code for data analysis, automation, and predictive models.',
+        'security-title': 'Cybersecurity Network',
+        'bugcrowd-desc': 'Active profile on the bug bounty platform.',
+        'hackerone-desc': 'Reporting critical vulnerabilities.',
+        'btn-access': 'Access',
+        'btn-read': 'Read'
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      const toggleBtn = document.getElementById('language-toggle');
+      toggleBtn.textContent = lang === 'pt' ? 'EN' : 'PT';
+
+      localStorage.setItem('preferred-lang', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferred-lang') || 
+                       (navigator.language.startsWith('pt') ? 'pt' : 'en');
+      setLanguage(savedLang);
+
+      document.getElementById('language-toggle').addEventListener('click', () => {
+        const current = document.documentElement.lang;
+        const next = current === 'pt' ? 'en' : 'pt';
+        setLanguage(next);
+      });
+    });
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -437,108 +603,49 @@
       });
     });
 
-  const footerText = document.getElementById('footer-text');
-  const baseText = "© 2030 | K. Caires | System Active";
-  const statuses = [
-    "...",
-    " [SCANNING]",
-    " [SECURE]",
-    " [DATA SYNCHRONIZED]",
-    " [PROMPT ENGINE ONLINE]",
-    " [BUG BOUNTY MODE: ACTIVE]",
-    " [ETL PIPELINE RUNNING]",
-    " [AI OPTIMIZATION: 98.7%]"
-  ];
+    const footerText = document.getElementById('footer-text');
+    const baseText = "© 2030 | K. Caires | System Active";
+    const statuses = [
+      "...",
+      " [SCANNING]",
+      " [DEBBUG IN 2042...]",
+      " [SECURE]",
+      " [DATA SYNCHRONIZED]",
+      " [PROMPT ENGINE ONLINE]",
+      " [BUG BOUNTY MODE: ACTIVE]",
+      " [ETL PIPELINE RUNNING]",
+      " [AI OPTIMIZATION: 98.7%]",
+      " [AI LEARNING...]",
+      " [SCANNING 0%]",
+      " [SCANNING 100%]",
+      " [...]"
 
-  let index = 0;
-  let dotCount = 0;
-  let isTyping = true;
+    ];
 
-  function updateStatus() {
-    if (isTyping) {
-      if (dotCount < 3) {
-        footerText.textContent = baseText + ".".repeat(dotCount + 1);
-        dotCount++;
-      } else {
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        footerText.textContent = baseText + " " + randomStatus;
-        isTyping = false;
-        setTimeout(() => {
-          isTyping = true;
-          dotCount = 0;
-        }, 3500);
+    let dotCount = 0;
+    let isTyping = true;
+
+    function updateStatus() {
+      if (isTyping) {
+        if (dotCount < 3) {
+          footerText.textContent = baseText + ".".repeat(dotCount + 1);
+          dotCount++;
+        } else {
+          const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+          footerText.textContent = baseText + " " + randomStatus;
+          isTyping = false;
+          setTimeout(() => {
+            isTyping = true;
+            dotCount = 0;
+          }, 3500);
+        }
       }
     }
-  }
 
-  setInterval(updateStatus, 800);
-
+    setInterval(updateStatus, 800);
   </script>
-
-<footer id="digitalizer-footer">
-  <p id="footer-text">© 2030 | K. Caires | System Active...</p>
-</footer>
-
-<style>
-  footer {
-    background: rgba(0, 0, 0, 0.3);
-    border-top: 1px solid #00eeff31;
-    padding: 1rem 0;
-    text-align: center;
-    color: #abafb1;
-    font-family: 'Courier New', monospace;
-    position: relative;
-    overflow: hidden;
-    z-index: 10;
-  }
-
-  #footer-text {
-    margin: 0;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-shadow: 0 0 5px rgba(71, 71, 71, 0.7);
-    white-space: nowrap;
-    animation: digitalBlink 4s infinite;
-    position: relative;
-  }
-
-  #footer-text::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 10px;
-    height: 100%;
-    background: rgba(37, 107, 75, 0.637);
-    box-shadow: 0 0 10px #454646;
-    animation: scanLine 8s linear infinite;
-  }
-
-  @keyframes digitalBlink {
-    0%, 90%, 100% { opacity: 1; }
-    92%, 98% { opacity: 0.4; }
-  }
-
-  @keyframes scanLine {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-
-  @media (min-width: 768px) {
-    #footer-text:hover {
-      text-shadow:
-        0 0 5px #edeeee4d,
-        2px 0 0 #316d7c86,
-        -2px 0 0 #6c6d6d40;
-      animation: none;
-    }
-  }
-</style>
-
 </body>
 </html>
-
-
 
 
 
