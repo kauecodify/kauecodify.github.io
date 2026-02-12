@@ -538,6 +538,72 @@
             padding: 0;
             cursor: pointer;
         }
+
+        /* GRID RESPONSIVO */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        /* CARD */
+        .card {
+            background: #111;
+            padding: 24px;
+            border-radius: 12px;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* BOTÃO */
+        .btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            background: #73a08d63;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* CAROUSEL */
+        .img-carousel-wrapper {
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        .img-carousel-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .img-carousel-container img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 8px;
+        }
+
+        /* RESPONSIVO MOBILE */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -585,91 +651,60 @@
     </section>
 
     <section id="projetos">
-        <h2 class="section-title" data-i18n="projects-title">Projetos</h2>
+        <h2 class="section-title">Projetos</h2>
+
         <div class="cards-grid">
+
+            <!-- SimpleMergeTables -->
             <div class="card">
                 <h3>Simplemergetables</h3>
-                <p data-i18n="project-desc-simplemergetables">Interface para carregar arquivos CSV/Excel, visualizar
-                    colunas, mesclar múltiplas colunas em uma única com separador personalizado e exportar para Excel.
-                    Ideal para estruturação de dados não estruturados.</p>
-                <a href="https://github.com/kauecodify/simplemergetables" class="btn" target="_blank"
-                    data-i18n="btn-access">Acessar</a>
+                <p>
+                    Interface para carregar arquivos CSV/Excel, visualizar colunas,
+                    mesclar múltiplas colunas em uma única com separador personalizado
+                    e exportar para Excel.
+                </p>
+                <a href="https://github.com/kauecodify/simplemergetables" class="btn" target="_blank">Acessar</a>
             </div>
 
+            <!-- Rollout -->
             <div class="card">
-                <h3>Rollout (Saas/SLA)</h3>
-                <p data-i18n="project-desc-rollout">Projeto de atualização de hardware em notebooks Sony Vaio para
-                    instituição de ensino fundamental privado. Inclui troca de componentes de rede, instalação de drives
-                    modificados e configuração de sistema para ambiente educacional.</p>
+                <h3>Rollout (SaaS/SLA)</h3>
+                <p>
+                    Atualização de hardware em notebooks Sony Vaio para instituição
+                    privada. Inclui troca de componentes de rede, instalação de drivers
+                    modificados e configuração educacional.
+                </p>
 
                 <div class="img-carousel-wrapper">
-                    <div class="img-carousel-container" id="sony-carousel">
-                        <div class="carousel-item">
-                            <img src="sony.jpeg" alt="Sony Vaio Setup" class="carousel-image" loading="lazy">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="sony1.jpeg" alt="Hardware Installation" class="carousel-image" loading="lazy">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="sony2.jpeg" alt="Modified Drives" class="carousel-image" loading="lazy">
-                        </div>
+                    <div class="img-carousel-container">
+                        <img src="sony.jpeg" alt="Sony 1">
+                        <img src="sony1.jpeg" alt="Sony 2">
+                        <img src="sony2.jpeg" alt="Sony 3">
                     </div>
-
-                    <div class="carousel-controls">
-                        <span class="carousel-dot active" data-index="0"></span>
-                        <span class="carousel-dot" data-index="1"></span>
-                        <span class="carousel-dot" data-index="2"></span>
-                    </div>
-
-                    <button class="carousel-btn prev" aria-label="Imagem anterior">&#8249;</button>
-                    <button class="carousel-btn next" aria-label="Próxima imagem">&#8250;</button>
                 </div>
-
-                <!-- <a href="https://github.com/kauecodify/rollout" class="btn" target="_blank" data-i18n="btn-access">Acessar</a> -->
             </div>
 
+            <!-- LLM -->
+            <div class="card">
+                <h3>LLM Adaptativa</h3>
+                <p>
+                    LLM adaptativa com escolha dinâmica de modelos para resposta imediata. (fundador da pesquisa - 2024)
+                </p>
+                <a href="https://chat-sdk.dev/" class="btn" target="_blank">
+                    Acessar
+                </a>
+            </div>
+
+            <!-- LearningMail -->
             <div class="card">
                 <h3>LearningMail</h3>
-                <p data-i18n="project-desc-learningmail">Automação para download e processamento de arquivos .csv e
-                    .xlsx recebidos por email em grandes volumes. Utiliza Python com Spyder para extração, limpeza e
-                    organização de dados para análise posterior.</p>
-                <a href="https://github.com/kauecodify/LearningMail" class="btn" target="_blank"
-                    data-i18n="btn-access">Acessar</a>
+                <p>
+                    Automação para download e processamento de arquivos .csv e .xlsx
+                    recebidos por email em grande volume utilizando Python.
+                </p>
+                <a href="https://github.com/kauecodify/LearningMail" class="btn" target="_blank">Acessar</a>
             </div>
-        </div>
-    </section>
 
-    <section id="skills">
-        <h2 class="section-title" data-i18n="skills-title">Habilidades Técnicas</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <h3 data-i18n="lang-tools"><i class="fas fa-code"></i> Linguagens & Ferramentas</h3>
-                <ul class="skills-list">
-                    <li><i class="fab fa-python"></i> Python</li>
-                    <li><i class="fas fa-database"></i> SQL</li>
-                    <li><i class="fas fa-file-code"></i> SAS</li>
-                    <li><i class="fas fa-chart-bar"></i> Power BI</li>
-                    <li><i class="fas fa-chart-pie"></i> Tableau</li>
-                    <li><i class="fas fa-gem"></i> Databricks</li>
-                    <li><i class="fas fa-book-open"></i> Jupyter</li>
-                    <li><i class="fab fa-aws"></i> AWS</li>
-                    <li><i class="fas fa-file-excel"></i> Excel</li>
-                    <li><i class="fab fa-google"></i> Google Analytics</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3 data-i18n="work-areas"><i class="fas fa-layer-group"></i> Áreas de Atuação</h3>
-                <ul class="skills-list">
-                    <li><i class="fas fa-project-diagram"></i> ETL</li>
-                    <li><i class="fas fa-tachometer-alt"></i> Dashboards</li>
-                    <li><i class="fas fa-mountain"></i> Data Mining</li>
-                    <li><i class="fas fa-calculator"></i> Modelagem Estatística</li>
-                    <li><i class="fas fa-bullseye"></i> SEO</li>
-                    <li><i class="fas fa-brain"></i> Prompt Engineering</li>
-                    <li><i class="fas fa-shield-alt"></i> Testes de Segurança</li>
-                    <li><i class="fas fa-search"></i> Pesquisa de mercado</li>
-                </ul>
-            </div>
         </div>
     </section>
 
@@ -737,6 +772,7 @@
                 'project-desc-simplemergetables': 'Interface para carregar arquivos CSV/Excel, visualizar colunas, mesclar múltiplas colunas em uma única com separador personalizado e exportar para Excel.',
                 'project-desc-rollout': 'Projeto de atualização de hardware em notebooks Sony Vaio para instituição de ensino fundamental privado. Inclui troca de componentes de rede, instalação de drives modificados e configuração de sistema.',
                 'project-desc-learningmail': 'Automação para download e processamento de arquivos .csv e .xlsx recebidos por email em grandes volumes. Utiliza Python com Spyder para extração e organização de dados.',
+                'project-desc-llm': 'LLM adaptativa com escolha de utilização dos modelos para resposta imediata (IA/ML).',
                 'skills-title': 'Habilidades Técnicas',
                 'lang-tools': 'Linguagens & Ferramentas',
                 'work-areas': 'Áreas de Atuação',
@@ -980,10 +1016,6 @@
 </body>
 
 </html>
-
-
-
-
 
 
 
