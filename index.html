@@ -4,833 +4,390 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>K. Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <title>LABORATORY OF K ®</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
-        :root {
-            --bg: #f5f5f5;
-            --bg-dark: #2d2d2d;
-            --text: #333;
-            --text-light: #666;
-            --text-dark: #f0f0f0;
-            --border: #e0e0e0;
-            --accent: #555;
-            --card-bg: #fff;
-            --card-bg-dark: #1e1e1e;
+         :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --text-muted: #666666;
+            --accent: #0d9488;
+            /* Versão mais sóbria do teal para minimalismo */
+            --accent-light: #98EBDD;
+            --border: #e5e5e5;
             --transition: all 0.3s ease;
         }
-
+        
         @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #121212;
-                --bg-dark: #0f0f0f;
-                --text: #f0f0f0;
-                --text-light: #aaa;
-                --border: #333;
-                --card-bg: #1e1e1e;
-                --card-bg-dark: #121212;
+             :root {
+                --bg: #0a0a0a;
+                --text: #f5f5f5;
+                --text-muted: #888888;
+                --accent: #98EBDD;
+                --accent-light: rgba(152, 235, 221, 0.15);
+                --border: #222222;
             }
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
-
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             background-color: var(--bg);
             color: var(--text);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
+        /* Layout & Spacing */
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        /* Header */
+        
         header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            padding: 2rem 0;
             border-bottom: 1px solid var(--border);
-            padding: 1rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-
-        @media (prefers-color-scheme: dark) {
-            header {
-                background: rgba(30, 30, 30, 0.95);
-            }
-        }
-
+        
         nav {
-            max-width: 1400px;
-            margin: 0 auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--accent);
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .nav-links a {
-                color: var(--text-light);
-            }
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .lang-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-weight: 600;
+        
+        .logo {
             font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-left: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text);
         }
-
-        .lang-btn:hover {
-            background: var(--accent);
-            color: white;
+        
+        .logo span {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            vertical-align: super;
         }
-
-        @media (prefers-color-scheme: dark) {
-            .lang-btn {
-                background: var(--card-bg-dark);
-                color: var(--text-light);
-            }
-        }
-
-        section {
-            padding: 4rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: var(--accent);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 6rem 5% 4rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        .feature-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.2rem;
-            width: 220px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .feature-item {
-                background: var(--card-bg-dark);
-            }
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: var(--accent);
-        }
-
-        .feature-item h4 {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .feature-item p {
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
-            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: var(--transition);
         }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--accent);
-            color: white;
+        
+        .lang-btn:hover {
+            color: var(--accent);
+        }
+        /* Hero Section */
+        
+        .hero {
+            padding: 8rem 0 6rem;
+            text-align: left;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+        
+        .tagline {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .tagline .sep {
+            color: var(--border);
+            margin: 0 0.5rem;
+        }
+        
+        .hero-desc {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+        
+        .hero-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .link-minimal {
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: opacity 0.2s;
-            margin-top: 0.5rem;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+            transition: var(--transition);
         }
-
-        .btn:hover {
-            opacity: 0.9;
+        
+        .link-minimal::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: var(--transition);
         }
-
+        
+        .link-minimal:hover {
+            color: var(--accent);
+        }
+        
+        .link-minimal:hover::after {
+            width: 100%;
+        }
+        /* Content Sections */
+        
+        section.content {
+            padding: 4rem 0 6rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1px;
+            background-color: var(--border);
+            /* Cria as bordas finas entre os cards */
+            border: 1px solid var(--border);
         }
-
+        
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.8rem;
-            transition: var(--transition);
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .card {
-                background: var(--card-bg-dark);
-            }
-        }
-
-        .card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            transform: translateY(-3px);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .card p {
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .skills-list li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .skills-list i {
-            color: var(--accent);
-            min-width: 20px;
-            text-align: center;
-        }
-
-        /* Carrossel melhorado para desktop e mobile */
-        .img-carousel-wrapper {
-            position: relative;
-            width: 100%;
-            margin: 1.5rem 0;
-            overflow: hidden;
-            border-radius: 8px;
-            background: var(--card-bg-dark);
-            border: 1px solid var(--border);
-        }
-
-        .img-carousel-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            /* Firefox */
-            -ms-overflow-style: none;
-            /* IE/Edge */
-            padding: 10px;
-            gap: 10px;
-            min-height: 200px;
-        }
-
-        .img-carousel-container::-webkit-scrollbar {
-            display: none;
-            /* Chrome, Safari, Opera */
-        }
-
-        .carousel-item {
-            min-width: 280px;
-            height: 180px;
-            flex-shrink: 0;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-item img:hover {
-            transform: scale(1.05);
-        }
-
-        .carousel-item.placeholder {
+            background-color: var(--bg);
+            padding: 2.5rem;
             display: flex;
             flex-direction: column;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .card-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .card-link {
+            font-size: 0.85rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            text-align: center;
-            padding: 15px;
+            gap: 0.5rem;
+            transition: var(--transition);
         }
-
-        .carousel-item.placeholder i {
-            font-size: 3rem;
+        
+        .card-link:hover {
             color: var(--accent);
-            margin-bottom: 10px;
+            gap: 0.8rem;
         }
-
-        .carousel-item.placeholder p {
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-            padding: 0 5px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .carousel-dot.active {
-            background: var(--accent);
-        }
-
-        @media (min-width: 768px) {
-            .carousel-btn {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(0, 0, 0, 0.5);
-                color: white;
-                border: none;
-                font-size: 20px;
-                padding: 8px;
-                cursor: pointer;
-                z-index: 10;
-                border-radius: 50%;
-                width: 36px;
-                height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0.8;
-                transition: opacity 0.3s;
-            }
-
-            .carousel-btn:hover {
-                opacity: 1;
-                background: rgba(0, 0, 0, 0.8);
-            }
-
-            .carousel-btn.prev {
-                left: 10px;
-            }
-
-            .carousel-btn.next {
-                right: 10px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .carousel-btn {
-                display: none;
-            }
-
-            .carousel-item {
-                min-width: calc(100% - 20px);
-            }
-        }
-
+        /* Footer */
+        
         footer {
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid #00eeff31;
-            padding: 1rem 0;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
             text-align: center;
-            color: #abafb1;
-            font-family: 'Courier New', monospace;
-            position: relative;
-            overflow: hidden;
-            z-index: 10;
         }
-
-        #footer-text {
-            margin: 0;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(71, 71, 71, 0.7);
-            white-space: nowrap;
-            animation: digitalBlink 4s infinite;
-            position: relative;
+        
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
         }
-
-        #footer-text::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 10px;
-            height: 100%;
-            background: rgba(37, 107, 75, 0.637);
-            box-shadow: 0 0 10px #454646;
-            animation: scanLine 8s linear infinite;
+        /* Animations */
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.8s ease forwards;
         }
-
-        @keyframes digitalBlink {
-
-            0%,
-            90%,
-            100% {
+        
+        @keyframes fadeInUp {
+            to {
                 opacity: 1;
-            }
-
-            92%,
-            98% {
-                opacity: 0.4;
+                transform: translateY(0);
             }
         }
-
-        @keyframes scanLine {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
-            }
+        
+        .delay-1 {
+            animation-delay: 0.1s;
         }
-
+        
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+        /* Responsive */
+        
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .hero {
+                padding: 5rem 0 4rem;
             }
-
-            .hero h1 {
-                font-size: 2.2rem;
+            .hero-links {
+                flex-direction: column;
+                gap: 1.5rem;
             }
-
-            .section-title {
-                font-size: 1.8rem;
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
             }
-
             .cards-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .feature-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .lang-btn {
-                margin-left: 0.5rem;
-                padding: 0.3rem 0.7rem;
-                font-size: 0.85rem;
-            }
-
-            .skills-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Loading state para imagens */
-        .carousel-item img.loading {
-            filter: blur(2px);
-            opacity: 0.7;
-        }
-
-        .carousel-item img.error {
-            display: none;
-        }
-
-        .carousel-item.error .placeholder {
-            display: flex;
-        }
-
-        button.pill {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        /* GRID RESPONSIVO */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        /* CARD */
-        .card {
-            background: #111;
-            padding: 24px;
-            border-radius: 12px;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* BOTÃO */
-        .btn {
-            display: inline-block;
-            margin-top: 16px;
-            padding: 10px 18px;
-            border-radius: 6px;
-            background: #73a08d63;
-            color: #000;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* CAROUSEL */
-        .img-carousel-wrapper {
-            overflow-x: auto;
-            margin-top: 16px;
-        }
-
-        .img-carousel-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .img-carousel-container img {
-            width: 100%;
-            max-width: 220px;
-            border-radius: 8px;
-        }
-
-        /* RESPONSIVO MOBILE */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            .card {
-                padding: 18px;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <i class="fas fa-terminal"></i>
-                <span>K. Caires</span>
+
+    <div class="container">
+        <header class="fade-in">
+            <nav>
+                <div class="logo">Laboratory of K <span>®</span></div>
+                <button id="language-toggle" class="lang-btn" aria-label="Trocar idioma">EN</button>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1 class="fade-in delay-1" data-i18n="greeting">Laboratory of K.</h1>
+            <p class="tagline fade-in delay-2">
+                Data Mining <span class="sep">/</span> Physical AI <span class="sep">/</span> Strategic Planning <span class="sep">/</span> Machine Learning <span class="sep">/</span> Analytics & Growth <span class="sep">/</span> Data Marts
+            </p>
+            <p class="hero-desc fade-in delay-3" data-i18n="hero-desc">
+                Engenharia da Computação & Inteligência Analítica. Construindo soluções escaláveis, seguras e orientadas a dados.
+            </p>
+            <div class="hero-links fade-in delay-3">
+                <a href="https://www.linkedin.com/in/kaue-caires/" class="link-minimal" target="_blank" rel="noopener noreferrer" data-i18n="linkedin">LinkedIn</a>
+                <a href="https://github.com/kauecodify" class="link-minimal" target="_blank" rel="noopener noreferrer" data-i18n="github">GitHub</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#perfil" data-i18n="perfil">Perfil</a></li>
-                <li><a href="#projetos" data-i18n="projetos">Projetos</a></li>
-                <li><a href="#skills" data-i18n="skills">Habilidades</a></li>
-                <li><a href="#blog" data-i18n="blog">Blog</a></li>
-                <li><a href="#seguranca" data-i18n="seguranca">Segurança</a></li>
-            </ul>
-            <button id="language-toggle" class="lang-btn" aria-label="Trocar idioma">PT</button>
-        </nav>
-    </header>
+        </section>
 
-    <section class="hero">
-        <h1 data-i18n="portfolio-title">Portfólio</h1>
-        <p data-i18n="hero-desc">Estudante de Engenharia da Computação e Big Data e Inteligência Analítica</p>
-        <div class="feature-list">
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-database"></i></div>
-                <h4 data-i18n="feature1-title">Mineração de Dados</h4>
-                <p data-i18n="feature1-desc">Reconhecimento de padrões em grandes volumes de dados com IA/ML</p>
+        <section id="seguranca" class="content fade-in">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="seguranca">Segurança</h2>
             </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-robot"></i></div>
-                <h4 data-i18n="feature2-title">Engenharia de Prompt</h4>
-                <p data-i18n="feature2-desc">Criação e Otimização de LLMs</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-mobile"></i></div>
-                <h4 data-i18n="feature3-title">Dashboards</h4>
-                <p data-i18n="feature3-desc">Filtro de métricas</p>
-            </div>
-        </div>
-        <a href="https://github.com/kauecodify" class="btn" target="_blank">
-            <i class="fab fa-github"></i> <span data-i18n="github">GitHub</span>
-        </a>
-    </section>
-
-    <section id="projetos">
-        <h2 class="section-title">Projetos</h2>
-
-        <div class="cards-grid">
-
-            <!-- SimpleMergeTables -->
-            <!-- <div class="card">
-                <h3>Simplemergetables</h3>
-                <p>
-                    Interface para carregar arquivos CSV/Excel, visualizar colunas,
-                    mesclar múltiplas colunas em uma única com separador personalizado
-                    e exportar para Excel.
-                </p>
-                <a href="https://github.com/kauecodify/simplemergetables" class="btn" target="_blank">Acessar</a>
-            </div> -->
-            
-            <!-- FinoraQi -->
-            <div class="card">
-                <h3>FinoraQi</h3>
-                <p>Plataforma de organização financeira e controle de grandes dados visando escalabilidade, atomicidade, velocidade e controle do volume processado em dados variáveis.
-                </p>
-                <a href="https://github.com/finoraqi-team" class="btn" target="_blank">Acessar</a>
-            </div>
-
-            <!-- Rollout -->
-            <div class="card">
-                <h3>Rollout (SaaS/SLA)</h3>
-                <p>
-                    Atualização de hardware em notebooks Sony Vaio para instituição
-                    privada. Inclui troca de componentes de rede, instalação de drivers
-                    modificados e configuração educacional.
-                </p>
-
-                <div class="img-carousel-wrapper">
-                    <div class="img-carousel-container">
-                        <img src="sony.jpeg" alt="Sony 1">
-                        <img src="sony1.jpeg" alt="Sony 2">
-                        <img src="sony2.jpeg" alt="Sony 3">
-                    </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-tag" data-i18n="tag-bug">Bounty Hunter</span>
+                    <h3>Bugcrowd</h3>
+                    <p data-i18n="bugcrowd-desc">Perfil ativo na plataforma de bug bounty.</p>
+                    <a href="https://bugcrowd.com/h/cairescodify" class="card-link" target="_blank" rel="noopener noreferrer">
+                        <span data-i18n="acessar">Acessar</span> <span>→</span>
+                    </a>
+                </div>
+                <div class="card">
+                    <span class="card-tag" data-i18n="tag-vuln">Vuln Research</span>
+                    <h3>HackerOne</h3>
+                    <p data-i18n="hackerone-desc">Reporte e análise de vulnerabilidades críticas.</p>
+                    <a href="https://hackerone.com/uzi404" class="card-link" target="_blank" rel="noopener noreferrer">
+                        <span data-i18n="acessar">Acessar</span> <span>→</span>
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <!-- LLM -->
-            <div class="card">
-                <h3>LLM Adaptativa</h3>
-                <p>
-                    LLM adaptativa com escolha dinâmica de modelos para resposta imediata. (fundador da pesquisa - 2024)
-                </p>
-                <a href="https://chat-sdk.dev/" class="btn" target="_blank">
-                    Acessar
-                </a>
-            </div>
-
-            <!-- LearningMail -->
-            <div class="card">
-                <h3>LearningMail</h3>
-                <p>
-                    Automação para download e processamento de arquivos .csv e .xlsx
-                    recebidos por email em grande volume utilizando Python.
-                </p>
-                <a href="https://github.com/kauecodify/LearningMail" class="btn" target="_blank">Acessar</a>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="blog">
-        <h2 class="section-title" data-i18n="publications-title">Publicações</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <h3>Mídia, Pesquisa e Táticas de Persuasão no Contexto Digital</h3>
-                <p data-i18n="book3-desc">Ebook para análise de sentimento da mídia filtrando decisão final.</p>
-                <a href="https://pt.scribd.com/document/999048638/Midia-Pesquisa-e-Taticas-de-Persuasao-No-Contexto-Digital"
-                    class="btn" target="_blank" data-i18n="btn-read">Ler</a>
-            </div>
-            <div class="card">
-                <h3>MegaBook: Engenharia de Prompt (2025–2030)</h3>
-                <p data-i18n="book1-desc">Estratégias avançadas para interação com LLMs e sistemas de IA generativa.</p>
-                <a href="https://pt.scribd.com/document/922745995/MegaBook-Engenharia-de-Prompt-2025-2030" class="btn"
-                    target="_blank" data-i18n="btn-read">Ler</a>
-            </div>
-            <div class="card">
-                <h3>Python – Do Básico ao Machine Learning</h3>
-                <p data-i18n="book2-desc">Códigos práticos para análise de dados, automação e modelos preditivos.</p>
-                <a href="https://pt.scribd.com/document/875513097/Python-Do-Basico-ao-Machine-Learning" class="btn"
-                    target="_blank" data-i18n="btn-read">Ler</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="seguranca">
-        <h2 class="section-title" data-i18n="security-title">Rede de Segurança Cibernética</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <h3>Bugcrowd</h3>
-                <p data-i18n="bugcrowd-desc">Perfil ativo na plataforma de bug bounty.</p>
-                <a href="https://bugcrowd.com/h/cairescodify" class="btn" target="_blank"
-                    data-i18n="btn-access">Acessar</a>
-            </div>
-            <div class="card">
-                <h3>HackerOne</h3>
-                <p data-i18n="hackerone-desc">Reporte de vulnerabilidades críticas.</p>
-                <a href="https://hackerone.com/uzi404" class="btn" target="_blank" data-i18n="btn-access">Acessar</a>
-            </div>
-        </div>
-    </section>
-
-    <button class="pill" onclick="window.location.href='index-1.html'">
-        <img src="pill.png" width="50px">
-    </button>
-
-    <footer>
-        <p id="footer-text">© 2030 | K. Caires | System Active...</p>
-    </footer>
+        <footer class="fade-in">
+            <p class="footer-text">© 2030 Laboratory of K. All systems operational.</p>
+        </footer>
+    </div>
 
     <script>
         const translations = {
             pt: {
-                'perfil': 'Perfil',
-                'projetos': 'Projetos',
-                'skills': 'Habilidades',
-                'blog': 'Blog',
-                'seguranca': 'Segurança',
-                'portfolio-title': 'Portfólio',
-                'hero-desc': 'Estudante de Engenharia da Computação e Big Data e Inteligência Analítica',
-                'feature1-title': 'Mineração de Dados',
-                'feature1-desc': 'Reconhecimento de padrões em grandes volumes de dados com IA/ML',
-                'feature2-title': 'Engenharia de Prompt',
-                'feature2-desc': 'Criação e Otimização de LLMs',
-                'feature3-title': 'Dashboards',
-                'feature3-desc': 'Filtro de métricas',
+                'greeting': 'Laboratory of K.',
+                'hero-desc': 'Engenharia da Computação & Inteligência Analítica. Construindo soluções escaláveis, seguras e orientadas a dados.',
+                'linkedin': 'LinkedIn',
                 'github': 'GitHub',
-                'projects-title': 'Projetos',
-                'project-desc-simplemergetables': 'Interface para carregar arquivos CSV/Excel, visualizar colunas, mesclar múltiplas colunas em uma única com separador personalizado e exportar para Excel.',
-                'project-desc-rollout': 'Projeto de atualização de hardware em notebooks Sony Vaio para instituição de ensino fundamental privado. Inclui troca de componentes de rede, instalação de drives modificados e configuração de sistema.',
-                'project-desc-learningmail': 'Automação para download e processamento de arquivos .csv e .xlsx recebidos por email em grandes volumes. Utiliza Python com Spyder para extração e organização de dados.',
-                'project-desc-llm': 'LLM adaptativa com escolha de utilização dos modelos para resposta imediata (IA/ML).',
-                'skills-title': 'Habilidades Técnicas',
-                'lang-tools': 'Linguagens & Ferramentas',
-                'work-areas': 'Áreas de Atuação',
-                'publications-title': 'Publicações',
-                'book1-desc': 'Estratégias avançadas para interação com LLMs e sistemas de IA generativa.',
-                'book2-desc': 'Códigos práticos para análise de dados, automação e modelos preditivos.',
-                'book3-desc': 'Mídia, Pesquisa e Táticas de Persuasão no Contexto Digital',
-                'security-title': 'Rede de Segurança Cibernética',
+                'seguranca': 'Segurança',
+                'tag-bug': 'Bounty Hunter',
+                'tag-vuln': 'Vuln Research',
+                'acessar': 'Acessar',
                 'bugcrowd-desc': 'Perfil ativo na plataforma de bug bounty.',
-                'hackerone-desc': 'Reporte de vulnerabilidades críticas.',
-                'btn-access': 'Acessar',
-                'btn-read': 'Ler'
+                'hackerone-desc': 'Reporte e análise de vulnerabilidades críticas.'
             },
             en: {
-                'perfil': 'Profile',
-                'projetos': 'Projects',
-                'skills': 'Skills',
-                'blog': 'Blog',
-                'seguranca': 'Security',
-                'portfolio-title': 'Portfolio',
-                'hero-desc': 'Student of Computer Engineering and Big Data & Analytics Intelligence',
-                'feature1-title': 'Data Mining',
-                'feature1-desc': 'Pattern recognition in large-scale data with AI/ML',
-                'feature2-title': 'Prompt Engineering',
-                'feature2-desc': 'Creation and Optimization of LLMs',
-                'feature3-title': 'Dashboards',
-                'feature3-desc': 'Metric filtering',
+                'greeting': 'Laboratory of K.',
+                'hero-desc': 'Computer Engineering & Analytical Intelligence. Building scalable, secure, and data-driven solutions.',
+                'linkedin': 'LinkedIn',
                 'github': 'GitHub',
-                'projects-title': 'Projects',
-                'project-desc-simplemergetables': 'Interface to load CSV/Excel files, view columns, merge multiple columns into a single one with custom separator, and export to Excel.',
-                'project-desc-rollout': 'Hardware upgrade project for Sony Vaio notebooks for a private elementary school. Includes network component replacement, modified drive installation, and system configuration.',
-                'project-desc-learningmail': 'Automation for downloading and processing .csv and .xlsx files received by email in large volumes. Uses Python with Spyder for data extraction and organization.',
-                'skills-title': 'Technical Skills',
-                'lang-tools': 'Languages & Tools',
-                'work-areas': 'Areas of Expertise',
-                'publications-title': 'Publications',
-                'book1-desc': 'Advanced strategies for interacting with LLMs and generative AI systems.',
-                'book2-desc': 'Practical code for data analysis, automation, and predictive models.',
-                'book3-desc': 'Media, Research, and Persuasion Tactics in the Digital Context',
-                'security-title': 'Cybersecurity Network',
+                'seguranca': 'Security',
+                'tag-bug': 'Bounty Hunter',
+                'tag-vuln': 'Vuln Research',
+                'acessar': 'Access',
                 'bugcrowd-desc': 'Active profile on the bug bounty platform.',
-                'hackerone-desc': 'Reporting critical vulnerabilities.',
-                'btn-access': 'Access',
-                'btn-read': 'Read'
+                'hackerone-desc': 'Reporting and analysis of critical vulnerabilities.'
             }
         };
 
@@ -838,128 +395,12 @@
             document.documentElement.lang = lang;
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
-                if (translations[lang]?.[key]) el.textContent = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
             });
             document.getElementById('language-toggle').textContent = lang === 'pt' ? 'EN' : 'PT';
             localStorage.setItem('preferred-lang', lang);
-        }
-
-        // carregar imagens com fallback
-        function initImageCarousel() {
-            const carouselContainer = document.getElementById('sony-carousel');
-            if (!carouselContainer) return;
-
-            const items = carouselContainer.querySelectorAll('.carousel-item');
-            const dots = document.querySelectorAll('.carousel-dot');
-            const prevBtn = document.querySelector('.carousel-btn.prev');
-            const nextBtn = document.querySelector('.carousel-btn.next');
-
-            // loading imagens com fallback
-            items.forEach((item, index) => {
-                const img = item.querySelector('img');
-
-                img.onload = function () {
-                    this.classList.remove('loading');
-                };
-
-                img.onerror = function () {
-                    this.classList.add('error');
-                    item.classList.add('error');
-
-                    // placeholder se a imagem falhar
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'placeholder';
-                    placeholder.innerHTML = `
-            <i class="fas fa-image"></i>
-            <p>Imagem ${index + 1} não disponível</p>
-          `;
-                    item.appendChild(placeholder);
-                };
-
-                // loading imgs
-                img.classList.add('loading');
-            });
-
-            // buttons
-            let currentIndex = 0;
-
-            function updateCarousel(index) {
-                // atu dots
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[index].classList.add('active');
-
-                // scrool
-                const itemWidth = items[0].offsetWidth + 10; // incluindo gap
-                carouselContainer.scrollTo({
-                    left: index * itemWidth,
-                    behavior: 'smooth'
-                });
-
-                currentIndex = index;
-            }
-
-            prevBtn?.addEventListener('click', () => {
-                const newIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
-                updateCarousel(newIndex);
-            });
-
-            nextBtn?.addEventListener('click', () => {
-                const newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
-                updateCarousel(newIndex);
-            });
-
-            // dots
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    const index = parseInt(dot.getAttribute('data-index'));
-                    updateCarousel(index);
-                });
-            });
-
-            // swipe mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            carouselContainer.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            carouselContainer.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-
-            function handleSwipe() {
-                const diff = touchStartX - touchEndX;
-
-                if (diff > 50) {
-                    // swipe esquerda
-                    const newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
-                    updateCarousel(newIndex);
-                } else if (diff < -50) {
-                    // swipe direita
-                    const newIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
-                    updateCarousel(newIndex);
-                }
-            }
-
-            // auto-avaliador
-            setTimeout(() => {
-                items.forEach(item => {
-                    const img = item.querySelector('img');
-                    if (!img.complete) {
-                        // fallback visual
-                        img.style.backgroundColor = 'var(--card-bg-dark)';
-                        img.style.minHeight = '150px';
-                        img.style.display = 'flex';
-                        img.style.alignItems = 'center';
-                        img.style.justifyContent = 'center';
-                        img.style.color = 'var(--text-light)';
-                        img.style.fontStyle = 'italic';
-                        img.textContent = 'Carregando...';
-                    }
-                });
-            }, 3000);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -969,63 +410,6 @@
             document.getElementById('language-toggle').addEventListener('click', () => {
                 const current = document.documentElement.lang;
                 setLanguage(current === 'pt' ? 'en' : 'pt');
-            });
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', e => {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-                });
-            });
-
-            initImageCarousel();
-
-            // footer dinâmico
-            const footerText = document.getElementById('footer-text');
-            const baseText = "© 2030 | K. Caires | System Active";
-            const statuses = [
-                "...", "[SCANNING]", "[DEBUG IN 2042...]", "[SECURE]", "[DATA SYNCHRONIZED]",
-                "[PROMPT ENGINE ONLINE]", "[BUG BOUNTY MODE: ACTIVE]", "[ETL PIPELINE RUNNING]",
-                "[AI OPTIMIZATION: 98.7%]", "[AI LEARNING...]", "[SCANNING 0%]", "[SCANNING 100%]"
-            ];
-
-            let dotCount = 0;
-            let isTyping = true;
-
-            function updateStatus() {
-                if (isTyping) {
-                    if (dotCount < 3) {
-                        footerText.textContent = baseText + ".".repeat(dotCount + 1);
-                        dotCount++;
-                    } else {
-                        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-                        footerText.textContent = baseText + " " + randomStatus;
-                        isTyping = false;
-                        setTimeout(() => {
-                            isTyping = true;
-                            dotCount = 0;
-                        }, 3500);
-                    }
-                }
-            }
-
-            setInterval(updateStatus, 800);
-
-            // fallbacl imgs
-            document.querySelectorAll('img').forEach(img => {
-                img.onerror = function () {
-                    this.style.display = 'none';
-                    const parent = this.parentElement;
-                    if (parent) {
-                        const fallback = document.createElement('div');
-                        fallback.style.textAlign = 'center';
-                        fallback.style.padding = '20px';
-                        fallback.style.color = 'var(--text-light)';
-                        fallback.innerHTML = `<i class="fas fa-image fa-2x" style="color: var(--accent); margin-bottom: 10px;"></i><p>Imagem não disponível</p>`;
-                        parent.appendChild(fallback);
-                    }
-                };
             });
         });
     </script>
